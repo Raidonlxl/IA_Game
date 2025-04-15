@@ -6,7 +6,8 @@ public class EnemyController : MonoBehaviour
     private EnemyModel enemyModel;
     private FSM<StatesEnum> fsm;
 
-    [SerializeField] private Transform[] waypoints; 
+    [SerializeField] private Transform[] waypoints;
+    [SerializeField] Rigidbody target;
     private void Start()
     {
         enemyModel = GetComponent<EnemyModel>();
@@ -14,7 +15,7 @@ public class EnemyController : MonoBehaviour
 
     private void Update()
     {
-     
+
         if (LineOfSight.LOS(enemyModel.transform, enemyModel.target, enemyModel.enemyBase.Range, enemyModel.enemyBase.Angle, enemyModel.enemyBase.ObstacleMask))
         {
             Debug.Log("Watching");
@@ -33,6 +34,6 @@ public class EnemyController : MonoBehaviour
 
         var idle = new Idle(enemyModel.transform);
         var patrol = new Patrol(enemyModel.transform,waypoints);
-        var persuit = new Persuit()
+        var persuit = new Persuit(transform, target);
     }
 }
