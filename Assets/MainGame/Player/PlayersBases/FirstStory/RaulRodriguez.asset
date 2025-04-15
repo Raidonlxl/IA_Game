@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60eb83322b2e7e244be2d6c6dab5740b, type: 3}
+  m_Name: RaulRodriguez
+  m_EditorClassIdentifier: 
+  maxLife: 100
+  currentTiredTime: 4.5799966
+  maxTiredTime: 7
+  currentConter: 1.659999
+  maxConter: 3
+  maxTimeRuning: 5
+  speed: 2
+  runSpeed: 10
