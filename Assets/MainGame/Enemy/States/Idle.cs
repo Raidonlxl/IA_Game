@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Idle : ISteering    
+public class Idle<T> : State<T>     
 {
 
     private Transform self;

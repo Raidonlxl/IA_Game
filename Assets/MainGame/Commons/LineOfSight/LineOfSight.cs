@@ -2,6 +2,20 @@ using UnityEngine;
 
 public class LineOfSight : MonoBehaviour
 {
+    [SerializeField]Transform self;
+    [SerializeField] Transform target;
+    [SerializeField] float range;
+    [SerializeField] float angle;
+    [SerializeField] LayerMask obsMask;
+   
+    public void Initialize(Transform self, Transform target, float range, float angle, LayerMask obsMask) 
+    {
+        this.self = self;
+        this.target = target;
+        this.range = range;
+        this.angle = angle;
+        this.obsMask = obsMask;
+    }
     public static bool CheckRange(Transform self, Transform target, float range)
     {
         Vector3 dir = target.position - self.position;
@@ -25,10 +39,12 @@ public class LineOfSight : MonoBehaviour
         return !Physics.Raycast(self.position, dir.normalized, dir.magnitude, obsMask);
     }
 
-    public static bool LOS(Transform self, Transform target, float range, float angle, LayerMask obsMask)
+    public bool LOS()
     {
         return CheckRange(self, target, range)
             && CheckAngle(self, target, angle)
             && CheckView(self, target, obsMask);
     }
+
+   
 }

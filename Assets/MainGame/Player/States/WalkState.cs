@@ -4,13 +4,13 @@ using UnityEngine;
 public class WalkState<T> : State<T>
 {
     private PlayerModel owner;
-    private float speed;
+ 
 
     T imputToIdle;
-    public WalkState(PlayerModel owner, float speed, T imputToIdle)
+    public WalkState(PlayerModel owner, T imputToIdle)
     {
         this.owner = owner;
-        this.speed = speed;
+    
         this.imputToIdle = imputToIdle;
     }
     public override void Execute()
@@ -20,14 +20,14 @@ public class WalkState<T> : State<T>
         {
             if (InputManager.Run())
             {
-                owner.MoveFront(owner.transform.position, speed);
+                owner.MoveFront(owner.transform.position);
                 Debug.Log("RUNING");
 
             }
             else
             {
-                owner.MoveFront(InputManager.GetDirection(), speed);
-                owner.MoveSide(InputManager.GetSide(), speed);
+                owner.MoveFront(InputManager.GetDirection());
+                owner.MoveSide(InputManager.GetSide());
              
 
             }
