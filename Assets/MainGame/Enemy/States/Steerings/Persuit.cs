@@ -3,30 +3,34 @@ using UnityEngine;
 public class Persuit : ISteering
 {
     Transform _self;
-    Rigidbody _target;
+    Transform _target;
     float _timePrediction;
     float _errorRange = 0.1f;
-    public Persuit(Transform self, Rigidbody target, float errorRange = 0, float timePrediction = 0)
+    float currentSpeedTarget;
+    public Persuit(Transform self, Transform target,float currentSpeedTarget, float errorRange = 0, float timePrediction = 0)
     {
         _self = self;
         _target = target;
         _timePrediction = timePrediction;
+        this.currentSpeedTarget = currentSpeedTarget;
     }
 
-    public Persuit(Transform self, Rigidbody target, float errorRange = 0)
+    public Persuit(Transform self, Transform target,float currentSpeedTarget, float errorRange = 0)
     {
         _self = self;
         _target = target;
+        this.currentSpeedTarget=currentSpeedTarget;
     }
-    public Persuit(Transform self, Rigidbody target)
+    public Persuit(Transform self, Transform target, float currentSpeedTarget)
     {
         _self = self;
         _target = target;
+        this.currentSpeedTarget=currentSpeedTarget;
     }
 
     public virtual Vector3 GetDir()
     {
-        Vector3 point = _target.position + _target.linearVelocity * _timePrediction;
+        Vector3 point = _target.position + _target.position.normalized * currentSpeedTarget * _timePrediction;
         Vector3 dirToPoint = (point - _self.position).normalized;
         Vector3 dirToTarget = (_target.position - _self.position).normalized;
 

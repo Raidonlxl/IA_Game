@@ -1,6 +1,5 @@
 using System.Diagnostics;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class Patrol : ISteering
 {
@@ -20,31 +19,36 @@ public class Patrol : ISteering
     public Vector3 GetDir()
     {
 
-        if (Vector3.Distance(self.position, waypoints[index].position) < 5)
+        if (Vector3.Distance(self.position, waypoints[index].position) < 2)
         {
 
             if (!isBacking)
             {
-                index++;
-                if (index > waypoints.Length - 1)
+                if (index < waypoints.Length - 1)
                 {
-                    isBacking = !isBacking;
+                    index++;
+                }
+                else
+                {
+                    isBacking = true;
+                    index--; 
                 }
             }
-
-            else
+            else 
             {
-                index--;
-
-                if (index <= 0)
+                if (index > 0)
                 {
-
-                    isBacking = !isBacking; 
-
+                    index--; 
+                }
+                else
+                {
+                    isBacking = false;
+                    index++;
                 }
             }
         }
-        
         return (waypoints[index].position - self.position).normalized;
+
+
     }
 }

@@ -18,10 +18,10 @@ MonoBehaviour:
   currentConter: 0
   maxConter: 0
   maxTimeRuning: 0
-  speed: 0
+  speed: 2
   runSpeed: 0
-  angle: 45
-  range: 20
+  angle: 90
+  range: 10
   obsMask:
     serializedVersion: 2
     m_Bits: 128

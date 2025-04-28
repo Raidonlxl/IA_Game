@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private PlayerBase playerBase;
+  
     private PlayerModel playerModel;
     private Rigidbody rb;
 
     private FSM<StatesEnum> fsm;
    
+
     //private Counter counter;
 
 
@@ -58,35 +59,35 @@ public class PlayerController : MonoBehaviour
 
             }
         }
-        */
+        
 
-        if (playerBase.CurrentConter < playerBase.MaxConter)
+        if (playerModel.PlayerBase.CurrentConter < playerModel.PlayerBase.MaxConter)
         {
-            playerBase.CurrentConter += Time.deltaTime;
+            playerModel.PlayerBase.CurrentConter += Time.deltaTime;
 
         }
 
         else
         {
-            if(playerBase.CurrentTiredTime< playerBase.MaxTimeTired)
+            if(playerModel.PlayerBase.CurrentTiredTime< playerModel.PlayerBase.MaxTimeTired)
             {
-                playerBase.CurrentTiredTime += Time.deltaTime;
+                playerModel.PlayerBase.CurrentTiredTime += Time.deltaTime;
             }
 
-        }
+        }*/
 
     }
 
     private void Run(Vector3 moveVertical)
     {
-        playerModel.MoveFront(moveVertical, playerBase.RunSpeed);
+        playerModel.MoveFront(moveVertical);
 
     }
 
     void InitializeFsm()
     {
         fsm = new FSM<StatesEnum>();
-        var movePlayer = new WalkState<StatesEnum>(playerModel,playerBase.Speed,StatesEnum.Idle);
+        var movePlayer = new WalkState<StatesEnum>(playerModel,StatesEnum.Idle);
         var idlePlayer = new IdleState<StatesEnum>(StatesEnum.Run);
 
         idlePlayer.AddTransition(StatesEnum.Run,movePlayer);
