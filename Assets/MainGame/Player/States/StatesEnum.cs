@@ -9,5 +9,6 @@ public enum  StatesEnum
     Persuit,
     Shoot,
     Tired,
-    GetAmmo
+    GetAmmo,
+    Dead
 }

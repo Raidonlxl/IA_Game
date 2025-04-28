@@ -29,4 +29,6 @@ public class EnemyBase : ScriptableObject
     public float Range { get => range;}
     public LayerMask ObstacleMask { get => obsMask;}
 
+    public float MaxLife  { get => maxLife; }
+
 }
