@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 public class EnemyController : MonoBehaviour
 {
 
-    private EnemyModel enemyModel;
+    [SerializeField] EnemyModel enemyModel;
     private FSM<StatesEnum> fsm;
     ITreeNode root;
     ISteering steering;
@@ -21,10 +21,11 @@ public class EnemyController : MonoBehaviour
     {
         enemyModel = GetComponent<EnemyModel>();
         los = GetComponent<LineOfSight>();
+        los.Initialize(enemyModel.transform, enemyModel.target.transform, enemyModel.enemyBase.Range, enemyModel.enemyBase.Angle, enemyModel.enemyBase.ObstacleMask);
 
         InitializeFsm();
         InitializeTree();
-        los.Initialize(enemyModel.transform, enemyModel.target.transform, enemyModel.enemyBase.Range, enemyModel.enemyBase.Angle, enemyModel.enemyBase.ObstacleMask);
+        
     }
 
     private void Update()
@@ -36,7 +37,7 @@ public class EnemyController : MonoBehaviour
     void InitializeFsm()
     {
         fsm = new FSM<StatesEnum>();
-
+        
         var steeringPersuit = new Persuit(enemyModel.transform, enemyModel.target.transform, enemyModel.playerModel.Speed);
         var steeringPatrol = new Patrol(enemyModel.transform, waypoints);
 

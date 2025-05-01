@@ -9,6 +9,7 @@ public class EnemyModel : MonoBehaviour
     public EnemyBase enemyBase;
     public GameObject target;
     public PlayerModel playerModel;
+    [SerializeField]
     private ObstacleAvoidance obs;
     public bool isReady;
     public GameObject pointToShoot;

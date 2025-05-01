@@ -18,12 +18,24 @@ public class MeleeEnemyModel : MonoBehaviour
         _currentLife = _stats.MaxLife;
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, _stats.Range);
 
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(transform.position, Quaternion.Euler(0, _stats.Angle / 2, 0) * transform.forward * _stats.Range);
+        Gizmos.DrawRay(transform.position, Quaternion.Euler(0, -_stats.Angle / 2, 0) * transform.forward * _stats.Range);
+    }
     public void Move(Vector3 dir)
     {
         Vector3 finalDir = dir.normalized;
-        finalDir.y = 0;
-        transform.position += finalDir * 0.5f;
+        transform.position += finalDir * _stats.Speed * Time.deltaTime;
+        RotateEnemy(finalDir);
+    }
+    public void RotateEnemy(Vector3 direction)
+    {
+        transform.forward = Vector3.Lerp(transform.forward, direction.normalized, 0.2f);
     }
     public void turnoffhitbox()
     {

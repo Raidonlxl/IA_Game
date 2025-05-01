@@ -18,8 +18,8 @@ MonoBehaviour:
   currentConter: 0
   maxConter: 0
   maxTimeRuning: 0
-  speed: 0
-  runSpeed: 0
+  speed: 1
+  runSpeed: 2
   angle: 101
   range: 5
   obsMask:

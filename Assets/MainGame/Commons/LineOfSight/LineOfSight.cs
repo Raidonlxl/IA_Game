@@ -46,5 +46,11 @@ public class LineOfSight : MonoBehaviour
             && CheckView(self, target, obsMask);
     }
 
+    public bool CustomLOS(float _range)
+    {
+        return CheckRange(self, target, _range)
+            && CheckAngle(self, target, angle)
+            && CheckView(self, target, obsMask);
+    }
    
 }

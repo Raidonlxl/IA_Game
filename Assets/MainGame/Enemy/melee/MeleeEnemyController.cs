@@ -6,26 +6,27 @@ public class MeleeEnemyController : MonoBehaviour
 {
     [SerializeField] MeleeEnemyModel _model;
     [SerializeField] Transform[] _wayPoints;
-    [SerializeField] Rigidbody _target;
-    [SerializeField] bool _chooseSteering;
-    [SerializeField] bool _enableSteering;
+    [SerializeField] Transform _target;
   
     FSM<StatesEnum> _fsm;
     ITreeNode _root;
+    LineOfSight _los;
     
     ObstacleAvoidance _avoidance;
     ISteering _patrol;
     ISteering _persuit;
 
-    public Action OnAttack;
-    public Action OnDead;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        _los = GetComponent<LineOfSight>();
+        _los.Initialize(transform, _target, _model.Stats.Range, _model.Stats.Angle, _model.Stats.ObstacleMask);
         _avoidance = GetComponent<ObstacleAvoidance>();
         intializeStreering();
         InitializeFSM();
         InitializeTree();
+        
     }
 
     // Update is called once per frame
@@ -38,7 +39,7 @@ public class MeleeEnemyController : MonoBehaviour
     void intializeStreering()
     {
         _patrol = new Patrol(transform, _wayPoints);
-        _persuit = new Persuit(transform, _target);
+        _persuit = new Persuit(transform, _target, 2f);
     }
 
     void InitializeFSM()
@@ -90,7 +91,7 @@ public class MeleeEnemyController : MonoBehaviour
 
     bool QuestionLOS()
     {
-        if (LineOfSight.LOS(transform, _target.transform, _model.Stats.Range, _model.Stats.Angle, _model.Stats.ObstacleMask))
+        if (_los.LOS())
         {
 
             return true;
@@ -103,7 +104,7 @@ public class MeleeEnemyController : MonoBehaviour
 
     bool QuestionHasReachedFoe()
     {
-        if(LineOfSight.LOS(transform, _target.transform, 1, _model.Stats.Angle, _model.Stats.ObstacleMask))
+        if(_los.CustomLOS(1f))
         {
 
             return true;

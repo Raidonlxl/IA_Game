@@ -20,7 +20,7 @@ MonoBehaviour:
   maxTimeRuning: 0
   speed: 2
   runSpeed: 0
-  angle: 90
+  angle: 101
   range: 10
   obsMask:
     serializedVersion: 2
