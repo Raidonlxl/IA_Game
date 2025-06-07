@@ -7,6 +7,7 @@ public enum  StatesEnum
     Run,
     Patrol,
     Persuit,
+    GoToLastPoint,
     Shoot,
     Tired,
     GetAmmo,

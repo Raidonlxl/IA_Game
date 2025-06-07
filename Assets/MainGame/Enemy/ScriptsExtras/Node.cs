@@ -9,21 +9,19 @@ public class Node : MonoBehaviour
 
     //Si utilizan este codigo con los raycast en el start/update/realtime son un punto menos por raycast.
     public bool hasTrap;
-    Material mat;
+    
+    
     private void Start()
     {
-        mat = GetComponent<Renderer>().material;
+        /*
         GetNeightbourd(Vector3.right);
         GetNeightbourd(Vector3.left);
         GetNeightbourd(Vector3.forward);
-        GetNeightbourd(Vector3.back);
+        GetNeightbourd(Vector3.back);*/
     }
     private void Update()
     {
-        if (hasTrap)
-            mat.color = Color.red;
-        else
-            mat.color = Color.white;
+        
     }
     void GetNeightbourd(Vector3 dir)
     {
@@ -35,4 +33,6 @@ public class Node : MonoBehaviour
                 neightbourds.Add(node);
         }
     }
+
+    
 }

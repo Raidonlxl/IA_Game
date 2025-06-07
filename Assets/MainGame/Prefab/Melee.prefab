@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1529225246410035701}
   - component: {fileID: 5295498384211143528}
   - component: {fileID: 1249642988519763851}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Melee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -128,10 +128,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _model: {fileID: 1529225246410035701}
-  _wayPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   _target: {fileID: 0}
 --- !u!114 &1529225246410035701
 MonoBehaviour:
@@ -148,7 +144,16 @@ MonoBehaviour:
   _stats: {fileID: 11400000, guid: 34b56f9734678a942a091731187edd97, type: 2}
   _hitbox: {fileID: 8684611069742227346}
   _currentLife: 1
-  _isIdling: 0
+  _nodeskey:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _nodesvalue:
+  - 0
+  - 0
+  - 0
+  - 0
 --- !u!114 &5295498384211143528
 MonoBehaviour:
   m_ObjectHideFlags: 0
