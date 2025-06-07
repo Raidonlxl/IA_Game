@@ -10,5 +10,6 @@ public enum  StatesEnum
     Shoot,
     Tired,
     GetAmmo,
-    Dead
+    Dead,
+    setPathing
 }

@@ -6,31 +6,23 @@ public class ReloadState<T> : State<T>
 {
     Transform[] reloadsBoxs;
     EnemyModel self;
-    float timer;
-    float maxTimeRecharger=5;
-    bool isReady;
+    Timer timer;
     Transform selected;
     float x= math.INFINITY;
-    public ReloadState(Transform[] reloadsBoxs, EnemyModel self)
+    ISteering steering;
+    public ReloadState(ISteering steering, Transform[] reloadsBoxs, EnemyModel self)
     {
         this.reloadsBoxs = reloadsBoxs;
         this.self = self;
-       
+        this.steering = steering;
+        timer = new Timer(0, 5);
     }
 
     public override void Enter()
     {
+        Debug.Log("Reload");
+        timer.ResetTimer();
         base.Enter();
-        timer = 0;
-        
-
-    }
-
-    public override void Execute()
-    {
-        base.Execute();
-
-
         for (int i = 0; i < reloadsBoxs.Length; i++)
         {
             float a = Vector3.Distance(self.transform.position, reloadsBoxs[i].position);
@@ -42,21 +34,27 @@ public class ReloadState<T> : State<T>
             }
         }
 
-        if(Vector3.Distance(self.transform.position, selected.position) > 2)
+        steering.Refresh(selected);
+       
+    }
+
+    public override void Execute()
+    {
+        base.Execute();
+
+        if (Vector3.Distance(self.transform.position, selected.position) < 2)
         {
-           Vector3 direction = selected.position - self.transform.position;
-            self.Move(direction.normalized);    
-        }
-        else
-        {
-            timer += Time.deltaTime;
-            if (timer > maxTimeRecharger)
+            timer.Run();
+            if (timer.IsCompleted())
             {
                 self.isReady = true;
             }
         }
+        else
+        {
+            self.Move(steering.GetDir());
+        }
      
     }
-
     public override void Exit() => base.Exit();
 }

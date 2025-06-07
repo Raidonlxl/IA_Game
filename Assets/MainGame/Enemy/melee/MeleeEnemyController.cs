@@ -1,4 +1,6 @@
+using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -38,7 +40,7 @@ public class MeleeEnemyController : MonoBehaviour
 
     void intializeStreering()
     {
-        _patrol = new Patrol(transform, _wayPoints);
+        //_patrol = new MoveToWaypoints(transform,true, _wayPoints);
         _persuit = new Persuit(transform, _target, 2f);
     }
 

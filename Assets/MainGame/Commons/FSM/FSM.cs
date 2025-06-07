@@ -5,6 +5,7 @@ using UnityEngine;
 public class FSM<T>
 {
     public IState<T> _currState;
+    public string nameState;
     public FSM() { }
     public FSM(IState<T> curr)
     {
@@ -20,6 +21,7 @@ public class FSM<T>
     {
         if (_currState != null)
             _currState.Execute();
+      
     }
     public void Transition(T input)
     {

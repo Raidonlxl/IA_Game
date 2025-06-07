@@ -43,6 +43,12 @@ public class Persuit : ISteering
             return dirToPoint;
         }
     }
+
+    public void Refresh(Transform target)
+    {
+       
+    }
+
     public float TimePrediction
     {
         get

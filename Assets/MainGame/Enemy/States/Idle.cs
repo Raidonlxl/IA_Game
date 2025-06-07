@@ -8,6 +8,13 @@ public class Idle<T> : State<T>
     {
         this.self = self;
     }
+
+    public override void Enter()
+    {
+        base.Enter();
+        Debug.Log("Idle");
+
+    }
     public Vector3 GetDir()
     {
         return Vector3.zero;

@@ -4,20 +4,19 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-  
+
+    PlayerBase playerBase;
     private PlayerModel playerModel;
     private Rigidbody rb;
 
     private FSM<StatesEnum> fsm;
-   
-
     //private Counter counter;
-
 
     [SerializeField] CameraController cameraController;
 
     private void Start()
     {
+       
         InputManager.cameraController = cameraController;
         rb= gameObject.GetComponent<Rigidbody>();
         playerModel= gameObject.GetComponent<PlayerModel>();
@@ -30,53 +29,6 @@ public class PlayerController : MonoBehaviour
     {
         fsm.OnExecute();
     }
-    private void FixedUpdate()
-    { 
-        /*
-        float x = Input.GetAxis("Horizontal");
-        float y = Input.GetAxis("Vertical");
-
-      
-        Vector3 forward = new Vector3(cameraController.transform.forward.x,0f,cameraController.transform.forward.z).normalized;
-        Vector3 right = new Vector3(cameraController.transform.forward.x,0f,0f).normalized;
-
-        Vector3 movementVertical = forward * y;
-        Vector3 movementHorizontal = right * x;
-        
-        if (x != 0 || y != 0)
-        {
-            if (Input.GetKey(KeyCode.LeftShift) && playerBase.CurrentTiredTime > 0)
-            {
-                Run(movementVertical);
-                playerBase.CurrentConter = 0;
-                playerBase.CurrentTiredTime -= Time.deltaTime;
-                
-            }
-        else
-            {
-                playerModel.MoveFront(movementVertical, playerBase.Speed);
-                playerModel.MoveSide(movementHorizontal, playerBase.Speed);
-
-            }
-        }
-        
-
-        if (playerModel.PlayerBase.CurrentConter < playerModel.PlayerBase.MaxConter)
-        {
-            playerModel.PlayerBase.CurrentConter += Time.deltaTime;
-
-        }
-
-        else
-        {
-            if(playerModel.PlayerBase.CurrentTiredTime< playerModel.PlayerBase.MaxTimeTired)
-            {
-                playerModel.PlayerBase.CurrentTiredTime += Time.deltaTime;
-            }
-
-        }*/
-
-    }
 
     private void Run(Vector3 moveVertical)
     {
@@ -87,12 +39,18 @@ public class PlayerController : MonoBehaviour
     void InitializeFsm()
     {
         fsm = new FSM<StatesEnum>();
-        var movePlayer = new WalkState<StatesEnum>(playerModel,StatesEnum.Idle);
-        var idlePlayer = new IdleState<StatesEnum>(StatesEnum.Run);
+        var movePlayer = new WalkState<StatesEnum>(playerModel,StatesEnum.Idle,StatesEnum.Shoot);
+        var idlePlayer = new IdleState<StatesEnum>(StatesEnum.Run, StatesEnum.Shoot);
+        var shootPlayer = new ShootStatePlayer<StatesEnum>(playerModel,playerModel.bullet, StatesEnum.Run,StatesEnum.Idle);
 
         idlePlayer.AddTransition(StatesEnum.Run,movePlayer);
+        idlePlayer.AddTransition(StatesEnum.Shoot,shootPlayer);
 
         movePlayer.AddTransition(StatesEnum.Idle,idlePlayer);
+        movePlayer.AddTransition(StatesEnum.Shoot, shootPlayer);
+
+        shootPlayer.AddTransition(StatesEnum.Run,movePlayer);
+        shootPlayer.AddTransition(StatesEnum.Idle, idlePlayer);
 
         fsm.SetInit(idlePlayer);
 

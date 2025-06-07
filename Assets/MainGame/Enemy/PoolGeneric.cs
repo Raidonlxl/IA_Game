@@ -1,60 +1,65 @@
-using NUnit.Framework;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
 
-public class PoolGeneric<T>
+[System.Serializable]
+public class PoolGeneric<T>: IPooleable
 {
-    [SerializeField] public GameObject _originalPrefab;
-    [SerializeField] private List<GameObject> _usedPool = new List<GameObject>();
-    [SerializeField] private List<GameObject> _availablePool = new List<GameObject>();
+    [SerializeField] public GameObject originalPrefab;
+    [SerializeField] private List<GameObject> usedPool = new();
+    [SerializeField] private List<GameObject> availablePool = new();
 
     public GameObject GetFromPool()
     {
         GameObject pooledObject;
 
-        if (_availablePool.Count == 0)
+        if (availablePool.Count == 0)
         {
-            // Instantiate
-            pooledObject = GameObject.Instantiate(_originalPrefab);
-        }
+            if (originalPrefab == null)
+            {
+           
+                return null;
+            }
 
+            pooledObject = GameObject.Instantiate(originalPrefab);
+        }
         else
         {
-            // Get First From Pool List
-            pooledObject = _availablePool[0];
+            pooledObject = availablePool[0];
+            availablePool.RemoveAt(0);
         }
 
-        _usedPool.Add(pooledObject);
-        _availablePool.Remove(pooledObject);
+        pooledObject.SetActive(true);
+        usedPool.Add(pooledObject);
 
         return pooledObject;
     }
-
-    public void Recycle(GameObject recycle)
-    {
-        recycle.SetActive(false);
-        recycle.transform.position = new Vector3(100, 0, 100);
-
-        _usedPool.Remove(recycle);
-        _availablePool.Add(recycle);
-    }
-
     public void Clear()
     {
-        //_usedPool.Clear();
-        _availablePool.Clear();
+        foreach (var obj in availablePool)
+        {
+            GameObject.Destroy(obj);
+        }
+        availablePool.Clear();
     }
 
     public void InitializePool(int size)
     {
         for (int i = 0; i < size; i++)
         {
-            var instance = GetFromPool();
-        }
+            var instance = GameObject.Instantiate(originalPrefab);
+            instance.SetActive(false);
+            instance.transform.position = new Vector3(100, 0, 100);
+            availablePool.Add(instance);
 
-        for (int i = _usedPool.Count - 1; i >= 0; i--)
-        {
-            Recycle(_usedPool[i]);
         }
+    }
+
+    public void Recycle(GameObject obj)
+    {
+        if (availablePool.Contains(obj)) return;
+        usedPool.Remove(obj);
+        availablePool.Add(obj);
+        obj.SetActive(false);
+        obj.transform.position = new Vector3(100, 0, 100);
     }
 }
