@@ -2,9 +2,33 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
+    
+    public BulletModel bulletModel;
+    public Timer timer;
 
+    private void Start()
+    {
+        timer = new Timer(0,5);
+    }
+    public void SetOwner(string owner)
+    {
+        bulletModel.owner = owner;
+    }
     private void Update()
     {
-        transform.position += transform.forward * Time.deltaTime * 5;
+        timer.Run();
+        if (!timer.IsCompleted())
+        {
+            transform.position += transform.forward * Time.deltaTime * 5;
+        }
+
+        else
+        {
+            bulletModel.pool.Recycle(gameObject);
+            timer.ResetTimer();
+        }
+
     }
+
+    
 }

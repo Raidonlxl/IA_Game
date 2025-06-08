@@ -4,38 +4,34 @@ using UnityEngine;
 public class WalkState<T> : State<T>
 {
     private PlayerModel owner;
- 
+    T inputShoot;
 
-    T imputToIdle;
-    public WalkState(PlayerModel owner, T imputToIdle)
+    T inputToIdle;
+    public WalkState(PlayerModel owner, T inputToIdle,T inputShoot)
     {
         this.owner = owner;
     
-        this.imputToIdle = imputToIdle;
+        this.inputToIdle = inputToIdle;
+        this.inputShoot = inputShoot;
     }
     public override void Execute()
     {
 
-        if (InputManager.GetSide() != Vector3.zero || InputManager.GetDirection() != Vector3.zero)
+        if (InputManager.GetMovementInput() != Vector3.zero)
         {
-            if (InputManager.Run())
-            {
-                owner.MoveFront(owner.transform.position);
-                Debug.Log("RUNING");
 
-            }
-            else
-            {
-                owner.MoveFront(InputManager.GetDirection());
-                owner.MoveSide(InputManager.GetSide());
-             
+            owner.MoveFront(InputManager.GetMovementInput());
 
-            }
+        }
+
+        if (InputManager.Shoot())
+        {
+            StateMachine.Transition(inputShoot);
         }
 
         else
         {
-            StateMachine.Transition(imputToIdle);
+            StateMachine.Transition(inputToIdle);
         }
 
         

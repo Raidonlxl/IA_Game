@@ -6,31 +6,31 @@ public class InputManager : MonoBehaviour
     public static CameraController cameraController;
 
     static KeyCode run = KeyCode.LeftShift;
-    public static Vector3 GetDirection()
+
+    static KeyCode shoot = KeyCode.Space;
+    public static Vector3 GetMovementInput()
     {
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
 
-        
-        Vector3 forward = new Vector3(cameraController.transform.forward.x, 0f, cameraController.transform.forward.z).normalized;
+        Vector3 forward = cameraController.transform.forward;
+        Vector3 right = cameraController.transform.right;
 
-        Vector3 movementVertical = forward * y;
-        
+        forward.y = 0;
+        right.y = 0;
 
-        return movementVertical;
+        forward.Normalize();
+        right.Normalize();
 
+        Vector3 movement = forward * y + right * x;
+      
+
+        return movement;
     }
-    public static Vector3 GetSide()
+
+    public static bool Shoot()
     {
-        float x = Input.GetAxis("Horizontal");
-        float y = Input.GetAxis("Vertical");
-
-        Vector3 right = new Vector3(cameraController.transform.forward.x, 0f, 0f).normalized;
-
-        Vector3 movementHorizontal = right * x;
-
-        return movementHorizontal;
-
+        return Input.GetKeyDown(shoot);
     }
 
     public static bool Run()

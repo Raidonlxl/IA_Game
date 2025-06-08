@@ -8,16 +8,29 @@ public class EnemyModel : MonoBehaviour
     [Header("LineOfSight")]
     public EnemyBase enemyBase;
     public GameObject target;
+    public GameObject bullet;
     public PlayerModel playerModel;
     [SerializeField]
     private ObstacleAvoidance obs;
     public bool isReady;
     public GameObject pointToShoot;
-    public GameObject bullet;
+    public BulletController bulletController;
+
+    public HealthController healthController;
+
+
+    public Transform lasPositionPlayer;
+    public bool isTired;
+
+    public string owner = "Enemy";
+    public bool endWay;
+
     private void Start()
     {
         playerModel = target.GetComponent<PlayerModel>();
         obs = gameObject.GetComponent<ObstacleAvoidance>();
+        isTired= true;
+        healthController.SetMaxLife(50);
     }
     private void OnDrawGizmos()
     {
@@ -40,10 +53,12 @@ public class EnemyModel : MonoBehaviour
         transform.forward = Vector3.Lerp(transform.forward,direction.normalized,0.2f);
     }
 
-    public void Shoot(GameObject bullet)
+    public void Shoot(GameObject bullet, PoolGeneric<GameObject> pool)
     {
-        bullet.GetComponent<BulletController>();
-        bullet.transform.position = pointToShoot.transform.position;
-        bullet.transform.rotation = pointToShoot.transform.rotation;
+        bulletController = bullet.GetComponent<BulletController>();
+        bulletController.SetOwner(owner);
+        bulletController.transform.position = pointToShoot.transform.position;
+        bulletController.transform.rotation = pointToShoot.transform.rotation;
+        bulletController.bulletModel.pool = pool;
     }
 }

@@ -12,10 +12,11 @@ public class Seek : ISteering
 
     public virtual Vector3 GetDir()
     {
-        //a-->b
-        //b-a
-        //a: self
-        //b: target
         return (_target.position - _self.position).normalized;
+    }
+
+    public void Refresh(Transform target)
+    {
+        
     }
 }

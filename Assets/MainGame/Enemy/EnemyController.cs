@@ -1,22 +1,20 @@
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class EnemyController : MonoBehaviour
 {
 
     [SerializeField] EnemyModel enemyModel;
-    private FSM<StatesEnum> fsm;
-    ITreeNode root;
-    ISteering steering;
-    [SerializeField] Transform[] boxsAmmo;
-    int cantMaxToShoot=5;
 
-    float currentTime;
-    float maxTimeTired=7;
+    [SerializeField] private FSM<StatesEnum> fsm;
+    ITreeNode root;
+    [SerializeField] Transform[] boxsAmmo;
+    int cantMaxToShoot = 5;
     [SerializeField] LineOfSight los;
 
     [SerializeField] private Transform[] waypoints;
+
     private void Start()
     {
         enemyModel = GetComponent<EnemyModel>();
@@ -25,11 +23,12 @@ public class EnemyController : MonoBehaviour
 
         InitializeFsm();
         InitializeTree();
-        
+  
     }
 
     private void Update()
     {
+        
         fsm.OnExecute();
         root.Execute();
     }
@@ -39,40 +38,70 @@ public class EnemyController : MonoBehaviour
         fsm = new FSM<StatesEnum>();
         
         var steeringPersuit = new Persuit(enemyModel.transform, enemyModel.target.transform, enemyModel.playerModel.Speed);
-        var steeringPatrol = new Patrol(enemyModel.transform, waypoints);
+
+        var steeringPatrol = new MoveToWaypoints(enemyModel.transform,enemyModel.target.transform,true);
+
+        var steeringPathing = new MoveToWaypoints(enemyModel.transform,enemyModel.target.transform,false);
+
+        var steeringReaload = new MoveToWaypoints(enemyModel.transform, boxsAmmo[0], false);
 
 
-        var goToReload = new ReloadState<StatesEnum>(boxsAmmo, enemyModel);
+
+        var tired = new TiredState<StatesEnum>(enemyModel);
+        
+        var goToReload = new ReloadState<StatesEnum>(steeringReaload, boxsAmmo, enemyModel);
 
         var idle = new Idle<StatesEnum>(enemyModel.transform);
 
-        var patrol = new PatrolState<StatesEnum>(steeringPatrol, enemyModel);
+        var patrol = new MoveSteering<StatesEnum>(steeringPatrol, enemyModel);
 
-        var persuit = new FollowSteering<StatesEnum>(steeringPersuit, enemyModel);
+        var persuit = new MoveSteering<StatesEnum>(steeringPersuit, enemyModel);
+
+        var movePathing = new MoveSteering<StatesEnum>(steeringPathing, enemyModel);
 
         var shoot = new ShootState<StatesEnum>(enemyModel,enemyModel.bullet,cantMaxToShoot);
 
         idle.AddTransition(StatesEnum.Patrol, patrol);
         idle.AddTransition(StatesEnum.Persuit, persuit);
+        idle.AddTransition(StatesEnum.Tired, tired);
+        idle.AddTransition(StatesEnum.GetAmmo, goToReload);
+        idle.AddTransition(StatesEnum.Shoot, shoot);
 
         patrol.AddTransition(StatesEnum.Idle, idle);
         patrol.AddTransition(StatesEnum.Persuit, persuit);
         patrol.AddTransition(StatesEnum.GetAmmo, goToReload);
+        patrol.AddTransition(StatesEnum.Tired, tired);
+        patrol.AddTransition(StatesEnum.Shoot, shoot);
 
         persuit.AddTransition(StatesEnum.Idle, idle);
         persuit.AddTransition(StatesEnum.Patrol, patrol);
         persuit.AddTransition(StatesEnum.GetAmmo, goToReload);
         persuit.AddTransition(StatesEnum.Shoot, shoot);
+        persuit.AddTransition(StatesEnum.setPathing, movePathing);
+        persuit.AddTransition(StatesEnum.Tired, tired);
 
         goToReload.AddTransition(StatesEnum.Patrol, patrol);
         goToReload.AddTransition(StatesEnum.Persuit, persuit);
         goToReload.AddTransition(StatesEnum.Shoot, shoot);
+        goToReload.AddTransition(StatesEnum.Tired, tired);
+        goToReload.AddTransition(StatesEnum.setPathing,movePathing);    
 
         shoot.AddTransition(StatesEnum.Persuit, persuit);
         shoot.AddTransition(StatesEnum.GetAmmo, goToReload);
+        shoot.AddTransition(StatesEnum.Tired, tired);
 
+        movePathing.AddTransition(StatesEnum.Persuit, persuit);
+        movePathing.AddTransition(StatesEnum.Tired, tired);
+        movePathing.AddTransition(StatesEnum.Shoot, shoot);
 
-        fsm.SetInit(patrol);
+        tired.AddTransition(StatesEnum.setPathing,movePathing);
+        tired.AddTransition(StatesEnum.Persuit, persuit);
+        tired.AddTransition(StatesEnum.Idle, idle);
+        tired.AddTransition(StatesEnum.Patrol, patrol);
+        tired.AddTransition(StatesEnum.Shoot, shoot);
+        tired.AddTransition(StatesEnum.GetAmmo, goToReload);
+
+        fsm.SetInit(idle);
     }
 
     void InitializeTree()
@@ -82,35 +111,27 @@ public class EnemyController : MonoBehaviour
         var persuit = new ActionNode(() => fsm.Transition(StatesEnum.Persuit));
         var reload = new ActionNode(() => fsm.Transition(StatesEnum.GetAmmo));
         var shoot = new ActionNode(()=> fsm.Transition(StatesEnum.Shoot));
-
-       
+        var setPathing = new ActionNode(()=>fsm.Transition(StatesEnum.setPathing));
+        var tired = new ActionNode(() => fsm.Transition(StatesEnum.Tired));
 
         var qCanShoot = new QuestionNode(CanShot, shoot, persuit);
 
-        var qCheckAmmo = new QuestionNode(HaveAmmo, qCanShoot, reload);
+        var qCheckAmmo = new QuestionNode(HaveAmmo, patrol, reload);
 
-        var qTargetPlayer = new QuestionNode(IsTargetView, qCheckAmmo, patrol);
+        var qTargetPlayer = new QuestionNode(IsTargetView, qCanShoot, qCheckAmmo);
 
-        var qTired = new QuestionNode(IsTired, qTargetPlayer, persuit);
+        var qTired = new QuestionNode(IsTired, tired, qTargetPlayer);
 
         root = qTired;
-    }
 
+    }
     private bool IsTired()
     {
-        currentTime +=Time.deltaTime;
-        if (currentTime <= maxTimeTired)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
+        return enemyModel.isTired;
     }
     private bool CanShot()
     {
-        if (los.LOS() && GetDistanceTarget() > 5 && enemyModel.isReady)
+        if (los.LOS() && GetDistanceTarget() < 5 && enemyModel.isReady)
         {
             return true;
         }
@@ -136,11 +157,13 @@ public class EnemyController : MonoBehaviour
         }
         else if(!los.LOS() && !enemyModel.isReady)
         {
-            return true;
+
+            return false;
         }
 
         else
         {
+         
             return false;
         }
         

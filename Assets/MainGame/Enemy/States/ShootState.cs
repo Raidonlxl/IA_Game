@@ -2,60 +2,59 @@ using UnityEngine;
 
 public class ShootState<T> : State<T>
 {
-    EnemyModel self;
-    PoolGeneric<GameObject> pool;
-    BulletController bulletController;
-    float maxTimeToshot=0.3f;
-    float currentTime;
-    int cantMaxToShoot;
-    int currentBullet;
-    
-    public ShootState(EnemyModel self,GameObject bullet, int cantMaxToShoot)
+    private EnemyModel self;
+    private PoolGeneric<GameObject> pool;
+    private float maxTimeToShoot = 0.3f;
+    private float currentTime;
+    private int maxBulletsToShoot;
+    private int currentBulletCount;
+
+    public ShootState(EnemyModel self, GameObject bulletPrefab, int maxBulletsToShoot)
     {
-        pool = new PoolGeneric<GameObject>();
         this.self = self;
-        pool._originalPrefab = bullet;
-        this.cantMaxToShoot = cantMaxToShoot;
-        pool.InitializePool(cantMaxToShoot);
+        this.maxBulletsToShoot = maxBulletsToShoot;
+
+        pool = new PoolGeneric<GameObject>();
+        pool.originalPrefab = bulletPrefab;
+        pool.InitializePool(maxBulletsToShoot);
     }
 
     public override void Enter()
     {
+        Debug.Log("shoot");
         base.Enter();
-        currentTime = 0;
-        
+        currentTime = 0f;
+        currentBulletCount = 0;
     }
 
     public override void Execute()
     {
         base.Execute();
-        if (currentTime >= maxTimeToshot)
-        {
-            if (currentBullet < cantMaxToShoot)
-            {
-                var instance = pool.GetFromPool();
-                instance.SetActive(true);
-                self.Shoot(instance);
-                currentTime = 0;
-                currentBullet++;
-            }
-            else
-            {
-                self.isReady = false;
-
-            }
-            
-        }
         currentTime += Time.deltaTime;
 
+        if (currentTime >= maxTimeToShoot && currentBulletCount < maxBulletsToShoot)
+        {
+            GameObject bullet = pool.GetFromPool();
+
+            if (bullet != null)
+            {
+                self.Shoot(bullet,pool);
+
+                currentBulletCount++;
+                currentTime = 0f;
+            }
+        }
+
+        if (currentBulletCount >= maxBulletsToShoot)
+        {
+            self.isReady = false;
+        }
     }
 
-    public override void Exit() 
+    public override void Exit()
     {
         base.Exit();
-        currentTime = 0;
-        currentBullet = 0;
-
+        currentTime = 0f;
+        currentBulletCount = 0;
     }
-
 }
