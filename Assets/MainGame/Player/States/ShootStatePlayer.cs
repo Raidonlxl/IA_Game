@@ -20,16 +20,15 @@ public class ShootStatePlayer<T> : State<T>
 
     public override void Enter()
     {
-      
+        base.Enter();
     }
 
     public override void Execute()
     {
         base.Execute();
-        base.Enter();
+     
         var instance = pool.GetFromPool();
         owner.Shoot(instance,pool);
-
 
         if (InputManager.GetMovementInput() != Vector3.zero)
         {

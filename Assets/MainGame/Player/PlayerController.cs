@@ -29,13 +29,6 @@ public class PlayerController : MonoBehaviour
     {
         fsm.OnExecute();
     }
-
-    private void Run(Vector3 moveVertical)
-    {
-        playerModel.MoveFront(moveVertical);
-
-    }
-
     void InitializeFsm()
     {
         fsm = new FSM<StatesEnum>();
