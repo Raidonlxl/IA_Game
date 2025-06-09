@@ -18,6 +18,7 @@ public class EnemyPatrolState<T> : StatePathfinding<T>
     {
         base.Enter();
         target = _model.patrol();
+      
         SetPathAStarPlus();
     }
 

@@ -16,7 +16,7 @@ public class WalkState<T> : State<T>
     }
     public override void Execute()
     {
-
+        Debug.Log("move: " + debugmovement);
         if (InputManager.GetMovementInput() != Vector3.zero)
         {
 
@@ -36,4 +36,5 @@ public class WalkState<T> : State<T>
 
         
     }
+    private bool debugmovement => InputManager.GetMovementInput() != Vector3.zero;
 }
