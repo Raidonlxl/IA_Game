@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-public class ASTAR : MonoBehaviour
+public class DIJKSTRA
 {
-    public static List<T> Run<T>(T start, Func<T, bool> isSatisfied, Func<T, List<T>> getConnections, Func<T, T, float> getCost, Func<T, float> heuristic, int watchdog = 500, int watchdogPath = 500)
+    public static List<T> Run<T>(T start, Func<T, bool> isSatisfied, Func<T, List<T>> getConnections, Func<T, T, float> getCost, int watchdog = 500, int watchdogPath = 500)
     {
         Dictionary<T, T> parents = new Dictionary<T, T>();
         PriorityQueue<T> pending = new PriorityQueue<T>();
@@ -17,7 +17,7 @@ public class ASTAR : MonoBehaviour
             watchdog--;
             if (watchdog <= 0) break;
             T current = pending.Dequeue();
-            
+            Debug.Log("DIJKSTRA");
             if (isSatisfied(current))
             {
                 List<T> path = new List<T>();
@@ -44,30 +44,12 @@ public class ASTAR : MonoBehaviour
                     if (cost.ContainsKey(child) && currentCost > cost[child]) continue;
 
                     cost[child] = currentCost;
-                    pending.Enqueue(child, currentCost + heuristic(child));
+                    pending.Enqueue(child, currentCost);
                     parents[child] = current;
                 }
             }
         }
 
         return new List<T>();
-    }
-    public static List<T> CleanPath<T>(List<T> path, Func<T, T, bool> inView)
-    {
-        if (path == null) return path;
-        if (path.Count <= 2) return path;
-        var newPath = new List<T>();
-        newPath.Add(path[0]);
-
-        for (int i = 2; i < path.Count; i++)
-        {
-            var last = newPath[newPath.Count - 1];
-            if (!inView(last, path[i]))
-            {
-                newPath.Add(path[i - 1]);
-            }
-        }
-        newPath.Add(path[path.Count - 1]);
-        return newPath;
     }
 }

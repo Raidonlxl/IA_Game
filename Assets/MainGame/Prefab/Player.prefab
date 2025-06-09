@@ -108,6 +108,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &5082720545874320273
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3784140385542177397}
+  m_Layer: 0
+  m_Name: point shoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3784140385542177397
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5082720545874320273}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.255, y: 0, z: 0.922}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4332058157003558796}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7477541091539514164
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,6 +156,7 @@ GameObject:
   - component: {fileID: 5992794108682976856}
   - component: {fileID: 5926457727099473934}
   - component: {fileID: 6320386003674742398}
+  - component: {fileID: 7082601500879507932}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -146,6 +178,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5855277641078196155}
+  - {fileID: 3784140385542177397}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4722326874570147987
@@ -249,7 +282,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ebffdd1ca86bde4b83ae1a5f43a2fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerBase: {fileID: 0}
+  playerBase: {fileID: 11400000, guid: 596167374f134b24da9efc3826c94637, type: 2}
+  pointShoot: {fileID: 3784140385542177397}
+  bulletController: {fileID: 0}
+  bullet: {fileID: 118168971246108295, guid: 64ab7211552363c45af387812174611d, type: 3}
+  owner: Player
+  healthController: {fileID: 7082601500879507932}
 --- !u!114 &5992794108682976856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,3 +339,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
+--- !u!114 &7082601500879507932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7477541091539514164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cad04cf01461b9542824c683b096d0b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 10

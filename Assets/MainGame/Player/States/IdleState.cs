@@ -18,7 +18,7 @@ public class IdleState<T> : State<T>
     {
         base.Execute();
 
-
+        
         
 
         if (InputManager.GetMovementInput() != Vector3.zero)
@@ -31,4 +31,6 @@ public class IdleState<T> : State<T>
             StateMachine.Transition(inputShoot);
         }
     }
+
+    
 }
