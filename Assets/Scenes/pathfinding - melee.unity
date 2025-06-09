@@ -1036,7 +1036,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 109518027}
-  sens: 0
+  sens: 2
   offset: {x: 1, y: 2, z: -2.5}
   positionCamera: {x: 0, y: 3, z: 5}
 --- !u!1 &728063092
