@@ -11,6 +11,11 @@ public class MoveSteering<T> : State<T>
         this.enemyModel = enemyModel;
         timer = new Timer(0, 7);
     }
+    public MoveSteering(ISteering steering, KeyModel enemyModel)
+    {
+        this.steering = steering;
+        timer = new Timer(0, 7);
+    }
 
     public override void Enter()
     {

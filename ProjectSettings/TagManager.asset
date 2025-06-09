@@ -15,8 +15,8 @@ TagManager:
   - Obstacle
   - Nodes
   - Walls
-  - 
-  - 
+  - Player
+  - Boids
   - 
   - 
   - 
