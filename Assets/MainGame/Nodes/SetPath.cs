@@ -10,25 +10,25 @@ public static class SetPath
     private static LayerMask nodeMask = LayerMask.GetMask("Nodes");
     private static LayerMask obsMask = LayerMask.GetMask("Walls");
   
-    public static List<PathNode> SetPathAStarPlus(Transform self, Transform target)
+    public static List<Node> SetPathAStarPlus(Transform self, Transform target)
     {
         var init = GetNearNode(self.position);
         var goal = GetNearNode(target.position);
 
-        List<PathNode> path = ASTAR.Run<PathNode>(init,(x) => IsSatisfied(x,goal), GetConnections, GetCost, (x)=>Heuristic(x,goal));
+        List<Node> path = ASTAR.Run<Node>(init,(x) => IsSatisfied(x,goal), GetConnections, GetCost, (x)=>Heuristic(x,goal));
         path = ASTAR.CleanPath(path, InView);
         return path;
     }
 
-    static PathNode GetNearNode(Vector3 position)
+    static Node GetNearNode(Vector3 position)
     {
         Collider[] nodes = Physics.OverlapSphere(position, 5, nodeMask);
-      
-        PathNode nearNode = null;
+
+        Node nearNode = null;
         float nearDistance = Mathf.Infinity;
         for (int i = 0; i < nodes.Length; i++)
         {
-            var currNode = nodes[i].GetComponent<PathNode>();
+            var currNode = nodes[i].GetComponent<Node>();
             if (currNode == null) continue;
 
             var dir = currNode.transform.position - position;
@@ -44,22 +44,22 @@ public static class SetPath
         return nearNode;
     }
 
-    static bool IsSatisfied(PathNode curr, PathNode goal)
+    static bool IsSatisfied(Node curr, Node goal)
     {
         return curr == goal;
     }
-    static List<PathNode> GetConnections(PathNode curr)
+    static List<Node> GetConnections(Node curr)
     {
-        return curr.neighborgs;
+        return curr.neightbourds;
     }
-    static float GetCost(PathNode parent, PathNode child)
+    static float GetCost(Node parent, Node child)
     {
         float cost = 0;
         cost += Vector3.Distance(parent.transform.position, child.transform.position);
       
         return cost;
     }
-    static float Heuristic(PathNode current, PathNode goal)
+    static float Heuristic(Node current, Node goal)
     {
         float distanceMultiplier = 1.5f;
 
@@ -68,7 +68,7 @@ public static class SetPath
         return h;
     }
 
-    static bool InView(PathNode grandparent, PathNode child)
+    static bool InView(Node grandparent, Node child)
     {
         return InView(grandparent.transform.position, child.transform.position);
     }

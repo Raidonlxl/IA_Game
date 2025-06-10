@@ -26,7 +26,7 @@ public class Node : MonoBehaviour
     void GetNeightbourd(Vector3 dir)
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, dir, out hit, 2.2f))
+        if (Physics.Raycast(transform.position, dir, out hit, 50f))
         {
             var node = hit.collider.GetComponent<Node>();
             if (node != null)

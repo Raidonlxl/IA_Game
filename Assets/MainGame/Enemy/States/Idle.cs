@@ -19,7 +19,7 @@ public class Idle<T> : State<T>
     {
         base.Enter();
         Debug.Log("Idle");
-        leaderBehaviour._isPursuit = false;
+        
 
     }
 

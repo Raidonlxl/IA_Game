@@ -10,7 +10,7 @@ public class MoveToWaypoints : ISteering
     private bool canBack;
     private bool endWay;
     private int index;
-    List<PathNode> path;
+    List<Node> path;
     public MoveToWaypoints(Transform self, Transform target, bool canBack)
     {
         this.self = self;

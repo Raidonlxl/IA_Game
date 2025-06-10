@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 6276915281118713845}
   - component: {fileID: 6348865979492296243}
   - component: {fileID: 5562299418125358453}
+  - component: {fileID: 1223233411235368849}
   m_Layer: 0
   m_Name: Range
   m_TagString: Untagged
@@ -263,11 +264,11 @@ MonoBehaviour:
   target: {fileID: 0}
   bullet: {fileID: 118168971246108295, guid: 64ab7211552363c45af387812174611d, type: 3}
   playerModel: {fileID: 0}
-  obs: {fileID: 0}
+  obs: {fileID: 6348865979492296243}
   isReady: 0
   pointToShoot: {fileID: 8357810880746987817}
   bulletController: {fileID: 0}
-  healthController: {fileID: 0}
+  healthController: {fileID: 1223233411235368849}
   lasPositionPlayer: {fileID: 0}
   isTired: 0
   owner: Enemy
@@ -310,6 +311,19 @@ MonoBehaviour:
   obsMask:
     serializedVersion: 2
     m_Bits: 128
+--- !u!114 &1223233411235368849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6918909387661807433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cad04cf01461b9542824c683b096d0b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 2
 --- !u!1 &8357810880746987817
 GameObject:
   m_ObjectHideFlags: 0
