@@ -8,11 +8,11 @@ public class EnemyChaseState<T> : StatePathfinding<T>
     ObstacleAvoidance _avoidance;
     Transform _player;
 
-    public EnemyChaseState(Transform player,ISteering persuit, MeleeEnemyModel model, ObstacleAvoidance avoidance, Transform entity, IMove move, Transform target) : base(entity, move, target)
+    public EnemyChaseState(Transform player,ISteering persuit, MeleeEnemyModel model, ObstacleAvoidance avoidance, Transform entity, IMove move, Transform target) : base(entity, move, target, avoidance)
     {
         _persuit = persuit;
         _model = model;
-        _avoidance = avoidance;
+        
         _player = player;
     }
     public override void Enter()

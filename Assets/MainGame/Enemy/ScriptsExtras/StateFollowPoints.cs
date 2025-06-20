@@ -9,18 +9,21 @@ public class StateFollowPoints<T> : State<T>
     protected Transform _entity;
     float _distanceToPoint = 0.2f;
     bool _isFinishPath;
-    public StateFollowPoints(Transform entity, float distanceToPoint = 0.2f)
+    ObstacleAvoidance _avoidance;
+    public StateFollowPoints(Transform entity, ObstacleAvoidance avoidance, float distanceToPoint = 0.2f)
     {
         _entity = entity;
         _distanceToPoint = distanceToPoint;
         _isFinishPath = true;
+        _avoidance = avoidance;
     }
-    public StateFollowPoints(Transform entity, List<Vector3> waypoints, float distanceToPoint = 0.2f)
+    public StateFollowPoints(Transform entity, List<Vector3> waypoints, ObstacleAvoidance avoidance, float distanceToPoint = 0.2f)
     {
         _entity = entity;
         _distanceToPoint = distanceToPoint;
         _waypoints = waypoints;
         _isFinishPath = true;
+        _avoidance = avoidance;
     }
 
     
@@ -40,6 +43,7 @@ public class StateFollowPoints<T> : State<T>
         Vector3 point = _waypoints[_index];
         point.y = _entity.position.y;
         dir = point - _entity.position;
+        _avoidance.GetDir(dir);
         if (dir.magnitude < _distanceToPoint)
         {
             if (_index + 1 < _waypoints.Count)

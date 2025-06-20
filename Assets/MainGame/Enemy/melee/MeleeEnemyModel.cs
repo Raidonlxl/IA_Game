@@ -148,4 +148,6 @@ public class MeleeEnemyModel : MonoBehaviour, IMove
     public bool IsAlive => _currentLife <= 0;
     public bool IsOnLastSeenPos => _dirMag < 0.2f;
     public bool IsChasing => ChaseTimer != null;
+    public List<Node> NodesKey => _nodeskey;
+    public List<float> NodesValue => _nodesvalue;
 }

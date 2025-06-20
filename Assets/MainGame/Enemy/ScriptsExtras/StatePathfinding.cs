@@ -12,13 +12,13 @@ public class StatePathfinding<T> : StateFollowPoints<T>
     public Node goal;
     public Transform target;
 
-    public StatePathfinding(Transform entity, IMove move, Transform target, float distanceToPoint = 0.2F) : base(entity, distanceToPoint)
+    public StatePathfinding(Transform entity, IMove move, Transform target, ObstacleAvoidance avoidance, float distanceToPoint = 0.2F ) : base(entity, avoidance,distanceToPoint)
     {
         _move = move;
         
         this.target = target;
     }
-    public StatePathfinding(Transform entity, IMove move, List<Vector3> waypoints, float distanceToPoint = 0.2f) : base(entity, waypoints, distanceToPoint)
+    public StatePathfinding(Transform entity, IMove move, List<Vector3> waypoints, ObstacleAvoidance avoidance, float distanceToPoint = 0.2f) : base(entity, waypoints, avoidance, distanceToPoint)
     {
         _move = move;
         

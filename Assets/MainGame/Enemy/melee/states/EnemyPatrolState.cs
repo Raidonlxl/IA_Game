@@ -8,11 +8,11 @@ public class EnemyPatrolState<T> : StatePathfinding<T>
     ISteering _patrol;
     ObstacleAvoidance _avoidance;
 
-    public EnemyPatrolState(MeleeEnemyModel model, ISteering patrol, ObstacleAvoidance avoidance, Transform entity, IMove move, Transform target) : base(entity,move,target)
+    public EnemyPatrolState(MeleeEnemyModel model, ISteering patrol, ObstacleAvoidance avoidance, Transform entity, IMove move, Transform target) : base(entity,move,target, avoidance)
     {
         _model = model;
         _patrol = patrol;
-        _avoidance = avoidance;
+        
     }
     public override void Enter()
     {
@@ -26,12 +26,35 @@ public class EnemyPatrolState<T> : StatePathfinding<T>
     {
         base.Execute();
         Vector3 dir1 = _patrol.GetDir();
-        Vector3 dir2 = _avoidance.GetDir(dir1);
-        Run(dir2);
+        
+        Run(dir1);
     }
     protected override void OnMove(Vector3 dir)
     {
         _move.Move(dir);
 
+    }
+    protected override void OnFinishPath()
+    {
+        base.OnFinishPath();
+        ChangeRoulleteValues(_model.NodesValue, _model.NodesKey);
+    }
+    void ChangeRoulleteValues( List<float> values, List<Node> nodes)
+    {
+        for (int i = 0; i < nodes.Count; i++)
+        {
+            Vector3 distance = target.transform.position - nodes[i].transform.position;
+            Debug.Log("distance mag: " + distance.magnitude);
+            if(distance.magnitude < 10)
+            {
+                values[i] = distance.magnitude + 40;
+            } 
+            else
+            {
+                values[i] = distance.magnitude /4;
+            }
+            Debug.Log("new value: " + values[i]);
+        }
+        
     }
 }

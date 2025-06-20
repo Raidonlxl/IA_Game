@@ -4990,6 +4990,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Key(flockingObject)
       objectReference: {fileID: 0}
+    - target: {fileID: 4695685849524032415, guid: 34a3a15d25e1e6a4bb405bddac546a27, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 831780051}
     - target: {fileID: 8116009506062394417, guid: 34a3a15d25e1e6a4bb405bddac546a27, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.6
@@ -5030,6 +5034,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8205684993218000034, guid: 34a3a15d25e1e6a4bb405bddac546a27, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 710199621}
+    - target: {fileID: 8261025843934729198, guid: 34a3a15d25e1e6a4bb405bddac546a27, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 831780057}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6512,6 +6524,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Key(flockingObject) (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4695685849524032415, guid: 34a3a15d25e1e6a4bb405bddac546a27, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 831780051}
     - target: {fileID: 8116009506062394417, guid: 34a3a15d25e1e6a4bb405bddac546a27, type: 3}
       propertyPath: m_LocalPosition.x
       value: 41.7
@@ -6552,6 +6568,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8261025843934729198, guid: 34a3a15d25e1e6a4bb405bddac546a27, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 831780057}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9789,6 +9809,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ebffdd1ca86bde4b83ae1a5f43a2fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!54 &831780057 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 6320386003674742398, guid: 70e5247b7e6e3b341bdfe941f8b92645, type: 3}
+  m_PrefabInstance: {fileID: 710199620}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &832459107
 GameObject:
   m_ObjectHideFlags: 0
@@ -19570,6 +19595,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Key(flockingObject) (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4695685849524032415, guid: 34a3a15d25e1e6a4bb405bddac546a27, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 831780051}
     - target: {fileID: 8116009506062394417, guid: 34a3a15d25e1e6a4bb405bddac546a27, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.02
@@ -19610,6 +19639,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8205684993218000034, guid: 34a3a15d25e1e6a4bb405bddac546a27, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 710199621}
+    - target: {fileID: 8261025843934729198, guid: 34a3a15d25e1e6a4bb405bddac546a27, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 831780057}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

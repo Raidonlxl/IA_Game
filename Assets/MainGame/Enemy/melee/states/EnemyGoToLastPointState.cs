@@ -6,12 +6,11 @@ public class EnemyGoToLastPointState<T> : StatePathfinding<T>
     MeleeEnemyModel _model;
     ISteering _steer;
     ObstacleAvoidance _avoidance;
-    public EnemyGoToLastPointState(MeleeEnemyModel model, ISteering steer, ObstacleAvoidance avoidance, Transform entity, IMove move, Transform target) : base(entity, move, target)
+    public EnemyGoToLastPointState(MeleeEnemyModel model, ISteering steer, ObstacleAvoidance avoidance, Transform entity, IMove move, Transform target) : base(entity, move, target, avoidance)
     {
         
         _model = model;
         _steer = steer;
-        _avoidance = avoidance;
     }
     public override void Enter()
     {
