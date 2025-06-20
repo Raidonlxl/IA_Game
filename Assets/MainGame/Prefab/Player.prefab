@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3398647837595247191}
   - component: {fileID: 6196947373394301654}
   - component: {fileID: 6828223735474563546}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3784140385542177397}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: point shoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 5926457727099473934}
   - component: {fileID: 6320386003674742398}
   - component: {fileID: 7082601500879507932}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -241,7 +241,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7477541091539514164}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: f5edcba267eb1ef42a3eeb90397aa4f9, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -335,7 +335,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0

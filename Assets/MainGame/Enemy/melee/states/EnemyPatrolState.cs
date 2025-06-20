@@ -44,7 +44,6 @@ public class EnemyPatrolState<T> : StatePathfinding<T>
         for (int i = 0; i < nodes.Count; i++)
         {
             Vector3 distance = target.transform.position - nodes[i].transform.position;
-            Debug.Log("distance mag: " + distance.magnitude);
             if(distance.magnitude < 10)
             {
                 values[i] = distance.magnitude + 40;
@@ -53,7 +52,6 @@ public class EnemyPatrolState<T> : StatePathfinding<T>
             {
                 values[i] = distance.magnitude /4;
             }
-            Debug.Log("new value: " + values[i]);
         }
         
     }
