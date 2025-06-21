@@ -10,12 +10,16 @@ public class ReloadState<T> : State<T>
     Transform selected;
     float x= math.INFINITY;
     ISteering steering;
-    public ReloadState(ISteering steering, Transform[] reloadsBoxs, EnemyModel self)
+    GenericBehaviour generic;
+    ISteering flocking;
+    public ReloadState(GenericBehaviour generic, ISteering steering,ISteering flocking, Transform[] reloadsBoxs, EnemyModel self)
     {
         this.reloadsBoxs = reloadsBoxs;
         this.self = self;
         this.steering = steering;
         timer = new Timer(0, 5);
+        this.generic= generic; 
+        this.flocking = flocking;
     }
 
     public override void Enter()
@@ -52,7 +56,8 @@ public class ReloadState<T> : State<T>
         }
         else
         {
-            self.Move(steering.GetDir());
+            generic.Dir = steering.GetDir();
+            self.Move(flocking.GetDir());
         }
      
     }

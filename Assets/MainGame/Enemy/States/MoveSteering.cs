@@ -5,11 +5,15 @@ public class MoveSteering<T> : State<T>
     ISteering steering;
     EnemyModel enemyModel;
     private Timer timer;
-    public MoveSteering(ISteering steering, EnemyModel enemyModel)
+    ISteering flocking;
+    GenericBehaviour genericBehaviour;
+    public MoveSteering(GenericBehaviour generic, ISteering steering,ISteering flocking, EnemyModel enemyModel)
     {
         this.steering = steering;
         this.enemyModel = enemyModel;
         timer = new Timer(0, 7);
+        this.flocking = flocking;
+        genericBehaviour = generic;
     }
     public MoveSteering(ISteering steering, KeyModel enemyModel)
     {
@@ -21,15 +25,18 @@ public class MoveSteering<T> : State<T>
     {
         base.Enter();
         timer.currentTime = 0f;
+        
 
     }
     public override void Execute()
     {
+        base.Execute();
+
         if (steering.GetType() == typeof(Persuit))
         {
             if (!enemyModel.isTired)
             {
-                base.Execute();
+                genericBehaviour.Dir = steering.GetDir();
                 enemyModel.Move(steering.GetDir());
                 timer.Run();
             }
@@ -40,7 +47,8 @@ public class MoveSteering<T> : State<T>
         }
         else
         {
-            enemyModel.Move(steering.GetDir());
+            genericBehaviour.Dir = steering.GetDir();
+            enemyModel.Move(flocking.GetDir());
         }
     }
     public override void Exit()

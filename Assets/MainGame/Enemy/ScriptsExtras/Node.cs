@@ -33,6 +33,14 @@ public class Node : MonoBehaviour
                 neightbourds.Add(node);
         }
     }
+    private void OnDrawGizmos()
+    {
+        for (int i = 0; i < neightbourds.Count; i++)
+        {
 
-    
+            Gizmos.DrawLine(transform.position, neightbourds[i].transform.position);
+
+        }
+    }
+
 }

@@ -28,9 +28,6 @@ public class MoveToWaypoints : ISteering
     {
         if (canBack)
         {
-            Debug.Log("PathMAx "+path.Count);
-            Debug.Log("Index "+index);
-
             if (Vector3.Distance(self.position, path[index].transform.position) < 0.5f)
             {
 

@@ -23,8 +23,6 @@ public class InputManager : MonoBehaviour
         right.Normalize();
 
         Vector3 movement = forward * y + right * x;
-
-        Debug.Log("get axis: " + y + x + " movement" + movement);
         return movement;
     }
 

@@ -18,17 +18,19 @@ public class ObstacleAvoidance : MonoBehaviour
         _colls = new Collider[maxObs];
         //personalAreaGetComponent<Collider>().bounds.extents.magnitude;
     }
-    public Vector3 GetDir(Vector3 currDir)
+    public Vector3 GetDir(Vector3 currDir, bool calculateY = true)
     {
         int count = Physics.OverlapSphereNonAlloc(Self, radius, _colls, obsMask);
 
         Collider nearColl = null;
         float nearCollDistance = 0;
         Vector3 nearClosestPoint = Vector3.zero;
+        if (!calculateY) currDir.y = 0;
         for (int i = 0; i < count; i++)
         {
             Collider currColl = _colls[i];
             Vector3 closestPoint = currColl.ClosestPoint(Self);
+            if (!calculateY) closestPoint.y = transform.position.y;
             Vector3 dir = closestPoint - Self;
             float distance = dir.magnitude;
 

@@ -62,7 +62,7 @@ public static class SetPath
     static float Heuristic(Node current, Node goal)
     {
         float distanceMultiplier = 1.5f;
-
+       
         float h = 0;
         h += Vector3.Distance(current.transform.position, goal.transform.position) * distanceMultiplier;
         return h;

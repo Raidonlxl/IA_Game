@@ -13,8 +13,6 @@ public class EnemyController : MonoBehaviour
     int cantMaxToShoot = 5;
     [SerializeField] LineOfSight los;
 
-    [SerializeField] private Transform[] waypoints;
-
     private void Start()
     {
         enemyModel = GetComponent<EnemyModel>();
@@ -36,7 +34,9 @@ public class EnemyController : MonoBehaviour
     void InitializeFsm()
     {
         fsm = new FSM<StatesEnum>();
-        
+
+        var steeringFlocking = GetComponent<FlockingManager>();
+
         var steeringPersuit = new Persuit(enemyModel.transform, enemyModel.target.transform, enemyModel.playerModel.Speed);
 
         var steeringPatrol = new MoveToWaypoints(enemyModel.transform,enemyModel.target.transform,true);
@@ -49,15 +49,15 @@ public class EnemyController : MonoBehaviour
 
         var tired = new TiredState<StatesEnum>(enemyModel);
         
-        var goToReload = new ReloadState<StatesEnum>(steeringReaload, boxsAmmo, enemyModel);
+        var goToReload = new ReloadState<StatesEnum>(enemyModel.genericBehaviour, steeringReaload, steeringFlocking, boxsAmmo, enemyModel);
 
         var idle = new Idle<StatesEnum>(enemyModel.transform);
 
-        var patrol = new MoveSteering<StatesEnum>(steeringPatrol, enemyModel);
+        var patrol = new MoveSteering<StatesEnum>(enemyModel.genericBehaviour, steeringPatrol, steeringFlocking, enemyModel);
 
-        var persuit = new MoveSteering<StatesEnum>(steeringPersuit, enemyModel);
+        var persuit = new MoveSteering<StatesEnum>(enemyModel.genericBehaviour, steeringPersuit, steeringFlocking, enemyModel);
 
-        var movePathing = new MoveSteering<StatesEnum>(steeringPathing, enemyModel);
+        var movePathing = new MoveSteering<StatesEnum>(enemyModel.genericBehaviour, steeringPathing, steeringFlocking, enemyModel);
 
         var shoot = new ShootState<StatesEnum>(enemyModel,enemyModel.bullet,cantMaxToShoot);
 
@@ -123,6 +123,7 @@ public class EnemyController : MonoBehaviour
         var qTired = new QuestionNode(IsTired, tired, qTargetPlayer);
 
         root = qTired;
+   
 
     }
     private bool IsTired()
@@ -147,15 +148,17 @@ public class EnemyController : MonoBehaviour
     }
     private bool IsTargetView()
     {
-        if (los.LOS() && !enemyModel.isReady)
+        bool directLine = los.LOS();
+
+        if (directLine && !enemyModel.isReady)
         {
             return false;
         }
-        else if(los.LOS() && enemyModel.isReady)
+        else if(directLine && enemyModel.isReady)
         {
             return true;
         }
-        else if(!los.LOS() && !enemyModel.isReady)
+        else if(!directLine && !enemyModel.isReady)
         {
 
             return false;

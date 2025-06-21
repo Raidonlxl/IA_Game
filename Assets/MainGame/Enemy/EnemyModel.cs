@@ -1,9 +1,10 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.UIElements;
 
-public class EnemyModel : MonoBehaviour
+public class EnemyModel : MonoBehaviour, IBoid
 {
     [Header("LineOfSight")]
     public EnemyBase enemyBase;
@@ -18,6 +19,7 @@ public class EnemyModel : MonoBehaviour
 
     public HealthController healthController;
 
+    public GenericBehaviour genericBehaviour;
 
     public Transform lasPositionPlayer;
     public bool isTired;
@@ -25,8 +27,13 @@ public class EnemyModel : MonoBehaviour
     public string owner = "Enemy";
     public bool endWay;
 
-    private void Start()
+    public Vector3 Position => transform.position;
+
+    public Vector3 Forward => transform.forward;
+
+    private void Awake()
     {
+        genericBehaviour = GetComponent<GenericBehaviour>();
         playerModel = target.GetComponent<PlayerModel>();
         obs = gameObject.GetComponent<ObstacleAvoidance>();
         isTired= true;
@@ -35,6 +42,7 @@ public class EnemyModel : MonoBehaviour
  
     public virtual void Move(Vector3 direction)
     {
+        
         direction = obs.GetDir(direction);
         transform.position += direction * enemyBase.Speed * Time.deltaTime;
         RotateEnemy(direction);
