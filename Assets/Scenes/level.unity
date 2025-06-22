@@ -154,7 +154,7 @@ MonoBehaviour:
   - {fileID: 319721361}
   - {fileID: 175434109}
   - {fileID: 1156088964}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &5370058
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -225,7 +225,7 @@ MonoBehaviour:
   - {fileID: 1195473787}
   - {fileID: 1295641355}
   - {fileID: 487284260}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &6723863
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -296,7 +296,7 @@ MonoBehaviour:
   - {fileID: 987181906}
   - {fileID: 1017917003}
   - {fileID: 430197725}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &12714506
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -368,7 +368,7 @@ MonoBehaviour:
   - {fileID: 1179811418}
   - {fileID: 1333363205}
   - {fileID: 1824227737}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &19272055
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -443,7 +443,7 @@ MonoBehaviour:
   neightbourds:
   - {fileID: 748753485}
   - {fileID: 760292277}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &28516783
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -514,7 +514,7 @@ MonoBehaviour:
   - {fileID: 1731387578}
   - {fileID: 1833841249}
   - {fileID: 1450048292}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &31930002
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -585,7 +585,7 @@ MonoBehaviour:
   - {fileID: 730223402}
   - {fileID: 819768668}
   - {fileID: 1331731216}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &34898550
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -656,7 +656,7 @@ MonoBehaviour:
   - {fileID: 629931192}
   - {fileID: 1833841249}
   - {fileID: 1731387578}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &65425671
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -726,7 +726,7 @@ MonoBehaviour:
   neightbourds:
   - {fileID: 733838839}
   - {fileID: 1251269019}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &66585946
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -906,7 +906,7 @@ MonoBehaviour:
   - {fileID: 1156088964}
   - {fileID: 1336726246}
   - {fileID: 1383311416}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &86571216
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -976,7 +976,7 @@ MonoBehaviour:
   neightbourds:
   - {fileID: 1315976356}
   - {fileID: 1911489344}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &92004766
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1047,7 +1047,7 @@ MonoBehaviour:
   - {fileID: 2120331280}
   - {fileID: 1407932189}
   - {fileID: 1465863953}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &106785404
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1303,7 +1303,7 @@ MonoBehaviour:
   - {fileID: 659011720}
   - {fileID: 2147123674}
   - {fileID: 279470603}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &145486112
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1482,7 +1482,7 @@ MonoBehaviour:
   neightbourds:
   - {fileID: 1295641355}
   - {fileID: 1179811418}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &168058570
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1662,7 +1662,7 @@ MonoBehaviour:
   - {fileID: 451591683}
   - {fileID: 1244548214}
   - {fileID: 430197725}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &170405143
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1733,7 +1733,7 @@ MonoBehaviour:
   - {fileID: 1189958756}
   - {fileID: 1331731216}
   - {fileID: 5370057}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &175434110
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1805,7 +1805,7 @@ MonoBehaviour:
   - {fileID: 798434130}
   - {fileID: 217347898}
   - {fileID: 1727373963}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &176578549
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1877,7 +1877,7 @@ MonoBehaviour:
   - {fileID: 265105452}
   - {fileID: 838877356}
   - {fileID: 1057513254}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &176667187
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1948,7 +1948,7 @@ MonoBehaviour:
   - {fileID: 1727373963}
   - {fileID: 1234655551}
   - {fileID: 1101898109}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &180486089
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2018,7 +2018,7 @@ MonoBehaviour:
   neightbourds:
   - {fileID: 1626672566}
   - {fileID: 902926691}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &183940292
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2199,7 +2199,7 @@ MonoBehaviour:
   - {fileID: 889413367}
   - {fileID: 1170495968}
   - {fileID: 440817409}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &210636696
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2270,7 +2270,7 @@ MonoBehaviour:
   - {fileID: 1251269019}
   - {fileID: 1931402312}
   - {fileID: 176578548}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &217347899
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2342,7 +2342,7 @@ MonoBehaviour:
   - {fileID: 1331731216}
   - {fileID: 730223402}
   - {fileID: 1336726246}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &223143079
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2522,7 +2522,7 @@ MonoBehaviour:
   - {fileID: 942970668}
   - {fileID: 979831950}
   - {fileID: 1890266448}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &226804351
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2810,7 +2810,7 @@ MonoBehaviour:
   - {fileID: 430197725}
   - {fileID: 838652815}
   - {fileID: 987181906}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &254031335
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2882,7 +2882,7 @@ MonoBehaviour:
   - {fileID: 840420379}
   - {fileID: 798434130}
   - {fileID: 265105452}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &261879594
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2953,7 +2953,7 @@ MonoBehaviour:
   - {fileID: 176667186}
   - {fileID: 1101898109}
   - {fileID: 1629026931}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &264065891
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3025,7 +3025,7 @@ MonoBehaviour:
   - {fileID: 2066200823}
   - {fileID: 261879593}
   - {fileID: 785546349}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &265105453
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3102,7 +3102,7 @@ MonoBehaviour:
   - {fileID: 1116405546}
   - {fileID: 145486111}
   - {fileID: 1020635505}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &279470604
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3390,7 +3390,7 @@ MonoBehaviour:
   - {fileID: 1191650352}
   - {fileID: 942970668}
   - {fileID: 1824227737}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &299635769
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3460,7 +3460,7 @@ MonoBehaviour:
   neightbourds:
   - {fileID: 704340873}
   - {fileID: 948909614}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &309125988
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3531,7 +3531,7 @@ MonoBehaviour:
   - {fileID: 5370057}
   - {fileID: 1189958756}
   - {fileID: 748753485}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &319721362
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3615,7 +3615,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neightbourds:
   - {fileID: 610523531}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &327335932
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3781,7 +3781,7 @@ MonoBehaviour:
   - {fileID: 785546349}
   - {fileID: 1280772401}
   - {fileID: 2066200823}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &355797588
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4506,7 +4506,7 @@ MonoBehaviour:
   - {fileID: 1151857533}
   - {fileID: 170405142}
   - {fileID: 12714505}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &430197726
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4691,7 +4691,7 @@ MonoBehaviour:
   - {fileID: 1383135900}
   - {fileID: 210636695}
   - {fileID: 1156608542}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &440817410
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4762,7 +4762,7 @@ MonoBehaviour:
   - {fileID: 170405142}
   - {fileID: 1911489344}
   - {fileID: 1151857533}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &451591684
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4833,7 +4833,7 @@ MonoBehaviour:
   - {fileID: 733838839}
   - {fileID: 86571215}
   - {fileID: 1387219034}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &468433318
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5041,7 +5041,7 @@ PrefabInstance:
     - target: {fileID: 8261025843934729198, guid: 34a3a15d25e1e6a4bb405bddac546a27, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 831780057}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5189,7 +5189,7 @@ MonoBehaviour:
   - {fileID: 1658185956}
   - {fileID: 1156608542}
   - {fileID: 6723862}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &487284261
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5260,7 +5260,7 @@ MonoBehaviour:
   - {fileID: 948909614}
   - {fileID: 972389136}
   - {fileID: 1615223269}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &487303080
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5657,7 +5657,7 @@ MonoBehaviour:
   - {fileID: 1731387578}
   - {fileID: 629931192}
   - {fileID: 1845892297}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &497474048
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -6475,7 +6475,7 @@ MonoBehaviour:
   - {fileID: 1931402312}
   - {fileID: 760292277}
   - {fileID: 1237130790}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &602693031
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -6571,7 +6571,7 @@ PrefabInstance:
     - target: {fileID: 8261025843934729198, guid: 34a3a15d25e1e6a4bb405bddac546a27, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 831780057}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6609,7 +6609,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neightbourds:
   - {fileID: 327335931}
-  hasTrap: 0
+  - {fileID: 785546349}
+  weight: 1
 --- !u!135 &610523532
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -6788,7 +6789,7 @@ MonoBehaviour:
   - {fileID: 1575207585}
   - {fileID: 65425670}
   - {fileID: 497474047}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &629931193
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -6966,7 +6967,7 @@ MonoBehaviour:
   neightbourds:
   - {fileID: 1783432591}
   - {fileID: 989416704}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &634906813
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -7145,7 +7146,7 @@ MonoBehaviour:
   - {fileID: 145486111}
   - {fileID: 734501120}
   - {fileID: 1741514809}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &659011721
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -7217,7 +7218,7 @@ MonoBehaviour:
   - {fileID: 497474047}
   - {fileID: 1575207585}
   - {fileID: 1407932189}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &665518528
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -7288,7 +7289,7 @@ MonoBehaviour:
   - {fileID: 1465863953}
   - {fileID: 2120331280}
   - {fileID: 1421188641}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &673588127
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -7358,7 +7359,7 @@ MonoBehaviour:
   neightbourds:
   - {fileID: 934440207}
   - {fileID: 704340873}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &675304037
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -7428,7 +7429,7 @@ MonoBehaviour:
   neightbourds:
   - {fileID: 1020635505}
   - {fileID: 737607385}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &691235446
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -7608,7 +7609,7 @@ MonoBehaviour:
   - {fileID: 1110814633}
   - {fileID: 1741479643}
   - {fileID: 675304036}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &704340874
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -7678,7 +7679,7 @@ MonoBehaviour:
   neightbourds:
   - {fileID: 1798212781}
   - {fileID: 1780958658}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &710009276
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -7709,7 +7710,7 @@ Transform:
   m_GameObject: {fileID: 710009274}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14, y: 0, z: 0}
+  m_LocalPosition: {x: -10, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8018,7 +8019,7 @@ MonoBehaviour:
   - {fileID: 1626672566}
   - {fileID: 34898549}
   - {fileID: 223143078}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &730223403
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -8089,7 +8090,7 @@ MonoBehaviour:
   - {fileID: 468433317}
   - {fileID: 1808566768}
   - {fileID: 66585945}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &733838840
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -8282,7 +8283,7 @@ MonoBehaviour:
   - {fileID: 838652815}
   - {fileID: 2021361550}
   - {fileID: 1477699373}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &734501121
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -8353,7 +8354,7 @@ MonoBehaviour:
   - {fileID: 279470603}
   - {fileID: 1539336756}
   - {fileID: 691235445}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &737607386
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -8640,7 +8641,7 @@ MonoBehaviour:
   - {fileID: 1156088964}
   - {fileID: 319721361}
   - {fileID: 28516782}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &748753486
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -8712,7 +8713,7 @@ MonoBehaviour:
   - {fileID: 223143078}
   - {fileID: 1626672566}
   - {fileID: 2097265353}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &752320716
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -8782,7 +8783,7 @@ MonoBehaviour:
   neightbourds:
   - {fileID: 819768668}
   - {fileID: 1380279344}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &756824362
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -8853,7 +8854,7 @@ MonoBehaviour:
   - {fileID: 602693030}
   - {fileID: 28516782}
   - {fileID: 1254378370}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &760292278
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -9140,7 +9141,7 @@ MonoBehaviour:
   - {fileID: 1057513254}
   - {fileID: 355797587}
   - {fileID: 265105452}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &785546350
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -9320,7 +9321,7 @@ MonoBehaviour:
   - {fileID: 1237130790}
   - {fileID: 1931402312}
   - {fileID: 261879593}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &798434131
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -9712,7 +9713,7 @@ MonoBehaviour:
   - {fileID: 34898549}
   - {fileID: 756824361}
   - {fileID: 1936297763}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &819768669
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -9809,11 +9810,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ebffdd1ca86bde4b83ae1a5f43a2fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &831780057 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 6320386003674742398, guid: 70e5247b7e6e3b341bdfe941f8b92645, type: 3}
-  m_PrefabInstance: {fileID: 710199620}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &832459107
 GameObject:
   m_ObjectHideFlags: 0
@@ -9958,7 +9954,7 @@ MonoBehaviour:
   - {fileID: 170405142}
   - {fileID: 1697538151}
   - {fileID: 254031334}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &838652816
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -10030,7 +10026,7 @@ MonoBehaviour:
   - {fileID: 261879593}
   - {fileID: 1727373963}
   - {fileID: 176667186}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &838877357
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -10102,7 +10098,7 @@ MonoBehaviour:
   - {fileID: 1386031153}
   - {fileID: 1859322856}
   - {fileID: 2066200823}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &840420380
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -10172,7 +10168,7 @@ MonoBehaviour:
   neightbourds:
   - {fileID: 1206378542}
   - {fileID: 1741479643}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &853896259
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -10460,7 +10456,7 @@ MonoBehaviour:
   - {fileID: 1822873311}
   - {fileID: 1465863953}
   - {fileID: 1724385634}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &867799811
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -10531,7 +10527,7 @@ MonoBehaviour:
   - {fileID: 210636695}
   - {fileID: 1450048292}
   - {fileID: 1383135900}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &889413368
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -10602,7 +10598,7 @@ MonoBehaviour:
   - {fileID: 1465863953}
   - {fileID: 440817409}
   - {fileID: 1822873311}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &899505069
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -10673,7 +10669,7 @@ MonoBehaviour:
   - {fileID: 752320715}
   - {fileID: 183940291}
   - {fileID: 1114525967}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &902926692
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -10978,7 +10974,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neightbourds:
   - {fileID: 675304036}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &934440208
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -11034,7 +11030,7 @@ MonoBehaviour:
   - {fileID: 299635768}
   - {fileID: 226804350}
   - {fileID: 1492242317}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &942970669
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -11105,7 +11101,7 @@ MonoBehaviour:
   - {fileID: 487303079}
   - {fileID: 1780958658}
   - {fileID: 309125987}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &948909615
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -11284,7 +11280,7 @@ MonoBehaviour:
   neightbourds:
   - {fileID: 2023253642}
   - {fileID: 487303079}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &972389137
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -11354,7 +11350,7 @@ MonoBehaviour:
   neightbourds:
   - {fileID: 226804350}
   - {fileID: 1917381048}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &979831951
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -11425,7 +11421,7 @@ MonoBehaviour:
   - {fileID: 2066200823}
   - {fileID: 1386031153}
   - {fileID: 1280772401}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &980281763
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -11496,7 +11492,7 @@ MonoBehaviour:
   - {fileID: 1436387304}
   - {fileID: 12714505}
   - {fileID: 254031334}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &987181907
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -11567,7 +11563,7 @@ MonoBehaviour:
   - {fileID: 2147123674}
   - {fileID: 634906812}
   - {fileID: 1539336756}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &989416705
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -11853,7 +11849,7 @@ MonoBehaviour:
   neightbourds:
   - {fileID: 12714505}
   - {fileID: 1151857533}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1017917004
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -11924,7 +11920,7 @@ MonoBehaviour:
   - {fileID: 691235445}
   - {fileID: 2075659181}
   - {fileID: 279470603}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1020635506
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -12388,7 +12384,7 @@ MonoBehaviour:
   - {fileID: 1629026931}
   - {fileID: 785546349}
   - {fileID: 176667186}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1057513255
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -12625,7 +12621,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   neightbourds: []
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1089515193
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -12694,7 +12690,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neightbourds:
   - {fileID: 1197236142}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1092661311
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -12750,7 +12746,7 @@ MonoBehaviour:
   - {fileID: 838877356}
   - {fileID: 180486088}
   - {fileID: 264065890}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1101898110
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -12928,7 +12924,7 @@ MonoBehaviour:
   neightbourds:
   - {fileID: 704340873}
   - {fileID: 1615223269}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1110814634
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -13107,7 +13103,7 @@ MonoBehaviour:
   - {fileID: 2097265353}
   - {fileID: 902926691}
   - {fileID: 1808566768}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1114525968
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -13178,7 +13174,7 @@ MonoBehaviour:
   - {fileID: 279470603}
   - {fileID: 1477699373}
   - {fileID: 2075659181}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1116405547
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -13470,7 +13466,7 @@ MonoBehaviour:
   - {fileID: 430197725}
   - {fileID: 451591683}
   - {fileID: 1017917003}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1151857534
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -13541,7 +13537,7 @@ MonoBehaviour:
   - {fileID: 86571215}
   - {fileID: 748753485}
   - {fileID: 5370057}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1156088965
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -13612,7 +13608,7 @@ MonoBehaviour:
   - {fileID: 1822873311}
   - {fileID: 440817409}
   - {fileID: 487284260}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1156608543
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -13684,7 +13680,7 @@ MonoBehaviour:
   - {fileID: 1450048292}
   - {fileID: 1731387578}
   - {fileID: 210636695}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1170495969
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -13755,7 +13751,7 @@ MonoBehaviour:
   - {fileID: 19272054}
   - {fileID: 168058569}
   - {fileID: 1917381048}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1179811419
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -13934,7 +13930,7 @@ MonoBehaviour:
   - {fileID: 175434109}
   - {fileID: 1936297763}
   - {fileID: 319721361}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1189958757
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -14004,7 +14000,7 @@ MonoBehaviour:
   neightbourds:
   - {fileID: 299635768}
   - {fileID: 1881857772}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1191650353
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -14075,7 +14071,7 @@ MonoBehaviour:
   - {fileID: 2141642010}
   - {fileID: 1315976356}
   - {fileID: 1697538151}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1192173739
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -14146,7 +14142,7 @@ MonoBehaviour:
   - {fileID: 1478416747}
   - {fileID: 6723862}
   - {fileID: 1658185956}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1195473788
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -14216,7 +14212,7 @@ MonoBehaviour:
   neightbourds:
   - {fileID: 1092661310}
   - {fileID: 1539336756}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1197236143
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -14795,7 +14791,7 @@ MonoBehaviour:
   - {fileID: 853896258}
   - {fileID: 309125987}
   - {fileID: 1089515192}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1206378543
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -14895,7 +14891,7 @@ MonoBehaviour:
   - {fileID: 176578548}
   - {fileID: 1251269019}
   - {fileID: 180486088}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1234655552
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -14967,7 +14963,7 @@ MonoBehaviour:
   - {fileID: 1254378370}
   - {fileID: 602693030}
   - {fileID: 1859322856}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1237130791
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -15039,7 +15035,7 @@ MonoBehaviour:
   - {fileID: 1911489344}
   - {fileID: 1315976356}
   - {fileID: 170405142}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1244548215
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -15110,7 +15106,7 @@ MonoBehaviour:
   - {fileID: 1407932189}
   - {fileID: 1413037197}
   - {fileID: 2120331280}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1246280761
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -15289,7 +15285,7 @@ MonoBehaviour:
   - {fileID: 217347898}
   - {fileID: 66585945}
   - {fileID: 1234655551}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1251269020
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -15360,7 +15356,7 @@ MonoBehaviour:
   - {fileID: 1237130790}
   - {fileID: 760292277}
   - {fileID: 1995831770}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1254378371
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -15430,7 +15426,7 @@ MonoBehaviour:
   neightbourds:
   - {fileID: 355797587}
   - {fileID: 980281762}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1280772402
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -15608,7 +15604,7 @@ MonoBehaviour:
   neightbourds:
   - {fileID: 6723862}
   - {fileID: 168058569}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1295641356
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -15787,7 +15783,7 @@ MonoBehaviour:
   - {fileID: 1192173738}
   - {fileID: 92004765}
   - {fileID: 1244548214}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1315976357
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -15859,7 +15855,7 @@ MonoBehaviour:
   - {fileID: 1936297763}
   - {fileID: 34898549}
   - {fileID: 175434109}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1331731217
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -15930,7 +15926,7 @@ MonoBehaviour:
   - {fileID: 1761792135}
   - {fileID: 1478416747}
   - {fileID: 19272054}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1333363206
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -16002,7 +15998,7 @@ MonoBehaviour:
   - {fileID: 5370057}
   - {fileID: 223143078}
   - {fileID: 86571215}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1336726247
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -16186,7 +16182,7 @@ MonoBehaviour:
   - {fileID: 756824361}
   - {fileID: 1575207585}
   - {fileID: 1413037197}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1380279345
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -16256,7 +16252,7 @@ MonoBehaviour:
   neightbourds:
   - {fileID: 440817409}
   - {fileID: 889413367}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1383135901
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -16326,7 +16322,7 @@ MonoBehaviour:
   neightbourds:
   - {fileID: 86571215}
   - {fileID: 1931402312}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1383311417
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -16397,7 +16393,7 @@ MonoBehaviour:
   - {fileID: 840420379}
   - {fileID: 1995831770}
   - {fileID: 980281762}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1386031154
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -16469,7 +16465,7 @@ MonoBehaviour:
   - {fileID: 1336726246}
   - {fileID: 2097265353}
   - {fileID: 468433317}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1387219035
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -16649,7 +16645,7 @@ MonoBehaviour:
   - {fileID: 1845892297}
   - {fileID: 665518527}
   - {fileID: 106785403}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1407932190
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -16720,7 +16716,7 @@ MonoBehaviour:
   - {fileID: 665518527}
   - {fileID: 1380279344}
   - {fileID: 1246280760}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1413037198
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -16791,7 +16787,7 @@ MonoBehaviour:
   - {fileID: 1783432591}
   - {fileID: 2141642010}
   - {fileID: 1741514809}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1417247240
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -16862,7 +16858,7 @@ MonoBehaviour:
   - {fileID: 1478416747}
   - {fileID: 673588126}
   - {fileID: 1761792135}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1421188642
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -16933,7 +16929,7 @@ MonoBehaviour:
   - {fileID: 2075659181}
   - {fileID: 987181906}
   - {fileID: 1477699373}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1436387305
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -17004,7 +17000,7 @@ MonoBehaviour:
   - {fileID: 1170495968}
   - {fileID: 31930001}
   - {fileID: 889413367}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1450048293
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -17076,7 +17072,7 @@ MonoBehaviour:
   - {fileID: 899505068}
   - {fileID: 106785403}
   - {fileID: 867799810}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1465863954
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -17148,7 +17144,7 @@ MonoBehaviour:
   - {fileID: 254031334}
   - {fileID: 734501120}
   - {fileID: 1436387304}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1477699374
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -17220,7 +17216,7 @@ MonoBehaviour:
   - {fileID: 1195473787}
   - {fileID: 1724385634}
   - {fileID: 1333363205}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1478416748
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -17291,7 +17287,7 @@ MonoBehaviour:
   - {fileID: 1824227737}
   - {fileID: 1890266448}
   - {fileID: 942970668}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1492242318
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -17471,7 +17467,7 @@ MonoBehaviour:
   - {fileID: 145486111}
   - {fileID: 989416704}
   - {fileID: 737607385}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1539336757
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -17851,7 +17847,7 @@ MonoBehaviour:
   - {fileID: 1380279344}
   - {fileID: 629931192}
   - {fileID: 665518527}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1575207586
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -18137,7 +18133,7 @@ MonoBehaviour:
   neightbourds:
   - {fileID: 487303079}
   - {fileID: 1110814633}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1615223270
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -18208,7 +18204,7 @@ MonoBehaviour:
   - {fileID: 183940291}
   - {fileID: 730223402}
   - {fileID: 752320715}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1626672567
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -18293,7 +18289,7 @@ MonoBehaviour:
   neightbourds:
   - {fileID: 1057513254}
   - {fileID: 264065890}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1629026932
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -18463,7 +18459,7 @@ MonoBehaviour:
   - {fileID: 487284260}
   - {fileID: 1822873311}
   - {fileID: 1195473787}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1658185957
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -18535,7 +18531,7 @@ MonoBehaviour:
   - {fileID: 1244548214}
   - {fileID: 1192173738}
   - {fileID: 838652815}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1697538152
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -18827,7 +18823,7 @@ MonoBehaviour:
   - {fileID: 1658185956}
   - {fileID: 867799810}
   - {fileID: 1478416747}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1724385635
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -19008,7 +19004,7 @@ MonoBehaviour:
   - {fileID: 1859322856}
   - {fileID: 176578548}
   - {fileID: 838877356}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1727373964
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -19080,7 +19076,7 @@ MonoBehaviour:
   - {fileID: 31930001}
   - {fileID: 65425670}
   - {fileID: 1170495968}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1731387579
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -19474,7 +19470,7 @@ MonoBehaviour:
   neightbourds:
   - {fileID: 2023253642}
   - {fileID: 704340873}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1741479644
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -19546,7 +19542,7 @@ MonoBehaviour:
   - {fileID: 2021361550}
   - {fileID: 1417247239}
   - {fileID: 659011720}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1741514810
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -19646,7 +19642,7 @@ PrefabInstance:
     - target: {fileID: 8261025843934729198, guid: 34a3a15d25e1e6a4bb405bddac546a27, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 831780057}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19794,7 +19790,7 @@ MonoBehaviour:
   - {fileID: 1333363205}
   - {fileID: 1421188641}
   - {fileID: 2147384099}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1761792136
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -19865,7 +19861,7 @@ MonoBehaviour:
   - {fileID: 710009275}
   - {fileID: 2023253642}
   - {fileID: 948909614}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1780958659
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -19936,7 +19932,7 @@ MonoBehaviour:
   - {fileID: 634906812}
   - {fileID: 1417247239}
   - {fileID: 2147123674}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1783432592
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -20005,7 +20001,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neightbourds:
   - {fileID: 710009275}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1798212782
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -20076,7 +20072,7 @@ MonoBehaviour:
   - {fileID: 1387219034}
   - {fileID: 1114525967}
   - {fileID: 733838839}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1808566769
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -20148,7 +20144,7 @@ MonoBehaviour:
   - {fileID: 1156608542}
   - {fileID: 899505068}
   - {fileID: 1658185956}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1822873312
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -20220,7 +20216,7 @@ MonoBehaviour:
   - {fileID: 1492242317}
   - {fileID: 19272054}
   - {fileID: 299635768}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1824227738
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -20290,7 +20286,7 @@ MonoBehaviour:
   neightbourds:
   - {fileID: 65425670}
   - {fileID: 31930001}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1833841250
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -20361,7 +20357,7 @@ MonoBehaviour:
   - {fileID: 1407932189}
   - {fileID: 1170495968}
   - {fileID: 497474047}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1845892298
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -20433,7 +20429,7 @@ MonoBehaviour:
   - {fileID: 1995831770}
   - {fileID: 1237130790}
   - {fileID: 840420379}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1859322857
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -20504,7 +20500,7 @@ MonoBehaviour:
   - {fileID: 1824227737}
   - {fileID: 2147384099}
   - {fileID: 1191650352}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1881857773
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -20683,7 +20679,7 @@ MonoBehaviour:
   - {fileID: 1492242317}
   - {fileID: 1917381048}
   - {fileID: 226804350}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1890266449
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -20754,7 +20750,7 @@ MonoBehaviour:
   - {fileID: 1244548214}
   - {fileID: 92004765}
   - {fileID: 451591683}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1911489345
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -20933,7 +20929,7 @@ MonoBehaviour:
   - {fileID: 1890266448}
   - {fileID: 1179811418}
   - {fileID: 979831950}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1917381049
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -21005,7 +21001,7 @@ MonoBehaviour:
   - {fileID: 602693030}
   - {fileID: 1383311416}
   - {fileID: 798434130}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1931402313
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -21076,7 +21072,7 @@ MonoBehaviour:
   - {fileID: 1331731216}
   - {fileID: 819768668}
   - {fileID: 1189958756}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1936297764
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -21363,7 +21359,7 @@ MonoBehaviour:
   - {fileID: 1859322856}
   - {fileID: 1254378370}
   - {fileID: 1386031153}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &1995831771
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -21652,7 +21648,7 @@ MonoBehaviour:
   - {fileID: 1697538151}
   - {fileID: 2141642010}
   - {fileID: 734501120}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &2021361551
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -21723,7 +21719,7 @@ MonoBehaviour:
   - {fileID: 1780958658}
   - {fileID: 972389136}
   - {fileID: 1741479643}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &2023253643
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -22432,7 +22428,7 @@ MonoBehaviour:
   - {fileID: 980281762}
   - {fileID: 840420379}
   - {fileID: 355797587}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &2066200824
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -22719,7 +22715,7 @@ MonoBehaviour:
   - {fileID: 1020635505}
   - {fileID: 1436387304}
   - {fileID: 1116405546}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &2075659182
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -23007,7 +23003,7 @@ MonoBehaviour:
   - {fileID: 1114525967}
   - {fileID: 752320715}
   - {fileID: 1387219034}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &2097265354
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -23144,7 +23140,7 @@ MonoBehaviour:
   - {fileID: 106785403}
   - {fileID: 1246280760}
   - {fileID: 673588126}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &2120331281
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -23215,7 +23211,7 @@ MonoBehaviour:
   - {fileID: 1417247239}
   - {fileID: 1192173738}
   - {fileID: 2021361550}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &2141642011
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -23287,7 +23283,7 @@ MonoBehaviour:
   - {fileID: 1741514809}
   - {fileID: 1783432591}
   - {fileID: 145486111}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &2147123675
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -23358,7 +23354,7 @@ MonoBehaviour:
   - {fileID: 19272054}
   - {fileID: 1761792135}
   - {fileID: 1881857772}
-  hasTrap: 0
+  weight: 1
 --- !u!135 &2147384100
 SphereCollider:
   m_ObjectHideFlags: 0

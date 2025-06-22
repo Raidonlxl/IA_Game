@@ -183,11 +183,11 @@ public class StatePathfinding<T> : StateFollowPoints<T>
     float GetCost(Node parent, Node child)
     {
         float distanceMultiplier = 1;
-        float trapMultiplier = 100;
+        //float trapMultiplier = 100;
 
         float cost = 0;
         cost += Vector3.Distance(parent.transform.position, child.transform.position) * distanceMultiplier;
-        cost += child.hasTrap ? trapMultiplier : 0;
+        //cost += child.hasTrap ? trapMultiplier : 0;
         return cost;
     }
     float GetCost(Vector3 parent, Vector3 child)

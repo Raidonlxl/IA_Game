@@ -1,3 +1,4 @@
+using NUnit.Framework.Interfaces;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,7 @@ public class MoveToWaypoints : ISteering
     private bool endWay;
     private int index;
     List<Node> path;
+
     public MoveToWaypoints(Transform self, Transform target, bool canBack)
     {
         this.self = self;
@@ -22,7 +24,25 @@ public class MoveToWaypoints : ISteering
     }
     public void Refresh(Transform target)
     {
+        
         path = SetPath.SetPathAStarPlus(self, target);
+    }
+    public void ChangeRoulleteValues(List<Node> nodes, List<float> weight)
+    {
+        
+        for (int i = 0; i < nodes.Count; i++)
+        {
+            Vector3 distance = target.transform.position - nodes[i].transform.position;
+            if (distance.magnitude < 10)
+            {
+                weight[i] = distance.magnitude + 40;
+            }
+            else
+            {
+                weight[i] = distance.magnitude / 4;
+            }
+        }
+
     }
     public Vector3 GetDir()
     {

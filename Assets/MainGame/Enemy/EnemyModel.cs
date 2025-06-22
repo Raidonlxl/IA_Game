@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -26,7 +27,8 @@ public class EnemyModel : MonoBehaviour, IBoid
 
     public string owner = "Enemy";
     public bool endWay;
-
+    public List<Node> _nodeskey = new List<Node>();
+    public List<float> _nodesvalue = new List<float>();
     public Vector3 Position => transform.position;
 
     public Vector3 Forward => transform.forward;

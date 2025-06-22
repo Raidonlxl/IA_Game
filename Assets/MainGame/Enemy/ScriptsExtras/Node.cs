@@ -5,10 +5,10 @@ using UnityEngine;
 public class Node : MonoBehaviour
 {
     public List<Node> neightbourds;//<- Esto es lo unico que importa
-
+    public float weight = 1;
 
     //Si utilizan este codigo con los raycast en el start/update/realtime son un punto menos por raycast.
-    public bool hasTrap;
+    
     
     
     private void Start()

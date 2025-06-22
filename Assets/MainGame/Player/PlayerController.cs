@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
     void InitializeFsm()
     {
         fsm = new FSM<StatesEnum>();
-        var movePlayer = new WalkState<StatesEnum>(playerModel,StatesEnum.Idle,StatesEnum.Shoot);
+        var movePlayer = new WalkState<StatesEnum>(playerModel, rb,StatesEnum.Idle,StatesEnum.Shoot);
         var idlePlayer = new IdleState<StatesEnum>(StatesEnum.Run, StatesEnum.Shoot);
         var shootPlayer = new ShootStatePlayer<StatesEnum>(playerModel,playerModel.bullet, StatesEnum.Run,StatesEnum.Idle);
 

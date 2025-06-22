@@ -5,7 +5,7 @@ public class EnemyChaseState<T> : StatePathfinding<T>
 {
     ISteering _persuit;
     MeleeEnemyModel _model;
-    ObstacleAvoidance _avoidance;
+    GenericBehaviour _generic;
     Transform _player;
 
     public EnemyChaseState(Transform player,ISteering persuit, MeleeEnemyModel model, ObstacleAvoidance avoidance, Transform entity, IMove move, Transform target) : base(entity, move, target, avoidance)
@@ -21,16 +21,19 @@ public class EnemyChaseState<T> : StatePathfinding<T>
         target = _player;
         SetPathAStarPlus();
         _model.SetPosition(goal.transform.position);
-        _model.ChaseTime();
     }
 
     public override void Execute()
     {
         base.Execute();
         Vector3 dir1 = _persuit.GetDir();
-        Vector3 dir2 = _avoidance.GetDir(dir1);
-        Run(dir2);
+        Run(dir1);
         
+    }
+    public override void Exit()
+    {
+        base.Exit();
+        _model.ChaseTime();
     }
 
     protected override void OnMove(Vector3 dir)

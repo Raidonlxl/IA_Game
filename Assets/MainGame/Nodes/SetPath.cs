@@ -9,7 +9,8 @@ public static class SetPath
  
     private static LayerMask nodeMask = LayerMask.GetMask("Nodes");
     private static LayerMask obsMask = LayerMask.GetMask("Walls");
-  
+
+
     public static List<Node> SetPathAStarPlus(Transform self, Transform target)
     {
         var init = GetNearNode(self.position);

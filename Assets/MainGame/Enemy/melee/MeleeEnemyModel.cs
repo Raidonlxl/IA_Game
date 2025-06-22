@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-public class MeleeEnemyModel : MonoBehaviour, IMove
+public class MeleeEnemyModel : MonoBehaviour, IMove, IBoid
 {
     [SerializeField] EnemyBase _stats;
     [SerializeField] GameObject _hitbox;
     [SerializeField] float _currentLife;
-    [SerializeField] List<Node> _nodeskey = new List<Node>();
-    [SerializeField] List<float> _nodesvalue = new List<float>();
-    [SerializeField] Vector3 _lastSeenPos = new Vector3(0, 0, 0);
+    public Transform Target;
+    public List<Node> Nodeskey = new List<Node>();
+    public List<float> Nodesvalue = new List<float>();
+    public Transform LastSeenPos;
     [SerializeField] float _dirMag;
     [SerializeField] float _distancetopoint;
     private Dictionary<Node, float> _patrolNodes = new Dictionary<Node, float>();
     bool _isIdling;
+    
+    public GenericBehaviour Instance;
     
     
     
@@ -25,17 +28,17 @@ public class MeleeEnemyModel : MonoBehaviour, IMove
     Coroutine ChaseTimer;
     void Awake()
     {
-        
-        for (int i = 0; i < _nodeskey.Count; i++)
+        Instance = GetComponent<GenericBehaviour>();
+        for (int i = 0; i < Nodeskey.Count; i++)
         {
-            if( _nodeskey[i] != null )
+            if( Nodeskey[i] != null )
             {
-                if (_nodesvalue[i] <= 0)
+                if (Nodesvalue[i] <= 0)
                 {
                     float newvalue = Random.Range(2, 11);
-                    _nodesvalue[i] = newvalue;
+                    Nodesvalue[i] = newvalue;
                 }
-                _patrolNodes.Add(_nodeskey[i], _nodesvalue[i]);
+                _patrolNodes.Add(Nodeskey[i], Nodesvalue[i]);
             }
         }
     }
@@ -130,15 +133,16 @@ public class MeleeEnemyModel : MonoBehaviour, IMove
 
     public void SetPosition(Vector3 pos)
     {
-        _lastSeenPos = pos;
-        _lastSeenPos.y = transform.position.y;
-        Vector3 dir = _lastSeenPos - transform.position;
+        pos.y = transform.position.y;
+        LastSeenPos.position = pos;
+        
+        Vector3 dir = LastSeenPos.position - transform.position;
         _dirMag = dir.magnitude;
     }
 
     public void RedoCalculation()
     {
-        Vector3 dir = _lastSeenPos - transform.position;
+        Vector3 dir = LastSeenPos.position - transform.position;
         _dirMag = dir.magnitude;
     }
 
@@ -148,6 +152,10 @@ public class MeleeEnemyModel : MonoBehaviour, IMove
     public bool IsAlive => _currentLife <= 0;
     public bool IsOnLastSeenPos => _dirMag < 0.2f;
     public bool IsChasing => ChaseTimer != null;
-    public List<Node> NodesKey => _nodeskey;
-    public List<float> NodesValue => _nodesvalue;
+    public List<Node> NodesKey => Nodeskey;
+    public List<float> NodesValue => Nodesvalue;
+
+    public Vector3 Position => transform.position;
+
+    public Vector3 Forward => transform.forward;
 }

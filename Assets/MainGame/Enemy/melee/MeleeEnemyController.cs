@@ -6,7 +6,7 @@ using UnityEngine;
 public class MeleeEnemyController : MonoBehaviour
 {
     [SerializeField] MeleeEnemyModel _model;
-    [SerializeField] Transform _target;
+    
     
   
     FSM<StatesEnum> _fsm;
@@ -14,7 +14,6 @@ public class MeleeEnemyController : MonoBehaviour
     LineOfSight _los;
     
     ObstacleAvoidance _avoidance;
-    ISteering _persuit;
     IMove _move;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -22,7 +21,7 @@ public class MeleeEnemyController : MonoBehaviour
     {
         _move = _model;
         _los = GetComponent<LineOfSight>();
-        _los.Initialize(transform, _target, _model.Stats.Range, _model.Stats.Angle, _model.Stats.ObstacleMask);
+        _los.Initialize(transform, _model.Target, _model.Stats.Range, _model.Stats.Angle, _model.Stats.ObstacleMask);
         _avoidance = GetComponent<ObstacleAvoidance>();
         InitializeFSM();
         InitializeTree();
@@ -41,14 +40,17 @@ public class MeleeEnemyController : MonoBehaviour
 
     void InitializeFSM()
     {
-        _persuit = new Persuit(transform, _target, 2f);
+        var persuitsteer = new Persuit(transform, _model.Target, _model.Stats.Speed);
+        var patrolsteer = new MoveToWaypoints(transform, _model.Target, false);
+        var lastpointsteer = new MoveToWaypoints(transform, _model.LastSeenPos, false);
+        var flocking = GetComponent<FlockingManager>();
         _fsm = new FSM<StatesEnum>();
         var idle = new EnemyIdleState<StatesEnum>(_model);
-        var patrol = new EnemyPatrolState<StatesEnum>(_model, _persuit, _avoidance, transform, _move, _target);
-        var chase = new EnemyChaseState<StatesEnum>(_target,_persuit, _model, _avoidance, transform,_move, _target);
+        var patrol = new MoveSteering<StatesEnum>(_model.Instance, patrolsteer, flocking, _model);
+        var chase = new MoveSteering<StatesEnum>(_model.Instance, persuitsteer, flocking, _model);
         var attack = new EnemyAttackState<StatesEnum>(_model);
         var dead = new EnemyDeadState<StatesEnum>(gameObject, _model);
-        var gotolastpoint = new EnemyGoToLastPointState<StatesEnum>(_model, _persuit, _avoidance, transform, _move, _target);
+        var gotolastpoint = new MoveSteering<StatesEnum>(_model.Instance, lastpointsteer, flocking, _model);
 
         idle.AddTransition(StatesEnum.Patrol, patrol);
         idle.AddTransition(StatesEnum.Persuit, chase);

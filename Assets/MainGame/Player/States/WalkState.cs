@@ -4,13 +4,14 @@ using UnityEngine;
 public class WalkState<T> : State<T>
 {
     private PlayerModel owner;
+    private Rigidbody rb;
     T inputShoot;
 
     T inputToIdle;
-    public WalkState(PlayerModel owner, T inputToIdle,T inputShoot)
+    public WalkState(PlayerModel owner, Rigidbody rb, T inputToIdle,T inputShoot)
     {
         this.owner = owner;
-    
+        this.rb = rb;
         this.inputToIdle = inputToIdle;
         this.inputShoot = inputShoot;
     }
@@ -31,6 +32,7 @@ public class WalkState<T> : State<T>
 
         else
         {
+            
             StateMachine.Transition(inputToIdle);
         }
 

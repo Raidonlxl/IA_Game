@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1529225246410035701}
   - component: {fileID: 5295498384211143528}
   - component: {fileID: 1249642988519763851}
+  - component: {fileID: 3314872240669898301}
   m_Layer: 6
   m_Name: Melee
   m_TagString: Untagged
@@ -128,7 +129,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _model: {fileID: 1529225246410035701}
-  _target: {fileID: 0}
 --- !u!114 &1529225246410035701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,19 +144,13 @@ MonoBehaviour:
   _stats: {fileID: 11400000, guid: 34b56f9734678a942a091731187edd97, type: 2}
   _hitbox: {fileID: 8684611069742227346}
   _currentLife: 1
-  _nodeskey:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  _nodesvalue:
-  - 0
-  - 0
-  - 0
-  - 0
-  _lastSeenPos: {x: 0, y: 0, z: 0}
+  Target: {fileID: 0}
+  Nodeskey: []
+  Nodesvalue: []
+  LastSeenPos: {fileID: 0}
   _dirMag: 0
   _distancetopoint: 0
+  Instance: {fileID: 3314872240669898301}
 --- !u!114 &5295498384211143528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,6 +189,19 @@ MonoBehaviour:
   obsMask:
     serializedVersion: 2
     m_Bits: 128
+--- !u!114 &3314872240669898301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2632647375392867533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 858ec5a597ff7ad40a711ae797785064, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  multiplier: 1
 --- !u!1 &8684611069742227346
 GameObject:
   m_ObjectHideFlags: 0
