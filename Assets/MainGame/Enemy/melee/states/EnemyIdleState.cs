@@ -10,6 +10,7 @@ public class EnemyIdleState<T> : State<T>
 
     public override void Enter()
     {
+        Debug.Log("IDLE");
         base.Enter();
         _model.idle();
     }

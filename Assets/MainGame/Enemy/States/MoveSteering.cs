@@ -37,7 +37,15 @@ public class MoveSteering<T> : State<T>
     {
         base.Enter();
         timer.currentTime = 0f;
-        
+        if(steering.GetType()==typeof(MoveToWaypoints))
+        {
+            Debug.Log("PATROL");
+        }
+        else if (steering.GetType() == typeof(Persuit))
+        {
+            Debug.Log("PERSUIT");
+
+        }
 
     }
     public override void Execute()
@@ -68,13 +76,19 @@ public class MoveSteering<T> : State<T>
         else
         {
             genericBehaviour.Dir = steering.GetDir();
-            if (enemyModel != null) enemyModel.Move(flocking.GetDir());
-            if (meleeModel != null) enemyModel.Move(flocking.GetDir());
+           
+            //if (enemyModel != null) enemyModel.Move(flocking.GetDir());
+            if (meleeModel != null) meleeModel.Move(flocking.GetDir());
         }
     }
     public override void Exit()
     {
         base.Exit();
+
+        if (steering.GetType() == typeof(Persuit))
+        {
+            meleeModel.LastSeenPos.position = meleeModel.Target.transform.position;
+        }
        
     }
     public void ChangeSteering(ISteering newSteering)

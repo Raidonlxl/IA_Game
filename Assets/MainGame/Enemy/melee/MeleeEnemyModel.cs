@@ -16,7 +16,8 @@ public class MeleeEnemyModel : MonoBehaviour, IMove, IBoid
     [SerializeField] float _distancetopoint;
     private Dictionary<Node, float> _patrolNodes = new Dictionary<Node, float>();
     bool _isIdling;
-    
+    ObstacleAvoidance _avoidance;
+
     public GenericBehaviour Instance;
     
     
@@ -28,7 +29,9 @@ public class MeleeEnemyModel : MonoBehaviour, IMove, IBoid
     Coroutine ChaseTimer;
     void Awake()
     {
+        _avoidance = GetComponent<ObstacleAvoidance>();
         Instance = GetComponent<GenericBehaviour>();
+
         for (int i = 0; i < Nodeskey.Count; i++)
         {
             if( Nodeskey[i] != null )
@@ -62,7 +65,7 @@ public class MeleeEnemyModel : MonoBehaviour, IMove, IBoid
         dir.y = 0;
         Vector3 finalDir = dir.normalized;
         
-        transform.position += finalDir * _stats.Speed * Time.deltaTime;
+        transform.position += _avoidance.GetDir(dir) *_stats.Speed * Time.deltaTime;
         RotateEnemy(finalDir);
     }
     public void RotateEnemy(Vector3 direction)

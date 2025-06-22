@@ -13,7 +13,6 @@ public class MeleeEnemyController : MonoBehaviour
     ITreeNode _root;
     LineOfSight _los;
     
-    ObstacleAvoidance _avoidance;
     IMove _move;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -22,7 +21,7 @@ public class MeleeEnemyController : MonoBehaviour
         _move = _model;
         _los = GetComponent<LineOfSight>();
         _los.Initialize(transform, _model.Target, _model.Stats.Range, _model.Stats.Angle, _model.Stats.ObstacleMask);
-        _avoidance = GetComponent<ObstacleAvoidance>();
+        
         InitializeFSM();
         InitializeTree();
         
@@ -33,15 +32,16 @@ public class MeleeEnemyController : MonoBehaviour
     {
         _fsm.OnExecute();
         _root.Execute();
-        Debug.Log(_fsm._currState);
-        Debug.Log(_model.IsOnLastSeenPos);
+        //Debug.Log(_fsm._currState);
+        //Debug.Log(_model.IsOnLastSeenPos);
+        
     }
 
 
     void InitializeFSM()
     {
         var persuitsteer = new Persuit(transform, _model.Target, _model.Stats.Speed);
-        var patrolsteer = new MoveToWaypoints(transform, _model.Target, false);
+        var patrolsteer = new MoveToWaypoints(transform, _model.LastSeenPos, true);
         var lastpointsteer = new MoveToWaypoints(transform, _model.LastSeenPos, false);
         var flocking = GetComponent<FlockingManager>();
         _fsm = new FSM<StatesEnum>();
@@ -100,6 +100,7 @@ public class MeleeEnemyController : MonoBehaviour
         ITreeNode qLOS = new QuestionNode(QuestionLOS, qHasReachedFoe, qHasReachedLastSeenPos);
         ITreeNode qIsAlive = new QuestionNode(() => _model.IsAlive, dead, qLOS);
         _root = qIsAlive;
+        
     }
 
     bool QuestionLOS()

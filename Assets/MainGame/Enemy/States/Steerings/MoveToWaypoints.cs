@@ -1,6 +1,7 @@
 using NUnit.Framework.Interfaces;
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MoveToWaypoints : ISteering
@@ -12,6 +13,8 @@ public class MoveToWaypoints : ISteering
     private bool endWay;
     private int index;
     List<Node> path;
+    List<Node> nodes;
+    List<float> weight;
 
     public MoveToWaypoints(Transform self, Transform target, bool canBack)
     {
@@ -22,9 +25,19 @@ public class MoveToWaypoints : ISteering
         this.canBack = canBack;
         Refresh(target);
     }
+    public MoveToWaypoints(Transform self, List<Node> nodes,List<float> weight, bool canBack)
+    {
+        this.self = self;
+        this.nodes = nodes;
+        index = 0;
+        isBacking = false;
+        this.canBack = canBack;
+        this.weight = weight;
+        Refresh(target);
+        ChangeRoulleteValues(nodes, weight);
+    }
     public void Refresh(Transform target)
     {
-        
         path = SetPath.SetPathAStarPlus(self, target);
     }
     public void ChangeRoulleteValues(List<Node> nodes, List<float> weight)

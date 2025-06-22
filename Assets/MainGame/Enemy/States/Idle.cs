@@ -18,7 +18,7 @@ public class Idle<T> : State<T>
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("Idle");
+        //Debug.Log("Idle");
         
 
     }

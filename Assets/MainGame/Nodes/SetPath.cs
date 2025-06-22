@@ -18,6 +18,7 @@ public static class SetPath
 
         List<Node> path = ASTAR.Run<Node>(init,(x) => IsSatisfied(x,goal), GetConnections, GetCost, (x)=>Heuristic(x,goal));
         path = ASTAR.CleanPath(path, InView);
+  
         return path;
     }
 
