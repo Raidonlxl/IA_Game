@@ -3,12 +3,12 @@ using UnityEngine.SceneManagement;
 
 public class SceneTransition : MonoBehaviour
 {
-    
 
     public void OnTriggerEnter(Collider other)
     {
-        var key = other.GetComponent<IBoid>();
-        if(key != null )
+        
+        var player = other.GetComponent<PlayerController>();
+        if(player != null)
         SceneManager.LoadScene("win");
     }
 }

@@ -126,4 +126,9 @@ public class MoveToWaypoints : ISteering
         }
         return (path[index].transform.position - self.position).normalized;
     }
+
+    public void Refresh()
+    {
+        
+    }
 }

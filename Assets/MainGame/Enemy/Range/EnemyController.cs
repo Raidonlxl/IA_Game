@@ -12,6 +12,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] Transform[] boxsAmmo;
     int cantMaxToShoot = 5;
     [SerializeField] LineOfSight los;
+    [SerializeField] Transform safepoint;
 
     private void Start()
     {
@@ -39,13 +40,13 @@ public class EnemyController : MonoBehaviour
 
         var steeringPersuit = new Persuit(enemyModel.transform, enemyModel.lasPositionPlayer, enemyModel.playerModel.Speed);
 
-        var steeringPatrol = new MoveToWaypoints(enemyModel.transform,enemyModel.target.transform,true);
+        var steeringPatrol = new MoveToWaypoints(enemyModel.transform,enemyModel._nodeskey, enemyModel._nodesvalue,false);
 
         var steeringPathing = new MoveToWaypoints(enemyModel.transform,enemyModel.target.transform,false);
 
         var steeringReaload = new MoveToWaypoints(enemyModel.transform, boxsAmmo[0], false);
 
-        var steeringSafePoint = new MoveToWaypoints(enemyModel.transform, enemyModel.target.transform, false);
+        var steeringSafePoint = new MoveToWaypoints(enemyModel.transform, safepoint, false);
 
 
 

@@ -84,7 +84,10 @@ public class MoveSteering<T> : State<T>
 
         if (steering.GetType() == typeof(Persuit))
         {
+            if(meleeModel != null)
             meleeModel.LastSeenPos.position = meleeModel.Target.transform.position;
+            if (enemyModel != null)
+            enemyModel.lasPositionPlayer.position = enemyModel.target.transform.position;
         }
        
     }

@@ -891,6 +891,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2620418220094268556, guid: 97bf9c0e1b6dfa942856153961ff3e2c, type: 3}
+      propertyPath: safepoint
+      value: 
+      objectReference: {fileID: 408482579}
+    - target: {fileID: 2620418220094268556, guid: 97bf9c0e1b6dfa942856153961ff3e2c, type: 3}
       propertyPath: nodeInitial
       value: 
       objectReference: {fileID: 0}
@@ -3178,6 +3182,10 @@ PrefabInstance:
       propertyPath: nodeGoal
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2620418220094268556, guid: 97bf9c0e1b6dfa942856153961ff3e2c, type: 3}
+      propertyPath: safepoint
+      value: 
+      objectReference: {fileID: 1392718374}
     - target: {fileID: 2620418220094268556, guid: 97bf9c0e1b6dfa942856153961ff3e2c, type: 3}
       propertyPath: nodeInitial
       value: 

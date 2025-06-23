@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-public class MeleeEnemyModel : MonoBehaviour, IMove, IBoid
+public class MeleeEnemyModel : MonoBehaviour, IBoid
 {
     [SerializeField] EnemyBase _stats;
     [SerializeField] GameObject _hitbox;
@@ -14,8 +14,6 @@ public class MeleeEnemyModel : MonoBehaviour, IMove, IBoid
     public Transform LastSeenPos;
     [SerializeField] float _dirMag;
     [SerializeField] float _distancetopoint;
-    private Dictionary<Node, float> _patrolNodes = new Dictionary<Node, float>();
-    bool _isIdling;
     
 
     public GenericBehaviour Instance;
@@ -25,25 +23,11 @@ public class MeleeEnemyModel : MonoBehaviour, IMove, IBoid
 
     Coroutine AttackCooldown;
     Coroutine IdleCooldown;
-    Coroutine PatrolCoolDown;
     Coroutine ChaseTimer;
     void Awake()
     {
         
-        Instance = GetComponent<GenericBehaviour>();
-
-        for (int i = 0; i < Nodeskey.Count; i++)
-        {
-            if( Nodeskey[i] != null )
-            {
-                if (Nodesvalue[i] <= 0)
-                {
-                    float newvalue = Random.Range(2, 11);
-                    Nodesvalue[i] = newvalue;
-                }
-                _patrolNodes.Add(Nodeskey[i], Nodesvalue[i]);
-            }
-        }
+       
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -109,47 +93,13 @@ public class MeleeEnemyModel : MonoBehaviour, IMove, IBoid
     {
         yield return new WaitForSeconds(time);
         IdleCooldown = null;
-        _isIdling = false;
-    }
-    public Transform patrol()
-    {
-        //patrol elegira un nodo random y ira a este
-        Node targetnode = MyRandoms.Roulette<Node>(_patrolNodes);
-
-        PatrolCoolDown = StartCoroutine(patrolcooldown(8f)); 
-        return targetnode.transform;
-    }
-    IEnumerator patrolcooldown(float time)
-    {
-        yield return new WaitForSeconds(time);
-        Debug.Log("patrol ended");
-        PatrolCoolDown = null;
-        _isIdling = true;
-
+        
     }
     
 
-    public void LookDir(Vector3 dir)
-    {
-        
-    }
+    
 
-    public void SetPosition(Vector3 pos)
-    {
-        pos.y = transform.position.y;
-        LastSeenPos.position = pos;
-        
-        Vector3 dir = LastSeenPos.position - transform.position;
-        _dirMag = dir.magnitude;
-    }
-
-    public void RedoCalculation()
-    {
-        Vector3 dir = LastSeenPos.position - transform.position;
-        _dirMag = dir.magnitude;
-    }
-
-    public bool IsIdling => _isIdling;
+    public bool IsIdling => IdleCooldown != null;
     public bool IsAttacking => AttackCooldown != null;
     public EnemyBase Stats => _stats;
     public bool IsAlive => _currentLife <= 0;

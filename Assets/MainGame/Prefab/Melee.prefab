@@ -169,7 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxObs: 5
   radius: 7
-  angle: 45
+  angle: 135
   personalArea: 2
   obsMask:
     serializedVersion: 2
@@ -219,10 +219,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxBoids: 10
-  radius: 5
+  radius: 10
   boidMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 2048
 --- !u!114 &484443453105665602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,8 +235,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c000a88cfd8096946bb8d1be8ce3712c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  multiplier: 1
-  personalArea: 0.5
+  multiplier: 7
+  personalArea: 2
 --- !u!114 &7855434045924929252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,7 +262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5912c4912e8f2f34d9baa9a7f36bf938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  multiplier: 1
+  multiplier: 2
 --- !u!1 &8684611069742227346
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,12 +13,11 @@ public class MeleeEnemyController : MonoBehaviour
     ITreeNode _root;
     LineOfSight _los;
     ObstacleAvoidance _avoidance;
-    IMove _move;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        _move = _model;
+        
         _avoidance = GetComponent<ObstacleAvoidance>();
         _los = GetComponent<LineOfSight>();
         _los.Initialize(transform, _model.Target, _model.Stats.Range, _model.Stats.Angle, _model.Stats.ObstacleMask);
