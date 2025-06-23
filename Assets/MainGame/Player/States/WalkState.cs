@@ -17,7 +17,7 @@ public class WalkState<T> : State<T>
     }
     public override void Execute()
     {
-        Debug.Log("move: " + debugmovement);
+       
         if (InputManager.GetMovementInput() != Vector3.zero)
         {
 

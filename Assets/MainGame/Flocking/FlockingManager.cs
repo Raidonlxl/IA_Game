@@ -52,4 +52,9 @@ public class FlockingManager : MonoBehaviour, ISteering
     {
         throw new System.NotImplementedException();
     }
+
+    public void Refresh()
+    {
+       
+    }
 }

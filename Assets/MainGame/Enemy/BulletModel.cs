@@ -11,7 +11,7 @@ public class BulletModel : MonoBehaviour,IPooleable
     private void OnCollisionEnter(Collision collision)
     {
 
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Boids"))
         {
             enemyModel = collision.gameObject.GetComponent<EnemyModel>();
 

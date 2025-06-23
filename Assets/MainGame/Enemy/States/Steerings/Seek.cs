@@ -19,4 +19,9 @@ public class Seek : ISteering
     {
         
     }
+
+    public void Refresh()
+    {
+        ;
+    }
 }

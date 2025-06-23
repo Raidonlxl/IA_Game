@@ -25,3 +25,6 @@ MonoBehaviour:
   obsMask:
     serializedVersion: 2
     m_Bits: 128
+  wallsMask:
+    serializedVersion: 2
+    m_Bits: 512

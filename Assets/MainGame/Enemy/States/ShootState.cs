@@ -8,12 +8,13 @@ public class ShootState<T> : State<T>
     private float currentTime;
     private int maxBulletsToShoot;
     private int currentBulletCount;
+    ISteering steering;
 
-    public ShootState(EnemyModel self, GameObject bulletPrefab, int maxBulletsToShoot)
+    public ShootState(EnemyModel self, GameObject bulletPrefab, int maxBulletsToShoot,ISteering steering)
     {
         this.self = self;
         this.maxBulletsToShoot = maxBulletsToShoot;
-
+        this.steering = steering;
         pool = new PoolGeneric<GameObject>();
         pool.originalPrefab = bulletPrefab;
         pool.InitializePool(maxBulletsToShoot);
@@ -56,5 +57,6 @@ public class ShootState<T> : State<T>
         base.Exit();
         currentTime = 0f;
         currentBulletCount = 0;
+        Debug.Log(steering.GetDir());
     }
 }

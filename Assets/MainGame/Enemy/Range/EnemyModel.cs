@@ -15,6 +15,7 @@ public class EnemyModel : MonoBehaviour, IBoid
     [SerializeField]
     private ObstacleAvoidance obs;
     public bool isReady;
+    public bool isHealed;
     public GameObject pointToShoot;
     public BulletController bulletController;
 
@@ -23,6 +24,7 @@ public class EnemyModel : MonoBehaviour, IBoid
     public GenericBehaviour genericBehaviour;
 
     public Transform lasPositionPlayer;
+    public List<Node> nodes;
     public bool isTired;
 
     public string owner = "Enemy";
@@ -35,6 +37,7 @@ public class EnemyModel : MonoBehaviour, IBoid
 
     private void Awake()
     {
+        lasPositionPlayer = target.transform;
         genericBehaviour = GetComponent<GenericBehaviour>();
         playerModel = target.GetComponent<PlayerModel>();
         obs = gameObject.GetComponent<ObstacleAvoidance>();
