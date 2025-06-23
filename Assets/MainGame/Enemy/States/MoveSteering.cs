@@ -11,6 +11,7 @@ public class MoveSteering<T> : State<T>
     private Timer timer;
     ISteering flocking;
     GenericBehaviour genericBehaviour;
+    ObstacleAvoidance avoidance;
     public MoveSteering(GenericBehaviour generic, ISteering steering,ISteering flocking, EnemyModel enemyModel)
     {
         this.steering = steering;
@@ -18,14 +19,16 @@ public class MoveSteering<T> : State<T>
         timer = new Timer(0, 7);
         this.flocking = flocking;
         genericBehaviour = generic;
+       
     }
-    public MoveSteering(GenericBehaviour generic, ISteering steering, ISteering flocking, MeleeEnemyModel enemyModel)
+    public MoveSteering(GenericBehaviour generic, ISteering steering, ISteering flocking, MeleeEnemyModel enemyModel, ObstacleAvoidance avoidance)
     {
         this.steering = steering;
         meleeModel = enemyModel;
         timer = new Timer(0, 7);
         this.flocking = flocking;
         genericBehaviour = generic;
+        this.avoidance = avoidance;
     }
     public MoveSteering(ISteering steering, KeyModel enemyModel)
     {
@@ -37,16 +40,8 @@ public class MoveSteering<T> : State<T>
     {
         base.Enter();
         timer.currentTime = 0f;
-        if(steering.GetType()==typeof(MoveToWaypoints))
-        {
-            Debug.Log("PATROL");
-        }
-        else if (steering.GetType() == typeof(Persuit))
-        {
-            Debug.Log("PERSUIT");
-
-        }
-
+        
+            
     }
     public override void Execute()
     {
@@ -69,15 +64,17 @@ public class MoveSteering<T> : State<T>
             }
             if(meleeModel != null)
             {
-                genericBehaviour.Dir = steering.GetDir();
-                meleeModel.Move(steering.GetDir());
+                Vector3 dir1 = steering.GetDir();
+                Vector3 dir2 = avoidance.GetDir(dir1, false);
+                genericBehaviour.Dir = dir2;
+                meleeModel.Move(dir2);
             }
         }
         else
         {
             genericBehaviour.Dir = steering.GetDir();
            
-            //if (enemyModel != null) enemyModel.Move(flocking.GetDir());
+            if (enemyModel != null) enemyModel.Move(flocking.GetDir());
             if (meleeModel != null) meleeModel.Move(flocking.GetDir());
         }
     }
@@ -95,30 +92,6 @@ public class MoveSteering<T> : State<T>
     {
         steering = newSteering;
     }
-    IEnumerator RedoRoullete()
-    {
-        yield return new WaitForSeconds(3f);
-        if (steering.GetType() == typeof(MoveToWaypoints))
-        {
-            if (enemyModel != null) ChangeRoulleteValues(enemyModel._nodeskey, enemyModel._nodesvalue, enemyModel.target.transform);
-            if (enemyModel != null) ChangeRoulleteValues(enemyModel._nodeskey, enemyModel._nodesvalue, meleeModel.Target);
-        }
-    }
-    public void ChangeRoulleteValues(List<Node> nodes, List<float> weight, Transform target)
-    {
-
-        for (int i = 0; i < nodes.Count; i++)
-        {
-            Vector3 distance = target.transform.position - nodes[i].transform.position;
-            if (distance.magnitude < 10)
-            {
-                weight[i] = distance.magnitude + 40;
-            }
-            else
-            {
-                weight[i] = distance.magnitude / 4;
-            }
-        }
-
-    }
+    
+    
 }

@@ -12,13 +12,14 @@ public class MeleeEnemyController : MonoBehaviour
     FSM<StatesEnum> _fsm;
     ITreeNode _root;
     LineOfSight _los;
-    
+    ObstacleAvoidance _avoidance;
     IMove _move;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         _move = _model;
+        _avoidance = GetComponent<ObstacleAvoidance>();
         _los = GetComponent<LineOfSight>();
         _los.Initialize(transform, _model.Target, _model.Stats.Range, _model.Stats.Angle, _model.Stats.ObstacleMask);
         
@@ -41,16 +42,16 @@ public class MeleeEnemyController : MonoBehaviour
     void InitializeFSM()
     {
         var persuitsteer = new Persuit(transform, _model.Target, _model.Stats.Speed);
-        var patrolsteer = new MoveToWaypoints(transform, _model.LastSeenPos, true);
+        var patrolsteer = new MoveToWaypoints(transform, _model.NodesKey, _model.Nodesvalue, false);
         var lastpointsteer = new MoveToWaypoints(transform, _model.LastSeenPos, false);
         var flocking = GetComponent<FlockingManager>();
         _fsm = new FSM<StatesEnum>();
         var idle = new EnemyIdleState<StatesEnum>(_model);
-        var patrol = new MoveSteering<StatesEnum>(_model.Instance, patrolsteer, flocking, _model);
-        var chase = new MoveSteering<StatesEnum>(_model.Instance, persuitsteer, flocking, _model);
+        var patrol = new MoveSteering<StatesEnum>(_model.Instance, patrolsteer, flocking, _model, _avoidance);
+        var chase = new MoveSteering<StatesEnum>(_model.Instance, persuitsteer, flocking, _model, _avoidance);
         var attack = new EnemyAttackState<StatesEnum>(_model);
         var dead = new EnemyDeadState<StatesEnum>(gameObject, _model);
-        var gotolastpoint = new MoveSteering<StatesEnum>(_model.Instance, lastpointsteer, flocking, _model);
+        var gotolastpoint = new MoveSteering<StatesEnum>(_model.Instance, lastpointsteer, flocking, _model, _avoidance);
 
         idle.AddTransition(StatesEnum.Patrol, patrol);
         idle.AddTransition(StatesEnum.Persuit, chase);

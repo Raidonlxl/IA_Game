@@ -15,6 +15,7 @@ public class MoveToWaypoints : ISteering
     List<Node> path;
     List<Node> nodes;
     List<float> weight;
+    Dictionary<Node, float> _patrolNodes = new Dictionary<Node, float>();
 
     public MoveToWaypoints(Transform self, Transform target, bool canBack)
     {
@@ -33,28 +34,43 @@ public class MoveToWaypoints : ISteering
         isBacking = false;
         this.canBack = canBack;
         this.weight = weight;
+        for (int i = 0; i < nodes.Count; i++)
+        {
+            _patrolNodes[nodes[i]] = weight[i];
+        }
+        target = MyRandoms.Roulette<Node>(_patrolNodes).transform;
         Refresh(target);
-        ChangeRoulleteValues(nodes, weight);
     }
     public void Refresh(Transform target)
     {
-        path = SetPath.SetPathAStarPlus(self, target);
-    }
-    public void ChangeRoulleteValues(List<Node> nodes, List<float> weight)
-    {
         
-        for (int i = 0; i < nodes.Count; i++)
+        path = SetPath.SetPathAStarPlus(self, target);
+        Debug.Log("target: " + target);
+    }
+    public void ChangeRoulleteValues()
+    {
+        if (nodes != null)
         {
-            Vector3 distance = target.transform.position - nodes[i].transform.position;
-            if (distance.magnitude < 10)
+            for (int i = 0; i < nodes.Count; i++)
             {
-                weight[i] = distance.magnitude + 40;
+                Vector3 distance = target.transform.position - nodes[i].transform.position;
+                if (distance.magnitude > 10)
+                {
+                    weight[i] = distance.magnitude + 40;
+                }
+                else
+                {
+                    weight[i] = distance.magnitude / 4;
+                }
+                _patrolNodes[nodes[i]] = weight[i];
             }
-            else
-            {
-                weight[i] = distance.magnitude / 4;
-            }
+            target = MyRandoms.Roulette<Node>(_patrolNodes).transform;
+            
+            Refresh(target);
+            endWay = false;
+            index = 0;
         }
+        
 
     }
     public Vector3 GetDir()
@@ -98,11 +114,13 @@ public class MoveToWaypoints : ISteering
                 if (index < path.Count - 1)
                 {
                     index++;
+                    Debug.Log("no llegue, index " + index);
                 }
                 else
                 {
                     endWay = true;
-                    
+                    Debug.Log("llegue, index " + index);
+                    ChangeRoulleteValues();
                 }
             }
         }
