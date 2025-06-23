@@ -1,4 +1,7 @@
+using NUnit.Framework;
+using System.IO;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class Persuit : ISteering
 {
@@ -7,6 +10,7 @@ public class Persuit : ISteering
     float _timePrediction;
     float _errorRange = 0.1f;
     float currentSpeedTarget;
+    List<Node> _path;
     public Persuit(Transform self, Transform target,float currentSpeedTarget, float errorRange = 0, float timePrediction = 0)
     {
         _self = self;
@@ -27,6 +31,12 @@ public class Persuit : ISteering
         _target = target;
         this.currentSpeedTarget=currentSpeedTarget;
     }
+    public Persuit(Transform self, Transform target)
+    {
+        _self = self;
+        _target = target;
+     
+    }
 
     public virtual Vector3 GetDir()
     {
@@ -46,7 +56,12 @@ public class Persuit : ISteering
 
     public void Refresh(Transform target)
     {
-       
+        _path = SetPath.SetPathAStarPlus(_self, target);
+    }
+
+    public void Refresh()
+    {
+      
     }
 
     public float TimePrediction

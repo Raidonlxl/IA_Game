@@ -24,9 +24,9 @@ public class ReloadState<T> : State<T>
 
     public override void Enter()
     {
+        base.Enter();
         Debug.Log("Reload");
         timer.ResetTimer();
-        base.Enter();
         for (int i = 0; i < reloadsBoxs.Length; i++)
         {
             float a = Vector3.Distance(self.transform.position, reloadsBoxs[i].position);
@@ -45,21 +45,24 @@ public class ReloadState<T> : State<T>
     public override void Execute()
     {
         base.Execute();
-
-        if (Vector3.Distance(self.transform.position, selected.position) < 2)
+        if (steering.GetDir() != null)
         {
-            timer.Run();
-            if (timer.IsCompleted())
+
+
+            if (Vector3.Distance(self.transform.position, selected.position) < 2)
             {
-                self.isReady = true;
+                timer.Run();
+                if (timer.IsCompleted())
+                {
+                    self.isReady = true;
+                }
+            }
+            else
+            {
+                generic.Dir = steering.GetDir();
+                self.Move(flocking.GetDir());
             }
         }
-        else
-        {
-            generic.Dir = steering.GetDir();
-            self.Move(flocking.GetDir());
-        }
-     
     }
     public override void Exit() => base.Exit();
 }

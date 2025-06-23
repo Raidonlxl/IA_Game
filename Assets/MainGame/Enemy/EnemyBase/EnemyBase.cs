@@ -17,6 +17,7 @@ public class EnemyBase : ScriptableObject
     [SerializeField] private float angle;
     [SerializeField] private float range;
     [SerializeField] private LayerMask obsMask;
+    [SerializeField] private LayerMask wallsMask;
 
     public float Speed { get => speed; }
     public float RunSpeed { get => runSpeed; }
@@ -28,6 +29,7 @@ public class EnemyBase : ScriptableObject
     public float Angle { get => angle;}
     public float Range { get => range;}
     public LayerMask ObstacleMask { get => obsMask;}
+    public LayerMask WallsMask { get => wallsMask; }
 
     public float MaxLife  { get => maxLife; }
 

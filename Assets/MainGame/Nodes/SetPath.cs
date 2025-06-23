@@ -24,7 +24,7 @@ public static class SetPath
 
     static Node GetNearNode(Vector3 position)
     {
-        Collider[] nodes = Physics.OverlapSphere(position, 5, nodeMask);
+        Collider[] nodes = Physics.OverlapSphere(position, 10, nodeMask);
 
         Node nearNode = null;
         float nearDistance = Mathf.Infinity;
@@ -45,7 +45,6 @@ public static class SetPath
        
         return nearNode;
     }
-
     static bool IsSatisfied(Node curr, Node goal)
     {
         return curr == goal;

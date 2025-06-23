@@ -12,7 +12,7 @@ public class MoveToWaypoints : ISteering
     private bool canBack;
     private bool endWay;
     private int index;
-    List<Node> path;
+    public List<Node> path;
     List<Node> nodes;
     List<float> weight;
 
@@ -37,6 +37,11 @@ public class MoveToWaypoints : ISteering
         ChangeRoulleteValues(nodes, weight);
     }
     public void Refresh(Transform target)
+    {
+        path = SetPath.SetPathAStarPlus(self, target);
+    }
+
+    public void Refresh()
     {
         path = SetPath.SetPathAStarPlus(self, target);
     }

@@ -18,6 +18,8 @@ public class MoveSteering<T> : State<T>
         timer = new Timer(0, 7);
         this.flocking = flocking;
         genericBehaviour = generic;
+        enemyModel.lasPositionPlayer = enemyModel.target.transform;
+        steering.Refresh(enemyModel.lasPositionPlayer);
     }
     public MoveSteering(GenericBehaviour generic, ISteering steering, ISteering flocking, MeleeEnemyModel enemyModel)
     {
@@ -25,7 +27,8 @@ public class MoveSteering<T> : State<T>
         meleeModel = enemyModel;
         timer = new Timer(0, 7);
         this.flocking = flocking;
-        genericBehaviour = generic;
+        genericBehaviour = generic; 
+        
     }
     public MoveSteering(ISteering steering, KeyModel enemyModel)
     {
@@ -36,9 +39,13 @@ public class MoveSteering<T> : State<T>
     public override void Enter()
     {
         base.Enter();
-        timer.currentTime = 0f;
-        if(steering.GetType()==typeof(MoveToWaypoints))
+        timer.ResetTimer();
+        Debug.Log(enemyModel.target.transform);
+        steering.Refresh(enemyModel.lasPositionPlayer);
+        if (steering.GetType()==typeof(MoveToWaypoints))
         {
+           
+
             Debug.Log("PATROL");
         }
         else if (steering.GetType() == typeof(Persuit))
@@ -51,44 +58,47 @@ public class MoveSteering<T> : State<T>
     public override void Execute()
     {
         base.Execute();
-
-        if (steering.GetType() == typeof(Persuit))
+        if (steering.GetDir() != null)
         {
-            if(enemyModel != null)
+            if (steering.GetType() == typeof(Persuit))
             {
-                if (!enemyModel.isTired)
+                if (enemyModel != null)
+                {
+                    if (!enemyModel.isTired)
+                    {
+                        genericBehaviour.Dir = steering.GetDir();
+                        enemyModel.Move(steering.GetDir());
+                        timer.Run();
+                    }
+                    if (timer.IsCompleted())
+                    {
+                        enemyModel.isTired = true;
+                    }
+                }
+                if (meleeModel != null)
                 {
                     genericBehaviour.Dir = steering.GetDir();
-                    enemyModel.Move(steering.GetDir());
-                    timer.Run();
-                }
-                if (timer.IsCompleted())
-                {
-                    enemyModel.isTired = true;
+                    meleeModel.Move(steering.GetDir());
                 }
             }
-            if(meleeModel != null)
+            else
             {
+         
                 genericBehaviour.Dir = steering.GetDir();
-                meleeModel.Move(steering.GetDir());
+
+                if (enemyModel != null) enemyModel.Move(flocking.GetDir());
+                if (meleeModel != null) meleeModel.Move(flocking.GetDir());
             }
-        }
-        else
-        {
-            genericBehaviour.Dir = steering.GetDir();
-           
-            //if (enemyModel != null) enemyModel.Move(flocking.GetDir());
-            if (meleeModel != null) meleeModel.Move(flocking.GetDir());
         }
     }
     public override void Exit()
     {
         base.Exit();
 
-        if (steering.GetType() == typeof(Persuit))
-        {
-            meleeModel.LastSeenPos.position = meleeModel.Target.transform.position;
-        }
+        
+      
+           //meleeModel.LastSeenPos.position = meleeModel.Target.transform.position;
+        
        
     }
     public void ChangeSteering(ISteering newSteering)
