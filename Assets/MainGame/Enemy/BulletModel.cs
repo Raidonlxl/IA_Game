@@ -3,7 +3,8 @@ using UnityEngine;
 public class BulletModel : MonoBehaviour,IPooleable
 {
     public string owner;
-    private EnemyModel enemyModel;
+    private MeleeEnemyModel enemyModel;
+    private EnemyModel enemyModelRange;
     private PlayerModel playerModel;
     private int damage = 10;
     public PoolGeneric<GameObject> pool;
@@ -13,13 +14,26 @@ public class BulletModel : MonoBehaviour,IPooleable
 
         if (collision.gameObject.layer == LayerMask.NameToLayer("Boids"))
         {
-            enemyModel = collision.gameObject.GetComponent<EnemyModel>();
-
-            if (enemyModel.owner != owner)
+            
+            enemyModel = collision.gameObject.GetComponent<MeleeEnemyModel>();
+            if(enemyModel != null)
             {
-                enemyModel.healthController.GetDamage(damage);
+                enemyModel._healthController.GetDamage(damage);
             }
+            else
+            {
+                enemyModelRange = collision.gameObject.GetComponent<EnemyModel>();
+                if(enemyModelRange != null && enemyModelRange.owner != owner)
+                {
+                    enemyModelRange.healthController.GetDamage(damage);
+                }
+            }
+
+
         }
+
+        
+    
 
         else if(collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {

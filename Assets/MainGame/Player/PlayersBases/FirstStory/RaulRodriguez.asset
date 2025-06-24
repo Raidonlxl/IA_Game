@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60eb83322b2e7e244be2d6c6dab5740b, type: 3}
   m_Name: RaulRodriguez
   m_EditorClassIdentifier: 
-  maxLife: 100
+  maxLife: 500
   currentTiredTime: 4.5799966
   maxTiredTime: 7
   currentConter: 1.659999
   maxConter: 3
   maxTimeRuning: 5
-  speed: 2
+  speed: 5
   runSpeed: 10

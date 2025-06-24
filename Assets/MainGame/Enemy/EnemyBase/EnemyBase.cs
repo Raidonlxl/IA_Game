@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewEnemy", menuName = "AddEnemy/NewEnemy")]
 public class EnemyBase : ScriptableObject
 {
-    [SerializeField] private float maxLife;
+    [SerializeField] private int maxLife;
     [SerializeField] private float currentTiredTime = 0;
     [SerializeField] private float maxTiredTime;
 
@@ -31,6 +31,6 @@ public class EnemyBase : ScriptableObject
     public LayerMask ObstacleMask { get => obsMask;}
     public LayerMask WallsMask { get => wallsMask; }
 
-    public float MaxLife  { get => maxLife; }
+    public int MaxLife  { get => maxLife; }
 
 }

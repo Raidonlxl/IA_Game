@@ -21,7 +21,7 @@ public class SafePoint<T> : State<T>
         this.self = self;
         this.nodes = nodes;
         this.steering = steering;
-        timer = new Timer(0, 15);
+        timer = new Timer(0, 5);
     }
 
     public override void Enter()

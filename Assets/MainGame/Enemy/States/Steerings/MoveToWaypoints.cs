@@ -45,7 +45,7 @@ public class MoveToWaypoints : ISteering
     {
         
         path = SetPath.SetPathAStarPlus(self, target);
-        Debug.Log("target: " + target);
+        //Debug.Log("target: " + target);
     }
     public void ChangeRoulleteValues()
     {
@@ -125,10 +125,5 @@ public class MoveToWaypoints : ISteering
             }
         }
         return (path[index].transform.position - self.position).normalized;
-    }
-
-    public void Refresh()
-    {
-        
     }
 }

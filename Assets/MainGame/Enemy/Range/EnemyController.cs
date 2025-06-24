@@ -18,7 +18,7 @@ public class EnemyController : MonoBehaviour
     {
         enemyModel = GetComponent<EnemyModel>();
         los = GetComponent<LineOfSight>();
-        los.Initialize(enemyModel.transform, enemyModel.target.transform, enemyModel.enemyBase.Range, enemyModel.enemyBase.Angle, enemyModel.enemyBase.WallsMask);
+        los.Initialize(enemyModel.transform, enemyModel.target.transform, enemyModel.enemyBase.Range, enemyModel.enemyBase.Angle, enemyModel.enemyBase.ObstacleMask);
 
         InitializeFsm();
         InitializeTree();
@@ -44,7 +44,7 @@ public class EnemyController : MonoBehaviour
 
         var steeringPathing = new MoveToWaypoints(enemyModel.transform,enemyModel.target.transform,false);
 
-        var steeringReaload = new MoveToWaypoints(enemyModel.transform, boxsAmmo[0], false);
+        var steeringReaload = new Persuit(enemyModel.transform, boxsAmmo[0]);
 
         var steeringSafePoint = new MoveToWaypoints(enemyModel.transform, safepoint, false);
 

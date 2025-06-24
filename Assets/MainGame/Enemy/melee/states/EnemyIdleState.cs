@@ -12,7 +12,8 @@ public class EnemyIdleState<T> : State<T>
     {
         Debug.Log("IDLE");
         base.Enter();
-        _model.idle();
+
+       
     }
 
 }

@@ -12,16 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d32883a4b9ad9a439c988fe8fca1897, type: 3}
   m_Name: EnemyMelee
   m_EditorClassIdentifier: 
-  maxLife: 100
+  maxLife: 80
   currentTiredTime: 0
   maxTiredTime: 0
   currentConter: 0
   maxConter: 0
   maxTimeRuning: 0
-  speed: 1
+  speed: 3
   runSpeed: 2
   angle: 101
   range: 5
   obsMask:
     serializedVersion: 2
     m_Bits: 128
+  wallsMask:
+    serializedVersion: 2
+    m_Bits: 512

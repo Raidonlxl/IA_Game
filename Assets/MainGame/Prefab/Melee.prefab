@@ -154,6 +154,9 @@ MonoBehaviour:
   LastSeenPos: {fileID: 0}
   _dirMag: 0
   _distancetopoint: 0
+  _obs: {fileID: 0}
+  _healthController: {fileID: 0}
+  PlayerModel: {fileID: 0}
   Instance: {fileID: 3314872240669898301}
 --- !u!114 &5295498384211143528
 MonoBehaviour:
@@ -169,7 +172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxObs: 5
   radius: 7
-  angle: 135
+  angle: 100
   personalArea: 2
   obsMask:
     serializedVersion: 2
@@ -192,7 +195,7 @@ MonoBehaviour:
   angle: 101
   obsMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 512
 --- !u!114 &3314872240669898301
 MonoBehaviour:
   m_ObjectHideFlags: 0

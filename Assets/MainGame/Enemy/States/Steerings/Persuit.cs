@@ -59,10 +59,6 @@ public class Persuit : ISteering
         _path = SetPath.SetPathAStarPlus(_self, target);
     }
 
-    public void Refresh()
-    {
-      
-    }
 
     public float TimePrediction
     {

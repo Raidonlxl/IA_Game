@@ -57,6 +57,6 @@ public class ShootState<T> : State<T>
         base.Exit();
         currentTime = 0f;
         currentBulletCount = 0;
-        Debug.Log(steering.GetDir());
+        
     }
 }

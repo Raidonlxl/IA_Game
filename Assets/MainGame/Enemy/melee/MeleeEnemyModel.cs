@@ -14,8 +14,9 @@ public class MeleeEnemyModel : MonoBehaviour, IBoid
     public Transform LastSeenPos;
     [SerializeField] float _dirMag;
     [SerializeField] float _distancetopoint;
-    
-
+    [SerializeField] private ObstacleAvoidance _obs;
+    public HealthController _healthController;
+    public PlayerModel PlayerModel;
     public GenericBehaviour Instance;
     
     
@@ -26,12 +27,14 @@ public class MeleeEnemyModel : MonoBehaviour, IBoid
     Coroutine ChaseTimer;
     void Awake()
     {
-        
+        _obs = GetComponent<ObstacleAvoidance>();
+        _healthController = GetComponent<HealthController>();
        
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        _healthController.SetMaxLife(_stats.MaxLife);
         _currentLife = _stats.MaxLife;
     }
 
@@ -47,8 +50,9 @@ public class MeleeEnemyModel : MonoBehaviour, IBoid
     public void Move(Vector3 dir)
     {
         dir.y = 0;
-        Vector3 finalDir = dir.normalized;
-        
+
+
+         Vector3 finalDir = _obs.GetDir(dir);
         transform.position += finalDir *_stats.Speed * Time.deltaTime;
         RotateEnemy(finalDir);
     }
@@ -73,31 +77,7 @@ public class MeleeEnemyModel : MonoBehaviour, IBoid
         _hitbox.SetActive(false);
         AttackCooldown = null;
     }
-    public void ChaseTime()
-    {
-        //es un failsafe para que el enemigo sigua en chase por un rato
-        //en caso de que el enemigo pierda por un segundo al player en su LOS
-        ChaseTimer = StartCoroutine(chasingtime(3));
-    }
-    IEnumerator chasingtime(float time)
-    {
-        yield return new WaitForSeconds(time);
-    }
-    public void idle()
-    {
-        float time = 8;
-        IdleCooldown = StartCoroutine(idlecooldown(time));
-    }
-
-    IEnumerator idlecooldown(float time)
-    {
-        yield return new WaitForSeconds(time);
-        IdleCooldown = null;
-        
-    }
-    
-
-    
+      
 
     public bool IsIdling => IdleCooldown != null;
     public bool IsAttacking => AttackCooldown != null;

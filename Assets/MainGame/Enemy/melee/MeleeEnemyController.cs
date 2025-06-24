@@ -48,7 +48,7 @@ public class MeleeEnemyController : MonoBehaviour
         var idle = new EnemyIdleState<StatesEnum>(_model);
         var patrol = new MoveSteering<StatesEnum>(_model.Instance, patrolsteer, flocking, _model, _avoidance);
         var chase = new MoveSteering<StatesEnum>(_model.Instance, persuitsteer, flocking, _model, _avoidance);
-        var attack = new EnemyAttackState<StatesEnum>(_model);
+        var attack = new EnemyAttackState<StatesEnum>(_model,_model.PlayerModel);
         var dead = new EnemyDeadState<StatesEnum>(gameObject, _model);
         var gotolastpoint = new MoveSteering<StatesEnum>(_model.Instance, lastpointsteer, flocking, _model, _avoidance);
 

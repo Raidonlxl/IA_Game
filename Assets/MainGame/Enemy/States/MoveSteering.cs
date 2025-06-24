@@ -64,10 +64,9 @@ public class MoveSteering<T> : State<T>
             }
             if(meleeModel != null)
             {
-                Vector3 dir1 = steering.GetDir();
-                Vector3 dir2 = avoidance.GetDir(dir1, false);
-                genericBehaviour.Dir = dir2;
-                meleeModel.Move(dir2);
+                genericBehaviour.Dir = steering.GetDir();
+                meleeModel.Move(steering.GetDir());
+                
             }
         }
         else
