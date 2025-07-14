@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.GraphicsBuffer;
 
 public static class SetPath 
 {
@@ -48,6 +49,11 @@ public static class SetPath
     static bool IsSatisfied(Node curr, Node goal)
     {
         return curr == goal;
+    }
+    static bool IsSatisfied(Node curr, Transform target)
+    {
+        var direction = target.position - curr.transform.position;
+        return (!Physics.Raycast(curr.transform.position, direction.normalized, direction.magnitud, LayerMask.GetMask("Wall")))
     }
     static List<Node> GetConnections(Node curr)
     {

@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class KeyController : MonoBehaviour
-{
+{/*
     public Rigidbody target;
     FSM<StatesEnum> _fsm;
     KeyModel keyModel;
@@ -10,8 +10,8 @@ public class KeyController : MonoBehaviour
 
     private void Start()
     {
-        keyModel = GetComponent<KeyModel>();
-        InitializeFSM();
+        //keyModel = GetComponent<KeyModel>();
+        //InitializeFSM();
     }
     void InitializeFSM()
     {
@@ -64,6 +64,6 @@ public class KeyController : MonoBehaviour
     {
         root.Execute();
         _fsm.OnExecute();
-    }
+    }*/
 
 }

@@ -77,18 +77,17 @@ public class MeleeEnemyModel : MonoBehaviour, IBoid
         _hitbox.SetActive(false);
         AttackCooldown = null;
     }
-      
 
     public bool IsIdling => IdleCooldown != null;
-    public bool IsAttacking => AttackCooldown != null;
-    public EnemyBase Stats => _stats;
-    public bool IsAlive => _currentLife <= 0;
     public bool IsOnLastSeenPos => _dirMag < 0.2f;
     public bool IsChasing => ChaseTimer != null;
     public List<Node> NodesKey => Nodeskey;
     public List<float> NodesValue => Nodesvalue;
 
-    public Vector3 Position => transform.position;
 
+    public EnemyBase Stats => _stats;
+    public bool IsAttacking => AttackCooldown != null;
+    public bool IsAlive => _currentLife <= 0;
+    public Vector3 Position => transform.position;
     public Vector3 Forward => transform.forward;
 }

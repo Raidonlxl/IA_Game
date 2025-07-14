@@ -40,8 +40,8 @@ public class MoveSteering<T> : State<T>
     {
         base.Enter();
         timer.currentTime = 0f;
-        
-            
+
+        genericBehaviour.IsActive = true;
     }
     public override void Execute()
     {
@@ -88,7 +88,7 @@ public class MoveSteering<T> : State<T>
             if (enemyModel != null)
             enemyModel.lasPositionPlayer.position = enemyModel.target.transform.position;
         }
-       
+        genericBehaviour.IsActive = false;
     }
     public void ChangeSteering(ISteering newSteering)
     {

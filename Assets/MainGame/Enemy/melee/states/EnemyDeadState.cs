@@ -15,6 +15,7 @@ public class EnemyDeadState<T> : State<T>
     {
         base.Enter();
         Object.Destroy(_self, 2f);
+        //Dead
     }
 
     public override void Execute()

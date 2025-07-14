@@ -64,6 +64,8 @@ public class ReloadState<T> : State<T>
                 self.Move(flocking.GetDir());
             }
         }
+        //PATH
+        //(Time>3) && (Vector3.Distance(lastPos, currPos) > 2)
     }
     public override void Exit() => base.Exit();
 }

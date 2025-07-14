@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class KeyModel : EnemyModel, IBoid
 {
+    /*
     public Vector3 Position => transform.position;
     ObstacleAvoidance obs;
     public Vector3 Forward => transform.forward;
@@ -23,6 +24,6 @@ public class KeyModel : EnemyModel, IBoid
     public override void RotateEnemy(Vector3 direction)
     {
         transform.forward = Vector3.Lerp(transform.forward, direction.normalized, 0.2f);
-    }
+    }*/
 
 }

@@ -1,7 +1,6 @@
-using NUnit.Framework;
+
 using UnityEngine;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 
 public class SafePoint<T> : State<T>
 {
@@ -47,7 +46,7 @@ public class SafePoint<T> : State<T>
         }
         if (selected == null)
         {
-            selected= nodes[nodes.Count-1].transform;
+            selected = nodes[nodes.Count-1].transform;
         }
 
         steering.Refresh(selected);
