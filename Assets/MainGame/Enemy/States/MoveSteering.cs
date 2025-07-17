@@ -11,7 +11,6 @@ public class MoveSteering<T> : State<T>
     private Timer timer;
     ISteering flocking;
     GenericBehaviour genericBehaviour;
-    ObstacleAvoidance avoidance;
     public MoveSteering(GenericBehaviour generic, ISteering steering,ISteering flocking, EnemyModel enemyModel)
     {
         this.steering = steering;
@@ -21,14 +20,13 @@ public class MoveSteering<T> : State<T>
         genericBehaviour = generic;
        
     }
-    public MoveSteering(GenericBehaviour generic, ISteering steering, ISteering flocking, MeleeEnemyModel enemyModel, ObstacleAvoidance avoidance)
+    public MoveSteering(GenericBehaviour generic, ISteering steering, ISteering flocking, MeleeEnemyModel enemyModel)
     {
         this.steering = steering;
         meleeModel = enemyModel;
         timer = new Timer(0, 7);
         this.flocking = flocking;
         genericBehaviour = generic;
-        this.avoidance = avoidance;
     }
     public MoveSteering(ISteering steering, KeyModel enemyModel)
     {
