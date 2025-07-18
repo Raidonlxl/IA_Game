@@ -26,54 +26,19 @@ public class SafePoint<T> : State<T>
     public override void Enter()
     {
         base.Enter();
-        float x = 0f;
-
         Debug.Log("Safe");
-        for (int i = 0; i < nodes.Count; i++)
-        {
-            float a = Vector3.Distance(self.transform.position, nodes[i].transform.position);
-            if (a < 20)
-            {
-                var direction = target.position - nodes[i].transform.position;
-                if (!Physics.Raycast(nodes[i].transform.position, direction.normalized, 20, 10) && a > x)
-                {
-                    x = a;
-
-                    selected = nodes[i].transform;
-                }
-            }
-
-        }
-        if (selected == null)
-        {
-            selected = nodes[nodes.Count-1].transform;
-        }
-
-        steering.Refresh(selected);
-       
+        SetPath.SetPathAStarPlus(self.transform, target, true);
 
     }
-
-
-
 
     public override void Execute()
     {
         base.Execute();
-        if (Vector3.Distance(self.transform.position, selected.position) < 2)
-        {
-            timer.Run();
-            if (timer.IsCompleted())
-            {
-                self.healthController.GetHeal();
-                self.isHealed = true;
-            }
-        }
-        else
-        {
-            generic.Dir = steering.GetDir();
-            self.Move(flocking.GetDir());
-        }
+
+
+        generic.Dir = steering.GetDir();
+        self.Move(flocking.GetDir());
+     
 
     }
 }

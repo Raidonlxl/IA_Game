@@ -43,7 +43,7 @@ public class MoveToWaypoints : ISteering
     }
     public void Refresh(Transform target)
     {
-        
+
         path = SetPath.SetPathAStarPlus(self, target);
         //Debug.Log("target: " + target);
     }
@@ -114,12 +114,12 @@ public class MoveToWaypoints : ISteering
                 if (index < path.Count - 1)
                 {
                     index++;
-                    Debug.Log("no llegue, index " + index);
+                    //Debug.Log("no llegue, index " + index);
                 }
                 else
                 {
                     endWay = true;
-                    Debug.Log("llegue, index " + index);
+                    //Debug.Log("llegue, index " + index);
                     ChangeRoulleteValues();
                 }
             }

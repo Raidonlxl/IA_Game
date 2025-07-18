@@ -17,9 +17,31 @@ public static class SetPath
         var init = GetNearNode(self.position);
         var goal = GetNearNode(target.position);
 
-        List<Node> path = ASTAR.Run<Node>(init,(x) => IsSatisfied(x,goal), GetConnections, GetCost, (x)=>Heuristic(x,goal));
+        List<Node> path = ASTAR.Run<Node>(init, (x) => IsSatisfied(x, goal), GetConnections, GetCost, (x) => Heuristic(x, goal));
         path = ASTAR.CleanPath(path, InView);
-  
+
+        string resultado = "";
+        for (int i = 0; i < path.Count; i++)
+        {
+            resultado += path[i].ToString() + " ";
+        }
+        Debug.Log(resultado);
+        return path;
+    }
+    public static List<Node> SetPathAStarPlus(Transform self, Transform target,bool isFear)
+    {
+        var init = GetNearNode(self.position);
+        var goal = GetNearNode(target.position);
+
+        List<Node> path = ASTAR.Run<Node>(init, (x) => IsSatisfied(x, target), GetConnections, GetCost, (x) => Heuristic(x, goal));
+        path = ASTAR.CleanPath(path, InView);
+
+        string resultado = "";
+        for (int i = 0; i < path.Count; i++)
+        {
+            resultado += path[i].ToString() + " ";
+        }
+        Debug.Log("FEAR "+resultado);
         return path;
     }
 
@@ -53,7 +75,11 @@ public static class SetPath
     static bool IsSatisfied(Node curr, Transform target)
     {
         var direction = target.position - curr.transform.position;
-        return (!Physics.Raycast(curr.transform.position, direction.normalized, direction.magnitude, LayerMask.GetMask("Wall")));
+       
+        return (Physics.Raycast(curr.transform.position, direction.normalized, 
+            direction.magnitude, obsMask));
+
+
     }
     static List<Node> GetConnections(Node curr)
     {
