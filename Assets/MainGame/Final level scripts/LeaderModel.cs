@@ -27,6 +27,10 @@ public class LeaderModel : MonoBehaviour
 
     public Vector3 Forward => transform.forward;
 
+    private void Awake()
+    {
+        allies.Team.Add(gameObject);
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

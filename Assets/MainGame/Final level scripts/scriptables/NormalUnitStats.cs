@@ -1,8 +1,7 @@
 using UnityEngine;
 
-
-[CreateAssetMenu(fileName = "leader", menuName = "final level/leader", order =1)]
-public class LeaderStats : ScriptableObject
+[CreateAssetMenu(fileName = "unit", menuName ="final level/unit", order = 2)]
+public class NormalUnitStats : ScriptableObject
 {
     [SerializeField] int maxLife;
     [SerializeField] int damage;
@@ -34,6 +33,4 @@ public class LeaderStats : ScriptableObject
     public LayerMask WallsMask { get => wallsMask; }
 
     public int MaxLife { get => maxLife; }
-    public int Damage { get => damage; }
-
 }
