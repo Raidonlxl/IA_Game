@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PatrolState<T> : State<T>
+public class MoveState<T> : State<T>
 {
     ISteering steering;
     BaseModel enemyModel;
@@ -8,12 +8,13 @@ public class PatrolState<T> : State<T>
     private Timer timer;
     ISteering flocking;
     GenericBehaviour genericBehaviour;
-    public PatrolState(GenericBehaviour generic, ISteering steering, ISteering flocking, BaseModel enemyModel)
+    public MoveState(GenericBehaviour generic, ISteering steering, ISteering flocking, BaseModel enemyModel)
     {
         this.steering = steering;
         this.enemyModel = enemyModel;
         this.flocking = flocking;
         genericBehaviour = generic;
+        timer = new Timer(0, 5);
 
     }
     public override void Enter()
@@ -22,6 +23,7 @@ public class PatrolState<T> : State<T>
         timer.currentTime = 0f;
 
         genericBehaviour.IsActive = true;
+
     }
     public override void Execute()
     {

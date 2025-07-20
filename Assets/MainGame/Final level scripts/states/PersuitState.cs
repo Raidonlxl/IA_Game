@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 //persuitstate es una clase que sera la encargada de moverse con el persuit.
-public class PersuitState<T> : PatrolState<T>
+public class PersuitState<T> : MoveState<T>
 {
     ISteering steering;
     BaseModel enemyModel;
@@ -28,7 +28,7 @@ public class PersuitState<T> : PatrolState<T>
         base.Execute();
 
 
-        if (!enemyModel.isTired)
+        if (!enemyModel.IsTired)
         {
             genericBehaviour.Dir = steering.GetDir();
 

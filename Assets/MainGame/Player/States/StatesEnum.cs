@@ -13,5 +13,6 @@ public enum  StatesEnum
     GetAmmo,
     Dead,
     setPathing,
-    Evade
+    Evade,
+    BackBase
 }

@@ -2,19 +2,18 @@ using UnityEngine;
 
 public class ShootState<T> : State<T>
 {
-    private EnemyModel self;
+    private BaseModel self;
     private PoolGeneric<GameObject> pool;
     private float maxTimeToShoot = 0.3f;
     private float currentTime;
     private int maxBulletsToShoot;
     private int currentBulletCount;
-    ISteering steering;
 
-    public ShootState(EnemyModel self, GameObject bulletPrefab, int maxBulletsToShoot,ISteering steering)
+    public ShootState(BaseModel self, GameObject bulletPrefab, int maxBulletsToShoot)
     {
         this.self = self;
         this.maxBulletsToShoot = maxBulletsToShoot;
-        this.steering = steering;
+
         pool = new PoolGeneric<GameObject>();
         pool.originalPrefab = bulletPrefab;
         pool.InitializePool(maxBulletsToShoot);
