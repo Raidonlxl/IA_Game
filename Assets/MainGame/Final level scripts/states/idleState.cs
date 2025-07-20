@@ -3,12 +3,10 @@ using UnityEngine;
 public class idleState<T> : State<T>
 {
     BaseModel model;
-    float idleweight;
     
-    public idleState(BaseModel model, float idleweight)
+    public idleState(BaseModel model)
     {
         this.model = model;
-        this.idleweight = idleweight;
     }
     public override void Enter()
     {
@@ -17,17 +15,17 @@ public class idleState<T> : State<T>
         int max = model.stats.MaxLife;
         if (hp <= max / 2)
         {
-            idleweight += 10f;
+            model.FleeWeight += 40f;
+            model.IdleWeight = 10f; 
         }
-
+        else
+        {
+            model.FleeWeight = 10f;
+            model.IdleWeight += 10f; 
+        }
     }
     public override void Execute() 
     {
-        int hp = model.healthController.currentHealth;
-        int max = model.stats.MaxLife;
-        if (hp <= max / 2)
-        {
-            idleweight += 10f;
-        }
+        
     }
 }

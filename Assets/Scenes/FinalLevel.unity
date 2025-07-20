@@ -3609,6 +3609,9 @@ MonoBehaviour:
   - {fileID: 668263289}
   nodesvalue:
   - 3
+  idleweight: 10
+  patrolweight: 10
+  fleeweight: 10
 --- !u!114 &1090884182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3634,9 +3637,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80b451e0b4d77704d8e48c3ab60f0148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleweight: 10
-  patrolweight: 10
-  fleeweight: 10
 --- !u!114 &1090884184
 MonoBehaviour:
   m_ObjectHideFlags: 0

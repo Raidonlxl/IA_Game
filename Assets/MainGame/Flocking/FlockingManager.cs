@@ -52,4 +52,9 @@ public class FlockingManager : MonoBehaviour, ISteering
     {
        
     }
+
+    public void CalculatePath(Transform target, bool isFear)
+    {
+        SetPath.SetPathAStarPlus(transform, target);
+    }
 }

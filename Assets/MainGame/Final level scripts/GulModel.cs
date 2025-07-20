@@ -6,10 +6,13 @@ using UnityEngine;
 
 public class GulModel : BaseModel,IBoid
 {
-    [SerializeField] public NormalUnitStats unitStats;
+    [SerializeField] public LeaderStats unitStats;
     public List<Node> NodesList{ get => nodeskey; }
     public List<float> Nodesvalue { get => nodesvalue; }
 
+    public Transform baseTransform;
+
+    public bool IsScared;
    
     private void Awake()
     {

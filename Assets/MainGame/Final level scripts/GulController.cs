@@ -35,6 +35,7 @@ public class GulController : MonoBehaviour
     {
         fsm.OnExecute();
         root.Execute();
+        Debug.Log("state: " + fsm._currState);
     }
 
     void InitializeFsm()

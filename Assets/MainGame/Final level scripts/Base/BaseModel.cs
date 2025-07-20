@@ -8,7 +8,7 @@ public class BaseModel : MonoBehaviour, IBoid
     public TeamsLists targets;
     public TeamsLists allies;
     public GameObject bullet;
-    [SerializeField] private ObstacleAvoidance obs;
+    public ObstacleAvoidance obs;
 
     public bool isReady;
     public bool isHealed;
@@ -25,14 +25,20 @@ public class BaseModel : MonoBehaviour, IBoid
 
     public Transform lasPositionPlayer;
     public List<Node> nodes;
-    public bool isTired;
+    public bool IsTired;
     public List<Node> nodeskey = new List<Node>();
     public List<float> nodesvalue = new List<float>();
     public Vector3 Position => transform.position;
 
     public Vector3 Forward => transform.forward;
 
-    
+    [SerializeField] float idleweight;
+    [SerializeField] float patrolweight;
+    [SerializeField] float fleeweight;
+
+    public float IdleWeight { get => idleweight; set => idleweight = value; }
+    public float PatrolWeight { get => patrolweight; set => patrolweight = value; }
+    public float FleeWeight { get => fleeweight; set => fleeweight = value; }
     private void Awake()
     {
         allies.Team.Add(gameObject);
@@ -65,7 +71,7 @@ public class BaseModel : MonoBehaviour, IBoid
     }
     public void SetTired()
     {
-        isTired = true;
+        IsTired = true;
     }
     public void Death() 
     {

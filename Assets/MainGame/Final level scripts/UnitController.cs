@@ -7,11 +7,7 @@ public class UnitController : MonoBehaviour
     Tree root;
     LineOfSight los;
 
-    [SerializeField] float idleweight;
-    [SerializeField] float patrolweight;
-    [SerializeField] float fleeweight;
-
-    public float IdleWeight { get => idleweight; set => idleweight = value; }
+    
     private void Awake()
     {
         model = GetComponent<BaseModel>();
@@ -32,7 +28,7 @@ public class UnitController : MonoBehaviour
     void initializeFSM()
     {
         fsm = new FSM<StatesEnum>();
-        var idle = new idleState<StatesEnum>(model, IdleWeight);
+        var idle = new idleState<StatesEnum>(model);
 
         fsm.SetInit(idle);
     }
