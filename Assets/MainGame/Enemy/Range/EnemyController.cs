@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-
+    /*
     [SerializeField] EnemyModel enemyModel;
 
     [SerializeField] private FSM<StatesEnum> fsm;
@@ -54,7 +54,7 @@ public class EnemyController : MonoBehaviour
         
         var goToReload = new ReloadState<StatesEnum>(enemyModel.genericBehaviour, steeringReaload, steeringFlocking, boxsAmmo, enemyModel);
 
-        var goToHeal = new SafePoint<StatesEnum>(enemyModel.genericBehaviour, steeringSafePoint, steeringFlocking, enemyModel, enemyModel.target.transform, enemyModel.nodes);
+        var goToHeal = new SafePointState<StatesEnum>(enemyModel.genericBehaviour, steeringSafePoint, steeringFlocking, enemyModel, enemyModel.target.transform, enemyModel.nodes);
 
         var idle = new Idle<StatesEnum>(enemyModel.transform);
 
@@ -203,5 +203,5 @@ public class EnemyController : MonoBehaviour
     private float GetDistanceTarget()
     {
         return Vector3.Distance(enemyModel.transform.position,enemyModel.target.transform.position);
-    }
+    }*/
 }

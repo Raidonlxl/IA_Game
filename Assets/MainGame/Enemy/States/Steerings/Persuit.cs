@@ -59,6 +59,10 @@ public class Persuit : ISteering
         _path = SetPath.SetPathAStarPlus(_self, target);
     }
 
+    public void CalculatePath(Transform target, bool isFear)
+    {
+        throw new System.NotImplementedException();
+    }
 
     public float TimePrediction
     {

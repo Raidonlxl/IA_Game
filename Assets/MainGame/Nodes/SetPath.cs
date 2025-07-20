@@ -19,13 +19,7 @@ public static class SetPath
 
         List<Node> path = ASTAR.Run<Node>(init, (x) => IsSatisfied(x, goal), GetConnections, GetCost, (x) => Heuristic(x, goal));
         path = ASTAR.CleanPath(path, InView);
-
-        string resultado = "";
-        for (int i = 0; i < path.Count; i++)
-        {
-            resultado += path[i].ToString() + " ";
-        }
-        Debug.Log(resultado);
+    
         return path;
     }
     public static List<Node> SetPathAStarPlus(Transform self, Transform target,bool isFear)
@@ -35,13 +29,6 @@ public static class SetPath
 
         List<Node> path = ASTAR.Run<Node>(init, (x) => IsSatisfied(x, target), GetConnections, GetCost, (x) => Heuristic(x, goal));
         path = ASTAR.CleanPath(path, InView);
-
-        string resultado = "";
-        for (int i = 0; i < path.Count; i++)
-        {
-            resultado += path[i].ToString() + " ";
-        }
-        Debug.Log("FEAR "+resultado);
         return path;
     }
 
@@ -83,13 +70,16 @@ public static class SetPath
     }
     static List<Node> GetConnections(Node curr)
     {
+
         return curr.neightbourds;
     }
     static float GetCost(Node parent, Node child)
     {
+
         float cost = 0;
         cost += Vector3.Distance(parent.transform.position, child.transform.position);
       
+
         return cost;
     }
     static float Heuristic(Node current, Node goal)
@@ -98,6 +88,7 @@ public static class SetPath
        
         float h = 0;
         h += Vector3.Distance(current.transform.position, goal.transform.position) * distanceMultiplier;
+       
         return h;
     }
 

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GulController : MonoBehaviour
@@ -7,20 +8,24 @@ public class GulController : MonoBehaviour
 
     [SerializeField] private FSM<StatesEnum> fsm;
 
+    Vector3 positionPlayer;
+
     ITreeNode root;
 
     int cantMaxToShoot = 5;
 
     [SerializeField] LineOfSight los;
 
-    /*
+    [SerializeField] private Transform[] boxsAmmo; 
+    
     private void Start()
     {
         enemyModel = GetComponent<GulModel>();
 
         los = GetComponent<LineOfSight>();
-        los.Initialize(enemyModel.transform, enemyModel.target.transform, enemyModel.enemyBase.Range, enemyModel.enemyBase.Angle, enemyModel.enemyBase.ObstacleMask);
 
+        los.Initialize(enemyModel.transform, enemyModel.target.transform, enemyModel.unitStats.Range, enemyModel.unitStats.Angle, enemyModel.unitStats.WallsMask);
+        positionPlayer = enemyModel.lasPositionPlayer.position;
         InitializeFsm();
         InitializeTree();
 
@@ -28,7 +33,6 @@ public class GulController : MonoBehaviour
 
     private void Update()
     {
-
         fsm.OnExecute();
         root.Execute();
     }
@@ -37,103 +41,118 @@ public class GulController : MonoBehaviour
     {
         fsm = new FSM<StatesEnum>();
 
-        var steeringFlocking = GetComponent<FlockingManager>();
+        var flockingSteering = GetComponent<FlockingManager>();
 
-        var steeringPersuit = new Persuit(enemyModel.transform, enemyModel.lasPositionPlayer, enemyModel.playerModel.Speed);
+        var persuitSteering = new Persuit(enemyModel.transform, enemyModel.lasPositionPlayer);
 
-        var steeringPatrol = new MoveToWaypoints(enemyModel.transform, enemyModel._nodeskey, enemyModel._nodesvalue, false);
+        var patrolSteering = new FollowWaypointsSteering(enemyModel.transform, enemyModel.lasPositionPlayer, enemyModel.NodesList, enemyModel.Nodesvalue);
 
-        var steeringPathing = new MoveToWaypoints(enemyModel.transform, enemyModel.target.transform, false);
+        var reloadSteering = new FollowPathSteering(enemyModel.transform, boxsAmmo[0].transform);
 
-        var steeringReaload = new Persuit(enemyModel.transform, boxsAmmo[0]);
+        var goToLastPosition = new FollowPathSteering(enemyModel.transform, enemyModel.lasPositionPlayer);
 
-        var steeringSafePoint = new MoveToWaypoints(enemyModel.transform, safepoint, false);
+        var backTobaseSteering = new FollowPathSteering(enemyModel.transform, enemyModel.baseTransform);
 
-
-
-        var tired = new TiredState<StatesEnum>(enemyModel);
-
-        var goToReload = new ReloadState<StatesEnum>(enemyModel.genericBehaviour, steeringReaload, steeringFlocking, boxsAmmo, enemyModel);
-
-        var goToHeal = new SafePoint<StatesEnum>(enemyModel.genericBehaviour, steeringSafePoint, steeringFlocking, enemyModel, enemyModel.target.transform, enemyModel.nodes);
-
-        var idle = new Idle<StatesEnum>(enemyModel.transform);
-
-        var patrol = new MoveSteering<StatesEnum>(enemyModel.genericBehaviour, steeringPatrol, steeringFlocking, enemyModel);
-
-        var persuit = new MoveSteering<StatesEnum>(enemyModel.genericBehaviour, steeringPersuit, steeringFlocking, enemyModel);
-
-        var movePathing = new MoveSteering<StatesEnum>(enemyModel.genericBehaviour, steeringPathing, steeringFlocking, enemyModel);
-
-        var shoot = new ShootState<StatesEnum>(enemyModel, enemyModel.bullet, cantMaxToShoot, steeringPatrol);
-
-        idle.AddTransition(StatesEnum.Patrol, patrol);
-        idle.AddTransition(StatesEnum.Persuit, persuit);
-        idle.AddTransition(StatesEnum.Tired, tired);
-        idle.AddTransition(StatesEnum.GetAmmo, goToReload);
-        idle.AddTransition(StatesEnum.Shoot, shoot);
-        idle.AddTransition(StatesEnum.Evade, goToHeal);
+        var safePoint = new FollowPathSteering(enemyModel.transform);
 
 
-        patrol.AddTransition(StatesEnum.Idle, idle);
-        patrol.AddTransition(StatesEnum.Persuit, persuit);
-        patrol.AddTransition(StatesEnum.GetAmmo, goToReload);
-        patrol.AddTransition(StatesEnum.Tired, tired);
-        patrol.AddTransition(StatesEnum.Shoot, shoot);
-        patrol.AddTransition(StatesEnum.Evade, goToHeal);
 
-        persuit.AddTransition(StatesEnum.Idle, idle);
-        persuit.AddTransition(StatesEnum.Patrol, patrol);
-        persuit.AddTransition(StatesEnum.GetAmmo, goToReload);
-        persuit.AddTransition(StatesEnum.Shoot, shoot);
-        persuit.AddTransition(StatesEnum.setPathing, movePathing);
-        persuit.AddTransition(StatesEnum.Tired, tired);
-        persuit.AddTransition(StatesEnum.Evade, goToHeal);
+        var tiredState = new TiredState<StatesEnum>(enemyModel);
 
-        goToReload.AddTransition(StatesEnum.Patrol, patrol);
-        goToReload.AddTransition(StatesEnum.Persuit, persuit);
-        goToReload.AddTransition(StatesEnum.Shoot, shoot);
-        goToReload.AddTransition(StatesEnum.Tired, tired);
-        goToReload.AddTransition(StatesEnum.Evade, goToHeal);
+        var reloadState = new ReloadState<StatesEnum>(enemyModel.genericBehaviour, reloadSteering, flockingSteering, boxsAmmo, enemyModel);
+
+        var escapeState = new SafePointState<StatesEnum>(enemyModel.genericBehaviour, safePoint, flockingSteering, enemyModel, enemyModel.target.transform);
+
+        var backBaseState = new MoveState<StatesEnum>(enemyModel.genericBehaviour, safePoint, flockingSteering, enemyModel);
+
+        var patrolState = new MoveState<StatesEnum>(enemyModel.genericBehaviour, patrolSteering, flockingSteering, enemyModel);
+        
+        var goToLastPositionState = new MoveState<StatesEnum>(enemyModel.genericBehaviour, goToLastPosition, flockingSteering, enemyModel);
+
+        var persuitState = new PersuitState<StatesEnum>(enemyModel.genericBehaviour, persuitSteering, flockingSteering, enemyModel, enemyModel.target.transform);
+
+        var shootState = new ShootState<StatesEnum>(enemyModel, enemyModel.bullet, cantMaxToShoot);
+
+      
 
 
-        shoot.AddTransition(StatesEnum.Persuit, persuit);
-        shoot.AddTransition(StatesEnum.Patrol, patrol);
-        shoot.AddTransition(StatesEnum.GetAmmo, goToReload);
-        shoot.AddTransition(StatesEnum.Tired, tired);
-        shoot.AddTransition(StatesEnum.Evade, goToHeal);
+        patrolState.AddTransition(StatesEnum.Persuit, persuitState);
+        patrolState.AddTransition(StatesEnum.GetAmmo, reloadState);
+        patrolState.AddTransition(StatesEnum.Shoot, shootState);
+        patrolState.AddTransition(StatesEnum.Evade, escapeState);
+        patrolState.AddTransition(StatesEnum.BackBase, backBaseState);
 
 
-        tired.AddTransition(StatesEnum.setPathing, movePathing);
-        tired.AddTransition(StatesEnum.Persuit, persuit);
-        tired.AddTransition(StatesEnum.Idle, idle);
-        tired.AddTransition(StatesEnum.Patrol, patrol);
-        tired.AddTransition(StatesEnum.Shoot, shoot);
-        tired.AddTransition(StatesEnum.GetAmmo, goToReload);
-        tired.AddTransition(StatesEnum.Evade, goToHeal);
+        persuitState.AddTransition(StatesEnum.Patrol, patrolState);
+        persuitState.AddTransition(StatesEnum.GetAmmo, reloadState);
+        persuitState.AddTransition(StatesEnum.Shoot, shootState);
+        persuitState.AddTransition(StatesEnum.Tired, tiredState);
+        persuitState.AddTransition(StatesEnum.Evade, escapeState);
+        persuitState.AddTransition(StatesEnum.BackBase, backBaseState);
+        persuitState.AddTransition(StatesEnum.GoToLastPoint, goToLastPositionState);
 
-        goToHeal.AddTransition(StatesEnum.Tired, tired);
-        goToHeal.AddTransition(StatesEnum.Patrol, patrol);
+        reloadState.AddTransition(StatesEnum.Patrol, patrolState);
+        reloadState.AddTransition(StatesEnum.Persuit, persuitState);
+        reloadState.AddTransition(StatesEnum.Shoot, shootState);
+        reloadState.AddTransition(StatesEnum.Tired, tiredState);
+        reloadState.AddTransition(StatesEnum.Evade, escapeState);
+        reloadState.AddTransition(StatesEnum.BackBase, backBaseState);
 
-        fsm.SetInit(idle);
+
+        shootState.AddTransition(StatesEnum.Persuit, persuitState);
+        shootState.AddTransition(StatesEnum.Patrol, patrolState);
+        shootState.AddTransition(StatesEnum.GetAmmo, reloadState);
+        shootState.AddTransition(StatesEnum.Tired, tiredState);
+        shootState.AddTransition(StatesEnum.Evade, escapeState);
+        shootState.AddTransition(StatesEnum.BackBase, backBaseState);
+
+
+
+        tiredState.AddTransition(StatesEnum.Persuit, persuitState);
+        tiredState.AddTransition(StatesEnum.Patrol, patrolState);
+        tiredState.AddTransition(StatesEnum.Shoot, shootState);
+        tiredState.AddTransition(StatesEnum.GetAmmo, reloadState);
+        tiredState.AddTransition(StatesEnum.Evade, escapeState);
+
+        escapeState.AddTransition(StatesEnum.Tired, tiredState);
+        escapeState.AddTransition(StatesEnum.Patrol, patrolState);
+        escapeState.AddTransition(StatesEnum.BackBase, backBaseState);
+
+        backBaseState.AddTransition(StatesEnum.Tired, tiredState);
+        backBaseState.AddTransition(StatesEnum.Patrol, patrolState);
+        backBaseState.AddTransition(StatesEnum.Persuit, persuitState);
+        backBaseState.AddTransition(StatesEnum.GoToLastPoint, goToLastPositionState);
+       
+
+        fsm.SetInit(tiredState);
     }
 
     void InitializeTree()
     {
-        var idle = new ActionNode(() => fsm.Transition(StatesEnum.Idle));
         var patrol = new ActionNode(() => fsm.Transition(StatesEnum.Patrol));
+
         var persuit = new ActionNode(() => fsm.Transition(StatesEnum.Persuit));
+
         var reload = new ActionNode(() => fsm.Transition(StatesEnum.GetAmmo));
+
         var shoot = new ActionNode(() => fsm.Transition(StatesEnum.Shoot));
-        var setPathing = new ActionNode(() => fsm.Transition(StatesEnum.setPathing));
+
         var tired = new ActionNode(() => fsm.Transition(StatesEnum.Tired));
+
         var escape = new ActionNode(() => fsm.Transition(StatesEnum.Evade));
+
+        var backBase = new ActionNode(() => fsm.Transition(StatesEnum.BackBase));
+
+        var goToLastPosition = new ActionNode(() => fsm.Transition(StatesEnum.GoToLastPoint));
+
 
         var qCanShoot = new QuestionNode(CanShot, shoot, persuit);
 
-        var qCheckAmmo = new QuestionNode(HaveAmmo, patrol, reload);
+        var qCanPatrol = new QuestionNode(IsEqual, patrol, goToLastPosition);
 
-        var qTargetPlayer = new QuestionNode(IsTargetView, qCanShoot, qCheckAmmo);
+        var qCheckAmmo = new QuestionNode(HaveAmmo, qCanPatrol, reload);
+
+        var qTargetPlayer = new QuestionNode(IsTargetView, qCheckAmmo, qCanPatrol);
 
         var qTired = new QuestionNode(IsTired, tired, qTargetPlayer);
 
@@ -144,9 +163,22 @@ public class GulController : MonoBehaviour
 
     }
 
+    private bool IsEqual()
+    {
+        if (Vector3.Distance(enemyModel.lasPositionPlayer.position, positionPlayer) < 5)
+        {
+            return true;
+        }
+
+        else
+        {
+            positionPlayer = enemyModel.lasPositionPlayer.position;
+            return false;
+        }
+    }
     private bool IsLowHp()
     {
-        if (enemyModel.healthController.currentHealth <= 20)
+        if (enemyModel.healthController.currentHealth <= 20 || enemyModel.IsScared)
         {
             return true;
         }
@@ -157,7 +189,7 @@ public class GulController : MonoBehaviour
     }
     private bool IsTired()
     {
-        return enemyModel.isTired;
+        return enemyModel.IsTired;
     }
     private bool CanShot()
     {
@@ -205,5 +237,5 @@ public class GulController : MonoBehaviour
     {
         return Vector3.Distance(enemyModel.transform.position, enemyModel.target.transform.position);
     }
-    */
+    
 }

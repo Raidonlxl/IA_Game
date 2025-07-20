@@ -52,9 +52,8 @@ public class FlockingManager : MonoBehaviour, ISteering
     {
         throw new System.NotImplementedException();
     }
-
-    public void Refresh()
+    public void CalculatePath(Transform target, bool isFear)
     {
-       
+        throw new System.NotImplementedException();
     }
 }

@@ -10,6 +10,11 @@ public class Seek : ISteering
         _target = target;
     }
 
+    public void CalculatePath(Transform target, bool isFear)
+    {
+        throw new System.NotImplementedException();
+    }
+
     public virtual Vector3 GetDir()
     {
         return (_target.position - _self.position).normalized;

@@ -5,14 +5,14 @@ using Unity.Mathematics;
 public class ReloadState<T> : State<T>
 {
     Transform[] reloadsBoxs;
-    EnemyModel self;
+    BaseModel self;
     Timer timer;
     Transform selected;
     float x= math.INFINITY;
     ISteering steering;
     GenericBehaviour generic;
     ISteering flocking;
-    public ReloadState(GenericBehaviour generic, ISteering steering,ISteering flocking, Transform[] reloadsBoxs, EnemyModel self)
+    public ReloadState(GenericBehaviour generic, ISteering steering,ISteering flocking, Transform[] reloadsBoxs, BaseModel self)
     {
         this.reloadsBoxs = reloadsBoxs;
         this.self = self;
@@ -38,8 +38,7 @@ public class ReloadState<T> : State<T>
             }
         }
 
-        steering.Refresh(selected);
-        
+        steering.CalculatePath(selected,false);
        
     }
 

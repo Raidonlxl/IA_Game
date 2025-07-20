@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class TiredState<T> : State<T>
 {
-    private EnemyModel self;
+    private BaseModel self;
     private Timer timer;
     
-    public TiredState(EnemyModel self)
+    public TiredState(BaseModel self)
     {
         this.self = self;
         timer = new Timer(0, 10f);
@@ -27,7 +27,7 @@ public class TiredState<T> : State<T>
         }
         else
         {
-            self.isTired = false;
+            self.SetTired();
         }
     }
 }

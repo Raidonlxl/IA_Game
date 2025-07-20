@@ -1,38 +1,24 @@
-using NUnit.Framework.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class MoveToWaypoints : ISteering
+public class FollowWaypointsSteering : ISteering
 {
-    private Transform self;
-    private Transform target;
-    private bool isBacking;
-    private bool canBack;
-    private bool endWay;
-    private int index;
+    Transform self;
+    Transform target;
     List<Node> path;
+    int index = 0;
+    bool isBacking;
     List<Node> nodes;
     List<float> weight;
     Dictionary<Node, float> _patrolNodes = new Dictionary<Node, float>();
-
-    public MoveToWaypoints(Transform self, Transform target, bool canBack)
+    public FollowWaypointsSteering(Transform self, Transform target, List<Node> nodes, List<float> weight)
     {
         this.self = self;
         this.target = target;
-        index = 0;
-        isBacking = false;
-        this.canBack = canBack;
-        Refresh(target);
-    }
-    public MoveToWaypoints(Transform self, List<Node> nodes,List<float> weight, bool canBack)
-    {
-        this.self = self;
         this.nodes = nodes;
-        index = 0;
-        isBacking = false;
-        this.canBack = canBack;
         this.weight = weight;
 
         for (int i = 0; i < nodes.Count; i++)
@@ -40,14 +26,11 @@ public class MoveToWaypoints : ISteering
             _patrolNodes[nodes[i]] = weight[i];
         }
         target = MyRandoms.Roulette<Node>(_patrolNodes).transform;
-        Refresh(target);
-    }
-    public void Refresh(Transform target)
-    {
 
-        path = SetPath.SetPathAStarPlus(self, target);
-        //Debug.Log("target: " + target);
+        CalculatePath(target,false);
+
     }
+   
     public void ChangeRoulleteValues()
     {
         if (nodes != null)
@@ -66,17 +49,15 @@ public class MoveToWaypoints : ISteering
                 _patrolNodes[nodes[i]] = weight[i];
             }
             target = MyRandoms.Roulette<Node>(_patrolNodes).transform;
-            
-            Refresh(target);
-            endWay = false;
+
+            CalculatePath(target, false);
             index = 0;
         }
-        
-
     }
+
     public Vector3 GetDir()
     {
-        if (canBack)
+        if (path != null)
         {
             if (Vector3.Distance(self.position, path[index].transform.position) < 0.5f)
             {
@@ -90,7 +71,7 @@ public class MoveToWaypoints : ISteering
                     else
                     {
                         isBacking = true;
-                        index--;
+                        if (index > 0) index--;
                     }
                 }
                 else
@@ -102,34 +83,32 @@ public class MoveToWaypoints : ISteering
                     else
                     {
                         isBacking = false;
-                        index++;
+                        if (index < path.Count - 1) index++;
                     }
                 }
             }
         }
 
-        else if (!canBack && !endWay)
-        {
-            if (Vector3.Distance(self.position, path[index].transform.position) < 0.5f)
-            {
-                if (index < path.Count - 1)
-                {
-                    index++;
-                    //Debug.Log("no llegue, index " + index);
-                }
-                else
-                {
-                    endWay = true;
-                    //Debug.Log("llegue, index " + index);
-                    ChangeRoulleteValues();
-                }
-            }
-        }
         return (path[index].transform.position - self.position).normalized;
+
+    }
+    public void Refresh(Transform target)
+    {
+        throw new NotImplementedException();
     }
 
     public void CalculatePath(Transform target, bool isFear)
     {
-        throw new NotImplementedException();
+        isFear = false;
+
+        if (isFear)
+        {
+            path = SetPath.SetPathAStarPlus(self, target, isFear);
+        }
+        else
+        {
+            path = SetPath.SetPathAStarPlus(self, target);
+        }
+  
     }
 }
