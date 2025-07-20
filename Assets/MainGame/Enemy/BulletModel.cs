@@ -6,12 +6,14 @@ public class BulletModel : MonoBehaviour,IPooleable
     private MeleeEnemyModel enemyModel;
     private EnemyModel enemyModelRange;
     private PlayerModel playerModel;
+    private BaseModel BaseModel;
     private int damage = 10;
     public PoolGeneric<GameObject> pool;
+    private TeamsLists myTeam;
 
     private void OnCollisionEnter(Collision collision)
     {
-
+        /*
         if (collision.gameObject.layer == LayerMask.NameToLayer("Boids"))
         {
             
@@ -43,15 +45,26 @@ public class BulletModel : MonoBehaviour,IPooleable
             {
                 playerModel.healthController.GetDamage(damage);
             }
-        }
+        }*/
         Recycle(gameObject);
-      
-     
-
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Boids")) 
+        {
+            BaseModel = collision.gameObject.GetComponent<BaseModel>();
+            if (!myTeam.Team.Contains(BaseModel.gameObject))
+            {
+                BaseModel.healthController.GetDamage(damage);
+            }
+        }
+        
     }
 
     public void Recycle(GameObject gameObject)
     {
         pool.Recycle(gameObject);
+    }
+
+    public void SetTeam(TeamsLists MyTeam)
+    {
+        myTeam = MyTeam;
     }
 }

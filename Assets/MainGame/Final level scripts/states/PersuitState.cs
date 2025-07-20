@@ -20,7 +20,7 @@ public class PersuitState<T> : PatrolState<T>
     public override void Enter()
     {
         base.Enter();
-        genericBehaviour.IsActive = true;
+        //genericBehaviour.IsActive = true;
     }
 
     public override void Execute()
@@ -32,7 +32,7 @@ public class PersuitState<T> : PatrolState<T>
         {
             genericBehaviour.Dir = steering.GetDir();
 
-            enemyModel.Move(flocking.GetDir());
+            enemyModel.Move(steering.GetDir());
 
             timer.Run();
 
@@ -51,7 +51,7 @@ public class PersuitState<T> : PatrolState<T>
 
         enemyModel.lasPositionPlayer.position = enemyModel.target.transform.position;
 
-        genericBehaviour.IsActive = false;
+        //genericBehaviour.IsActive = false;
         
     } 
 }

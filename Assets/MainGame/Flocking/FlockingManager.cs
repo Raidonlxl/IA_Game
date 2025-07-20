@@ -50,11 +50,6 @@ public class FlockingManager : MonoBehaviour, ISteering
 
     public void Refresh(Transform target)
     {
-        throw new System.NotImplementedException();
-    }
-
-    public void Refresh()
-    {
        
     }
 }

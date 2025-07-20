@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f87bcfa1428f5ff44a23adeee31096c7, type: 3}
   m_Name: blue leader
   m_EditorClassIdentifier: 
-  maxLife: 0
+  maxLife: 10
   damage: 0
   currentTiredTime: 0
   maxTiredTime: 0

@@ -5,10 +5,12 @@ public class BulletController : MonoBehaviour
     
     public BulletModel bulletModel;
     public Timer timer;
+    public TeamsLists allies;
 
     private void Start()
     {
         timer = new Timer(0,5);
+        bulletModel.SetTeam(allies);
     }
     public void SetOwner(string owner)
     {
