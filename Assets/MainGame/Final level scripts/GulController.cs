@@ -16,7 +16,8 @@ public class GulController : MonoBehaviour
 
     [SerializeField] LineOfSight los;
 
-    [SerializeField] private Transform[] boxsAmmo; 
+    [SerializeField] private Transform[] boxsAmmo;
+    Dictionary<ITreeNode, float> randomNodes = new Dictionary<ITreeNode, float>();
     
     private void Start()
     {
@@ -147,21 +148,35 @@ public class GulController : MonoBehaviour
         var goToLastPosition = new ActionNode(() => fsm.Transition(StatesEnum.GoToLastPoint));
 
 
+        randomNodes.Add(goToLastPosition, enemyModel.IdleWeight);
+
+        randomNodes.Add(patrol, enemyModel.PatrolWeight);
+
+        var patrolRun = new RandomNode(randomNodes);
+
+
+        //var qCanPatrol = new QuestionNode(IsEqual, patrol, goToLastPosition);
+
         var qCanShoot = new QuestionNode(CanShot, shoot, persuit);
 
-        var qCanPatrol = new QuestionNode(IsEqual, patrol, goToLastPosition);
+        var qCheckAmmo = new QuestionNode(HaveAmmo, qCanShoot, reload);
 
-        var qCheckAmmo = new QuestionNode(HaveAmmo, qCanPatrol, reload);
+        var qTargetPlayer = new QuestionNode(IsTargetView, qCheckAmmo, patrolRun);
 
-        var qTargetPlayer = new QuestionNode(IsTargetView, qCheckAmmo, qCanPatrol);
+        var qHaveAssemble = new QuestionNode(HaveAssemble, backBase, qTargetPlayer);
 
-        var qTired = new QuestionNode(IsTired, tired, qTargetPlayer);
+        var qTired = new QuestionNode(IsTired, tired, qHaveAssemble);
 
         var qHP = new QuestionNode(IsLowHp, escape, qTired);
 
         root = qHP;
 
 
+    }
+
+    private bool HaveAssemble()
+    {
+        return enemyModel.haveAssemble;
     }
 
     private bool IsEqual()

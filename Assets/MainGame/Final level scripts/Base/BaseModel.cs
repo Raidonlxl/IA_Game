@@ -10,6 +10,8 @@ public class BaseModel : MonoBehaviour, IBoid
     public GameObject bullet;
     public ObstacleAvoidance obs;
 
+    public Rigidbody rb;
+
     public bool isReady;
     public bool isHealed;
     public Transform home;
@@ -47,9 +49,12 @@ public class BaseModel : MonoBehaviour, IBoid
      
     public virtual void Move(Vector3 direction)
     {
-        
+
         direction = obs.GetDir(direction);
-        transform.position += direction * stats.Speed * Time.deltaTime;
+  
+        direction.y = rb.linearVelocity.y;
+        rb.linearVelocity = direction * stats.Speed;
+
         RotateEnemy(direction);
     }
 

@@ -7,6 +7,8 @@ using UnityEngine;
 public class GulModel : BaseModel,IBoid
 {
     [SerializeField] public LeaderStats unitStats;
+
+    public bool haveAssemble;
     public List<Node> NodesList{ get => nodeskey; }
     public List<float> Nodesvalue { get => nodesvalue; }
 
@@ -20,10 +22,12 @@ public class GulModel : BaseModel,IBoid
     }
     public override void Move(Vector3 direction)
     {
+        base.Move(direction);
+        /*
         direction = obs.GetDir(direction);
         transform.position += direction * unitStats.Speed * Time.deltaTime;
         RotateEnemy(direction);
-
+        */
     }
 
     public override void RotateEnemy(Vector3 direction)

@@ -9,6 +9,8 @@ public class PersuitState<T> : MoveState<T>
     ISteering flocking;
     GenericBehaviour genericBehaviour;
 
+    Transform target;
+
     public PersuitState(GenericBehaviour genericBehaviour, ISteering steering, ISteering flocking, BaseModel enemyModel, Transform target) : base(genericBehaviour, steering, flocking, enemyModel)
     {
         this.steering = steering;
@@ -20,7 +22,7 @@ public class PersuitState<T> : MoveState<T>
     public override void Enter()
     {
         base.Enter();
-        //genericBehaviour.IsActive = true;
+        genericBehaviour.IsActive = true;
     }
 
     public override void Execute()
@@ -49,9 +51,9 @@ public class PersuitState<T> : MoveState<T>
     {
         base.Exit();
 
-        enemyModel.lasPositionPlayer.position = enemyModel.target.transform.position;
+        enemyModel.lasPositionPlayer.position = target.position;
 
-        //genericBehaviour.IsActive = false;
+        genericBehaviour.IsActive = false;
         
     } 
 }
