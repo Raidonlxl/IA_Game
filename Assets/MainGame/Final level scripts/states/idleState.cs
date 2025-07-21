@@ -24,8 +24,5 @@ public class idleState<T> : State<T>
             model.IdleWeight += 10f; 
         }
     }
-    public override void Execute() 
-    {
-        
-    }
+   
 }

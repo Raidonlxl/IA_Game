@@ -8,7 +8,7 @@ public class GulModel : BaseModel,IBoid
 {
     [SerializeField] public LeaderStats unitStats;
 
-    public bool haveAssemble;
+    
     public List<Node> NodesList{ get => nodeskey; }
     public List<float> Nodesvalue { get => nodesvalue; }
 

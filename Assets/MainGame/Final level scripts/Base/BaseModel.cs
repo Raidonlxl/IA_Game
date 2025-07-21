@@ -16,7 +16,7 @@ public class BaseModel : MonoBehaviour, IBoid
     public bool isHealed;
     public Transform home;
     public Transform target;
-
+    public bool haveAssemble;
     public GameObject pointToShoot;
     public string owner = "Self";
     public BulletController bulletController;
@@ -43,7 +43,7 @@ public class BaseModel : MonoBehaviour, IBoid
     public float FleeWeight { get => fleeweight; set => fleeweight = value; }
     private void Awake()
     {
-        allies.Team.Add(gameObject);
+        allies.Team.Add(this);
         
     }
      

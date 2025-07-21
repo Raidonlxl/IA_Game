@@ -1,45 +1,61 @@
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
+using System.Collections;
 
-public class LeaderModel : MonoBehaviour
+public class LeaderModel : BaseModel
 {
-    public LeaderStats stats;
-    public TeamsLists targets;
-    public TeamsLists allies;
-    public GameObject bullet;
-    [SerializeField]
-    private ObstacleAvoidance obs;
-    public bool isReady;
-    public bool isHealed;
-    public GameObject pointToShoot;
-    public BulletController bulletController;
+    [SerializeField] float intimidationweight;
 
-    public HealthController healthController;
+    public LeaderStats LeaderStats;
 
-    public GenericBehaviour genericBehaviour;
+    public GameObject ScareBubble;
 
-    public Transform lasPositionPlayer;
-    public List<Node> nodes;
-    public bool isTired;
-    public List<Node> nodeskey = new List<Node>();
-    public List<float> nodesvalue = new List<float>();
-    public Vector3 Position => transform.position;
+    [SerializeField] float regroupWeight;
+    public float IntimidationWeight { get => intimidationweight; set => intimidationweight = value; }
 
-    public Vector3 Forward => transform.forward;
+    public float RegroupWeight { get => regroupWeight; set => regroupWeight = value; }
+    public List<Node> NodesList { get => nodeskey; }
+    public List<float> Nodesvalue { get => nodesvalue; }
+
+    public Transform baseTransform;
+
+
+
+    Coroutine IntimidationTimeCooldown;
 
     private void Awake()
     {
-        allies.Team.Add(gameObject);
+        healthController.SetMaxLife(LeaderStats.MaxLife);
     }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public override void Move(Vector3 direction)
     {
-        
+        direction = obs.GetDir(direction);
+        transform.position += direction * LeaderStats.Speed * Time.deltaTime;
+        RotateEnemy(direction);
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void RotateEnemy(Vector3 direction)
     {
-        
+        base.RotateEnemy(direction);
+
+    }
+
+    public override void Shoot(GameObject bullet, PoolGeneric<GameObject> pool)
+    {
+        base.Shoot(bullet, pool);
+
+    }
+    public void Intimidate()
+    {
+        ScareBubble.SetActive(true);
+        IntimidationTimeCooldown = StartCoroutine(IntimidationTime());
+    }
+
+    IEnumerator IntimidationTime()
+    {
+        yield return new WaitForSeconds(2f);
+        ScareBubble.SetActive(false);
+        IntimidationTimeCooldown = null;
     }
 }

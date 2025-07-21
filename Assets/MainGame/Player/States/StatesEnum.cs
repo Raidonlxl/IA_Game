@@ -14,5 +14,7 @@ public enum  StatesEnum
     Dead,
     setPathing,
     Evade,
-    BackBase
+    BackBase,
+    Intimidate,
+    Callassembly
 }
